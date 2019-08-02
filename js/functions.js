@@ -1,7 +1,5 @@
 $(document).ready(function () {
-
     if ($('.reta').click(function(){
-        // console.log(colunas);
         $('#reta').addClass('ativo');
         $('#exponencial').addClass('oculto');
         $('#angular').addClass('oculto');
@@ -14,12 +12,11 @@ $(document).ready(function () {
     }));
     
     if ($('.angular').click(function(){        
-        // console.log(colunas);
         $('#angular').addClass('ativo');
         $('#exponencial').addClass('oculto');
         $('#reta').addClass('oculto');
         $('#perso').addClass('oculto');
-        //////////////////////////////  asdsa
+        //////////////////////////////
         $('#angular').removeClass('oculto');
         $('#reta').removeClass('ativo');
         $('#exponencial').removeClass('ativo');
@@ -27,7 +24,6 @@ $(document).ready(function () {
     }));
     
     if ($('.perso').click(function(){
-        // console.log(colunas);
         $('#perso').addClass('ativo');
         $('#exponencial').addClass('oculto');
         $('#angular').addClass('oculto');
@@ -40,7 +36,6 @@ $(document).ready(function () {
     }));
     
     if ($('.exponencial').click(function(){
-        // console.log(colunas);
         $('#exponencial').addClass('ativo');
         $('#reta').addClass('oculto');
         $('#angular').addClass('oculto');
@@ -52,6 +47,4 @@ $(document).ready(function () {
         $('#perso').removeClass('ativo');
     }));
 });
-
 var data = colunas;
-document.getElementById("total-curso").innerHTML = 'Valor total do curso: '+data['total_curso'];

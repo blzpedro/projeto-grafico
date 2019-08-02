@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <!-- http://localhost:8000/projeto-grafico?colunas%5B0%5D%5Bnome%5D=p1&colunas%5B0%5D%5Bvalor%5D=15&colunas%5B1%5D%5Bnome%5D=p2&colunas%5B1%5D%5Bvalor%5D=30&colunas%5B2%5D%5Bnome%5D=p3&colunas%5B2%5D%5Bvalor%5D=45&colunas%5B3%5D%5Bnome%5D=p4&colunas%5B3%5D%5Bvalor%5D=60&colunas%5B4%5D%5Bnome%5D=p5&colunas%5B4%5D%5Bvalor%5D=75&colunas%5B5%5D%5Bnome%5D=p6&colunas%5B5%5D%5Bvalor%5D=90&colunas%5B6%5D%5Bnome%5D=p7 -->
+    <!-- http://localhost:8000/projeto-grafico?colunas%5B0%5D%5Bnome%5D=p1&colunas%5B0%5D%5Bvalor%5D=15&colunas%5B1%5D%5Bnome%5D=p2&colunas%5B1%5D%5Bvalor%5D=30&colunas%5B2%5D%5Bnome%5D=p3&colunas%5B2%5D%5Bvalor%5D=45&colunas%5B3%5D%5Bnome%5D=p4&colunas%5B3%5D%5Bvalor%5D=60&colunas%5B4%5D%5Bnome%5D=p5&colunas%5B4%5D%5Bvalor%5D=75&colunas%5B5%5D%5Bnome%5D=p6&colunas%5B5%5D%5Bvalor%5D=90&colunas%5B6%5D%5Bnome%5D=p7&total_curso=30000 -->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,12 +26,13 @@
     <div id="drop"></div>
     <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
-        <a class="waves-effect waves-light btn exponencial"><i class="material-icons right">multiline_chart</i>Gráfico exponencial</a>
-        <a class="waves-effect waves-light btn reta"><i class="material-icons right">arrow_forward</i>Gráfico em reta</a>
-        <a class="waves-effect waves-light btn angular"><i class="material-icons right">call_made</i>Gráfico angular</a>
-        <a class="waves-effect waves-light btn perso"><i class="material-icons right">show_chart</i>Gráfico personalizado</a>
+        <a class="waves-effect waves-light btn-floating  exponencial"><i class="material-icons right">multiline_chart</i></a>
+        <a class="waves-effect waves-light btn-floating  reta"><i class="material-icons right">arrow_forward</i></a>
+        <a class="waves-effect waves-light btn-floating  angular"><i class="material-icons right">call_made</i></a>
+        <a class="waves-effect waves-light btn-floating  perso"><i class="material-icons right">show_chart</i></a>
     </div>
 </body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://rawgithub.com/highcharts/draggable-points/master/draggable-points.js"></script>

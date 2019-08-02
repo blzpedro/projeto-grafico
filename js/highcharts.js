@@ -1,5 +1,4 @@
-
-var data = colunas;
+var dados = colunas;
 var cols = '';
 var vals = '';
 var cols = [];
@@ -10,7 +9,8 @@ function myFunction(item) {
   cols.push(item.nome); 
   vals.push(parseInt(item.valor)); 
 }
-///////////////////////////////////////////////////// GRÁFICO EXPONENCIAL /////////////////////////////////////////
+
+///////////////////////////////////////////////////// GRÁFICO PERSONALIZADO /////////////////////////////////////////
 Highcharts.setOptions({
         lang: {
             decimalPoint: ',',
@@ -36,9 +36,11 @@ Highcharts.setOptions({
         },
 
         yAxis:{
+            max: 100,
+            endOnTick: false,
             title:{
                 text: 'Valor do curso'
-            }
+            },
         },
         
 
@@ -49,11 +51,11 @@ Highcharts.setOptions({
                         drag: function (e) {
                             $('#drag').html(
                                 'Arrastando <b>' + this.category +
-                                '</b> para R$ <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                                '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                         },
                         drop: function () {
                             $('#drop').html(
-                                'O curso de Medicina no <b>' + this.category + '</b> está custando R$ <b>' + Highcharts.numberFormat(this.y, 2)+'</b>');
+                                'Valor total do curso: <b>'+(parseInt(data['total_curso'])-((parseInt(Highcharts.numberFormat(this.y, 0)))*300))+'</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
                         }
                     }
                 },
@@ -68,15 +70,18 @@ Highcharts.setOptions({
         },
 
         tooltip: {
-            valueDecimals: 2,
-            valuePrefix: 'R$',
+            valueDecimals: 0,
+            valueSuffix: '%',
             pointFormat: '{series.name}: <b>{point.y}</b><br/>',
             shared: true
         },
 
         series: [{
+            name: 'Desconto',
             data: [] = vals,
-            draggableY: true
+            draggableY: true,
+            dragMaxY: 100,
+            dragMinY: 0,
         }],
 
         exporting: {       
@@ -129,11 +134,11 @@ var chart = new Highcharts.Chart({
                     drag: function (e) {
                         $('#drag').html(
                             'Arrastando <b>' + this.category +
-                            '</b> para R$ <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                            '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
                         $('#drop').html(
-                            'O curso de Medicina no <b>' + this.category + '</b> está custando R$ <b>' + Highcharts.numberFormat(this.y, 2)+'</b>');
+                            'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
                     }
                 }
             },
@@ -148,14 +153,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        valueDecimals: 2,
-        valuePrefix: 'R$',
+        valueDecimals: 0,
+        valueSuffix: '%',
         pointFormat: '{series.name}: <b>{point.y}</b><br/>',
         shared: true
     },
 
     series: [{
-        name: 'Valor',
+        name: 'Desconto',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
@@ -211,11 +216,11 @@ var chart = new Highcharts.Chart({
                     drag: function (e) {
                         $('#drag').html(
                             'Arrastando <b>' + this.category +
-                            '</b> para R$ <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                            '</b> para %<b>' + Highcharts.numberFormat(e.y, 0) + '</b>');
                     },
                     drop: function () {
                         $('#drop').html(
-                            'O curso de Medicina no <b>' + this.category + '</b> está custando R$ <b>' + Highcharts.numberFormat(this.y, 2)+'</b>');
+                            'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
                     }
                 }
             },
@@ -230,14 +235,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        valueDecimals: 2,
-        valuePrefix: 'R$',
+        valueDecimals: 0,
+        valueSuffix: '%',
         pointFormat: '{series.name}: <b>{point.y}</b><br/>',
         shared: true
     },
 
     series: [{
-        name: 'Valor',
+        name: 'Desconto',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
@@ -253,7 +258,7 @@ var chart = new Highcharts.Chart({
 });
 
 
-//////////////////////////////////////////////// GRÁFICO PERSONALIZADO ///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////// GRÁFICO EXPONENCIAL ///////////////////////////////////////////////////////////////
 
 Highcharts.setOptions({
     lang: {
@@ -293,11 +298,11 @@ var chart = new Highcharts.Chart({
                     drag: function (e) {
                         $('#drag').html(
                             'Arrastando <b>' + this.category +
-                            '</b> para R$ <b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
+                            '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
                         $('#drop').html(
-                            'O curso de Medicina no <b>' + this.category + '</b> está custando R$ <b>' + Highcharts.numberFormat(this.y, 2)+'</b>');
+                            'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
                     }
                 }
             },
@@ -312,14 +317,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        valueDecimals: 2,
-        valuePrefix: 'R$',
+        valueDecimals: 0,
+        valueSuffix: '%',
         pointFormat: '{series.name}: <b>{point.y}</b><br/>',
         shared: true
     },
 
     series: [{
-        name: 'Valor',
+        name: 'Desconto',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
@@ -333,6 +338,3 @@ var chart = new Highcharts.Chart({
 }
 
 });
-
-
-
