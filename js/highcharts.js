@@ -1,16 +1,16 @@
 
-var data = colunas;
+var dados = colunas;
 var cols = '';
 var vals = '';
 var cols = [];
 var vals = [];
 
-data.forEach(myFunction);
+dados['colunas'].forEach(myFunction);
 function myFunction(item) {
   cols.push(item.nome); 
   vals.push(parseInt(item.valor)); 
 }
-// document.write(cols);
+document.write(dados['total_curso']);
 // document.write(vals);
 ///////////////////////////////////////////////////// GRÁFICO EXPONENCIAL /////////////////////////////////////////
 Highcharts.setOptions({

@@ -11,7 +11,7 @@
         <script src="js/jquery.js"></script>
 </head>
 <?php  
-    $dados = $_REQUEST['colunas'];
+    $dados = $_REQUEST;
     $dados_json = json_encode($dados);
 
 ?>
@@ -26,10 +26,10 @@
     <div id="drop"></div>
     <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
-        <a class="waves-effect waves-light btn exponencial"><i class="material-icons right">multiline_chart</i>Gráfico exponencial</a>
-        <a class="waves-effect waves-light btn reta"><i class="material-icons right">arrow_forward</i>Gráfico em reta</a>
-        <a class="waves-effect waves-light btn angular"><i class="material-icons right">call_made</i>Gráfico angular</a>
-        <a class="waves-effect waves-light btn perso"><i class="material-icons right">show_chart</i>Gráfico personalizado</a>
+        <a class="waves-effect waves-light btn-floating  exponencial"><i class="material-icons right">multiline_chart</i></a>
+        <a class="waves-effect waves-light btn-floating  reta"><i class="material-icons right">arrow_forward</i></a>
+        <a class="waves-effect waves-light btn-floating  angular"><i class="material-icons right">call_made</i></a>
+        <a class="waves-effect waves-light btn-floating  perso"><i class="material-icons right">show_chart</i></a>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
