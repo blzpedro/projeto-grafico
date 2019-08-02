@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     if ($('.reta').click(function(){
         $('#reta').addClass('ativo');
         $('#exponencial').addClass('oculto');

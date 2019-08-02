@@ -9,8 +9,7 @@ function myFunction(item) {
   cols.push(item.nome); 
   vals.push(parseInt(item.valor)); 
 }
-
-///////////////////////////////////////////////////// GRÁFICO PERSONALIZADO /////////////////////////////////////////
+///////////////////////////////////////////////////// GRÁFICO EXPONENCIAL /////////////////////////////////////////
 Highcharts.setOptions({
         lang: {
             decimalPoint: ',',
@@ -18,7 +17,7 @@ Highcharts.setOptions({
             printChart: 'Imprimir gráfico'
         }
     });
-    var chart1 = new Highcharts.Chart({
+    var chartExponencial = new Highcharts.Chart({
         chart: {
             renderTo: 'perso',
             animation: false,
@@ -103,10 +102,10 @@ Highcharts.setOptions({
         printChart: 'Imprimir gráfico'
     }
 });
-var chart = new Highcharts.Chart({
+var chartReta = new Highcharts.Chart({
     chart: {
         renderTo: 'reta',
-        animation: false,
+        animation: true,
     },
 
     title: {
@@ -114,7 +113,7 @@ var chart = new Highcharts.Chart({
     },
 
     xAxis: {
-        categories: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10'],
+        categories: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9'],
         title:{
             text: 'Períodos'
         }
@@ -123,7 +122,9 @@ var chart = new Highcharts.Chart({
     yAxis:{
         title:{
             text: 'Valor do curso'
-        }
+        },
+        max: 100,
+        min: 0,
     },
     
 
@@ -138,7 +139,15 @@ var chart = new Highcharts.Chart({
                     },
                     drop: function () {
                         $('#drop').html(
-                            'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
+                            // 'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
+                            'O curso de Medicina no <b>' + this.category +'</b> está custando R$ <b>' + Highcharts.numberFormat(this.y, 2)+'</b>');
+                            var colunasGrafico = chartReta.series[0].data;
+                            var colunaAtual = this;
+                            colunasGrafico.forEach(atualizaReta);
+                            function atualizaReta(item) {
+                                // console.log(primeirColuna);
+                                item.update(colunaAtual.y); 
+                            }
                     }
                 }
             },
@@ -160,8 +169,8 @@ var chart = new Highcharts.Chart({
     },
 
     series: [{
-        name: 'Desconto',
-        data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
+        name: 'Valor',
+        data: [35, 45, 50, 55, 60, 65, 70, 90, 100],
         draggableY: true
     }],
 
@@ -185,7 +194,7 @@ Highcharts.setOptions({
         printChart: 'Imprimir gráfico'
     }
 });
-var chart = new Highcharts.Chart({
+var chartAngular = new Highcharts.Chart({
     chart: {
         renderTo: 'angular',
         animation: false,
@@ -267,7 +276,7 @@ Highcharts.setOptions({
         printChart: 'Imprimir gráfico'
     }
 });
-var chart = new Highcharts.Chart({
+var chartPerso = new Highcharts.Chart({
     chart: {
         renderTo: 'exponencial',
         animation: false,
