@@ -57,10 +57,14 @@
         },
 
         tooltip: {
-            yDecimals: 2
+            valueDecimals: 2,
+            valuePrefix: 'R$',
+            pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+            shared: true
         },
 
         series: [{
+            name: 'Valor',
             data: [350, 440],
             draggableY: true
         }],
@@ -135,10 +139,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        yDecimals: 2
+        valueDecimals: 2,
+        valuePrefix: 'R$',
+        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        shared: true
     },
 
     series: [{
+        name: 'Valor',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
@@ -213,10 +221,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        yDecimals: 2
+        valueDecimals: 2,
+        valuePrefix: 'R$',
+        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        shared: true
     },
 
     series: [{
+        name: 'Valor',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
@@ -291,10 +303,14 @@ var chart = new Highcharts.Chart({
     },
 
     tooltip: {
-        yDecimals: 2
+        valueDecimals: 2,
+        valuePrefix: 'R$',
+        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        shared: true
     },
 
     series: [{
+        name: 'Valor',
         data: [350, 450, 500, 550, 600, 650, 700, 900, 1100, 1300],
         draggableY: true
     }],
