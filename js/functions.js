@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     if ($('.reta').click(function(){
         // console.log(colunas);
         $('#reta').addClass('ativo');
@@ -51,3 +52,6 @@ $(document).ready(function () {
         $('#perso').removeClass('ativo');
     }));
 });
+
+var data = colunas;
+document.getElementById("total-curso").innerHTML = 'Valor total do curso: '+data['total_curso'];

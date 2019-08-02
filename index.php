@@ -11,9 +11,8 @@
         <script src="js/jquery.js"></script>
 </head>
 <?php  
-    $dados = $_REQUEST['colunas'];
+    $dados = $_REQUEST;
     $dados_json = json_encode($dados);
-
 ?>
 <script>
     var colunas = <?php echo $dados_json; ?>;
@@ -23,6 +22,7 @@
     <div id="reta" class="oculto"></div>
     <div id="angular" class="oculto"></div>
     <div id="perso" class="oculto"></div>
+    <h3 id="total-curso" class="tipo"></h3>
     <div id="drop"></div>
     <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">

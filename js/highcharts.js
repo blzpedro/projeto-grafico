@@ -5,13 +5,11 @@ var vals = '';
 var cols = [];
 var vals = [];
 
-data.forEach(myFunction);
+data['colunas'].forEach(myFunction);
 function myFunction(item) {
   cols.push(item.nome); 
   vals.push(parseInt(item.valor)); 
 }
-// document.write(cols);
-// document.write(vals);
 ///////////////////////////////////////////////////// GRÁFICO EXPONENCIAL /////////////////////////////////////////
 Highcharts.setOptions({
         lang: {
@@ -20,7 +18,7 @@ Highcharts.setOptions({
             printChart: 'Imprimir gráfico'
         }
     });
-    var chart = new Highcharts.Chart({
+    var chart1 = new Highcharts.Chart({
         chart: {
             renderTo: 'perso',
             animation: false,
@@ -90,7 +88,6 @@ Highcharts.setOptions({
     }
 
 });
-
 
 //////////////////////////////////////////////// GRÁFICO EM RETA ///////////////////////////////////////////////////////////////
 
