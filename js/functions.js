@@ -39,7 +39,7 @@ $(document).ready(function () {
     }));
     
     if ($('.exponencial').click(function(){
-        console.log(colunas);
+        // console.log(colunas);
         $('#exponencial').addClass('ativo');
         $('#reta').addClass('oculto');
         $('#angular').addClass('oculto');

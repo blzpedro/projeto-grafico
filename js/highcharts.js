@@ -1,5 +1,19 @@
+
+var data = colunas;
+var cols = '';
+var vals = '';
+var cols = [];
+var vals = [];
+
+data.forEach(myFunction);
+function myFunction(item) {
+  cols.push(item.nome); 
+  vals.push(parseInt(item.valor)); 
+}
+// document.write(cols);
+// document.write(vals);
 ///////////////////////////////////////////////////// GRÁFICO EXPONENCIAL /////////////////////////////////////////
-      Highcharts.setOptions({
+Highcharts.setOptions({
         lang: {
             decimalPoint: ',',
             viewFullscreen: 'Tela cheia',
@@ -17,8 +31,7 @@
         },
 
         xAxis: {
-            categories: ['1', '2'
-            ],
+            categories: [] = cols,
             title:{
                 text: 'Período'
             }
@@ -64,8 +77,7 @@
         },
 
         series: [{
-            name: 'Valor',
-            data: [350, 440],
+            data: [] = vals,
             draggableY: true
         }],
 
