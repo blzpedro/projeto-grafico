@@ -18,7 +18,7 @@ $(document).ready(function () {
         $('#exponencial').addClass('oculto');
         $('#reta').addClass('oculto');
         $('#perso').addClass('oculto');
-        //////////////////////////////  
+        //////////////////////////////  asdsa
         $('#angular').removeClass('oculto');
         $('#reta').removeClass('ativo');
         $('#exponencial').removeClass('ativo');
