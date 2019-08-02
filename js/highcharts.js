@@ -22,12 +22,12 @@ Highcharts.setOptions({
     });
     var chart = new Highcharts.Chart({
         chart: {
-            renderTo: 'exponencial',
+            renderTo: 'perso',
             animation: false,
         },
 
         title: {
-            text: 'Gráfico exponencial'
+            text: 'Gráfico personalizado'
         },
 
         xAxis: {
@@ -267,12 +267,12 @@ Highcharts.setOptions({
 });
 var chart = new Highcharts.Chart({
     chart: {
-        renderTo: 'perso',
+        renderTo: 'exponencial',
         animation: false,
     },
 
     title: {
-        text: 'Gráfico personalizado'
+        text: 'Gráfico exponencial'
     },
 
     xAxis: {
