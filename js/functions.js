@@ -29,6 +29,7 @@ $(document).ready(function () {
         $('#exponencial').addClass('oculto');
         $('#angular').addClass('oculto');
         $('#reta').addClass('oculto');
+        $('#drop').addClass('oculto');
         //////////////////////////////  
         $('#perso').removeClass('oculto');
         $('#angular').removeClass('ativo');
@@ -41,11 +42,24 @@ $(document).ready(function () {
         $('#reta').addClass('oculto');
         $('#angular').addClass('oculto');
         $('#perso').addClass('oculto');
+        $('#drop').addClass('oculto');
         //////////////////////////////  
         $('#exponencial').removeClass('oculto');
         $('#angular').removeClass('ativo');
         $('#reta').removeClass('ativo');
         $('#perso').removeClass('ativo');
     }));
+
+    $('.btn-floating').click(function () {
+        if ($('#drop').not("oculto")){
+            $('#drop').addClass('oculto');     
+        } 
+
+        if ($('#drop').hasClass("oculto")) {
+             $('#drop').empty();
+             $('#drop').removeClass('oculto'); 
+        }
+    });
 });
 var data = colunas;
+var valor = colunas;

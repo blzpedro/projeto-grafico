@@ -22,14 +22,14 @@
     <div id="reta" class="oculto"></div>
     <div id="angular" class="oculto"></div>
     <div id="perso" class="oculto"></div>
-    <h3 id="total-curso" class="tipo"></h3>
+    <br>
     <div id="drop"></div>
     <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
-        <a class="waves-effect waves-light btn-floating  exponencial"><i class="material-icons right">multiline_chart</i></a>
-        <a class="waves-effect waves-light btn-floating  reta"><i class="material-icons right">arrow_forward</i></a>
-        <a class="waves-effect waves-light btn-floating  angular"><i class="material-icons right">call_made</i></a>
-        <a class="waves-effect waves-light btn-floating  perso"><i class="material-icons right">show_chart</i></a>
+        <a class="waves-effect waves-light btn-floating exponencial"><i class="material-icons right">multiline_chart</i></a>
+        <a class="waves-effect waves-light btn-floating reta"><i class="material-icons right">arrow_forward</i></a>
+        <a class="waves-effect waves-light btn-floating angular"><i class="material-icons right">call_made</i></a>
+        <a class="waves-effect waves-light btn-floating perso"><i class="material-icons right">show_chart</i></a>
     </div>
 </body>
 
