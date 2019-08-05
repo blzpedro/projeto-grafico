@@ -47,6 +47,7 @@ Highcharts.setOptions({
 
         yAxis:{
             max: 100,
+            min: 0,
             endOnTick: false,
             title:{
                 text: 'Desconto do curso'
@@ -75,7 +76,7 @@ Highcharts.setOptions({
                                 var totArr = arr.reduce((a, b) => a + b, 0);
                                 var total_html = (parseInt(data['total_curso'])-(totArr/tamArr*300));
                                  $('#drop').html(
-                                //     'Valor total do curso: <b>'+total_html.toFixed(0)+'</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');    
+                                    'Valor total do curso: <b>'+total_html.toFixed(0)+'</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');    
                                 // console.log(total_html);
                                 // console.log(totArr/tamArr*300);  
                                 // console.log(Object.keys(cols).length);              
@@ -137,18 +138,19 @@ var chartReta = new Highcharts.Chart({
     },
 
     xAxis: {
-        categories: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10'],
+        categories: [] = cols,
         title:{
             text: 'Períodos'
         }
     },
 
     yAxis:{
+        max: 100,
+        min: 0,
+        endOnTick: false,
         title:{
             text: 'Desconto do curso'
         },
-        max: 100,
-        min: 0,
     },
     
 
@@ -167,7 +169,15 @@ var chartReta = new Highcharts.Chart({
                             var colunasGrafico = chartReta.series[0].data;
                             var colunaAtual = this;
                             colunasGrafico.forEach(atualizaReta);
+
+                            //array com valores do grafico em linha reta
                             function atualizaReta(item) {
+                                if(colunaAtual.y < 0){
+                                    colunaAtual.y = 0;
+                                }
+                                if(colunaAtual.y > 100){
+                                    colunaAtual.y = 100;
+                                }
                                 item.update(colunaAtual.y); 
                             }
                     }
@@ -193,9 +203,11 @@ var chartReta = new Highcharts.Chart({
     },
 
     series: [{
-        name: 'Desconto',
-        data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
-        draggableY: true
+        name: 'Valor',
+        data: [] = vals,
+        draggableY: true,
+        dragMaxY: 100,
+        dragMinY: 0,
     }],
 
     exporting: {       
@@ -221,7 +233,7 @@ Highcharts.setOptions({
 var chartAngular = new Highcharts.Chart({
     chart: {
         renderTo: 'angular',
-        animation: false,
+        animation: true,
     },
 
     title: {
@@ -229,18 +241,19 @@ var chartAngular = new Highcharts.Chart({
     },
 
     xAxis: {
-        categories: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10'],
+        categories: [] = cols,
         title:{
             text: 'Períodos'
         }
     },
 
     yAxis:{
+        max: 100,
+        min: 0,
+        endOnTick: false,
         title:{
             text: 'Desconto do curso'
         },        
-        max: 100,
-        min: 0,
     },
     
 
@@ -256,6 +269,57 @@ var chartAngular = new Highcharts.Chart({
                     drop: function () {
                         $('#drop').html(
                             'O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0)+'% de desconto</b>');
+                            if(this.y > 101){
+                                this.y = 100
+                            }
+                            if(this.y < 0){
+                                this.y = 0
+                            }
+                            var points = chartAngular.series[0].points;
+
+                            //valores angular
+                            var y_min = points[0];
+                            var y_max = points[points.length - 1];
+                            // console.log(points.length);
+                            var num_colunas = points.length;
+                            var y_atual = y_min;
+                            var colunas = [];
+                            var cont = 0;
+
+                            
+                            // variação = ▲X / ▲Y
+                            var y_variacao = (y_max.y - y_min.y)/num_colunas;
+                            colunas.push(y_min.y);
+                            
+                            
+                            //monta array com os valores para o grafico
+                            // console.log(y_max);
+
+                            points.forEach(funcaoTeste);
+                            function funcaoTeste(item){
+                                // console.log(points[item.x]);
+                                console.log(cont);
+                                y_atual = colunas[(colunas.length -1)] + y_variacao;
+                                colunas.push(y_atual);
+                                points[cont].update(colunas[cont]); 
+                                cont++;
+                            }
+
+
+                            // while(num_colunas > 0){
+                            //     y_atual = colunas[(colunas.length -1)] + y_variacao;
+                            //     num_colunas--;
+                            //     colunas.push(y_atual);
+                            //     points[num_colunas].update(colunas[num_colunas]); 
+                                // console.log(num_colunas);
+                            // }
+                            
+
+
+                            // console.log(y_max);
+
+
+
                     }
                 },
                 stickyTracking: false,
@@ -281,8 +345,10 @@ var chartAngular = new Highcharts.Chart({
 
     series: [{
         name: 'Desconto',
-        data: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-        draggableY: true
+        data: [] = vals,
+        draggableY: true,
+        dragMaxY: 100,
+        dragMinY: 0,
     }],
 
     exporting: {       
@@ -316,7 +382,7 @@ var chartExponencial = new Highcharts.Chart({
     },
 
     xAxis: {
-        categories: ['P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7', 'P8', 'P9', 'P10'],
+        categories: [] = cols,
         title:{
             text: 'Períodos'
         }
@@ -328,6 +394,7 @@ var chartExponencial = new Highcharts.Chart({
         },        
         max: 100,
         min: 0,
+        endOnTick: false,
     },
     
 
@@ -365,8 +432,10 @@ var chartExponencial = new Highcharts.Chart({
 
     series: [{
         name: 'Desconto',
-        data: [5, 10, 20, 40, 50, 55, 66, 75, 90, 100],
-        draggableY: true
+        data: [] = vals,
+        draggableY: true,
+        dragMaxY: 100,
+        dragMinY: 0,
     }],
 
     exporting: {       
