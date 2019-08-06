@@ -45,7 +45,7 @@
         ),  
         'valor_total' => 30000,
     );
-    echo '<a class="link" href="https://projeto-grafico.herokuapp.com/graph.php?'.http_build_query($dados).'&total_curso=30000" size="5">Redirecionar ao gráfico</a>';
+    echo '<br><div class="centro"><a class="link btn" href="https://projeto-grafico.herokuapp.com/graph.php?'.http_build_query($dados).'&total_curso=30000" size="5">Redirecionar ao gráfico</a></div>';
     echo "<br><br><br><span class=''>Dados: <pre></span>";
     print_r($dados);
 ?>
