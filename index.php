@@ -26,10 +26,10 @@
     <div id="drop"></div>
     <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
-        <a class="waves-effect waves-light btn-floating exponencial"><i class="material-icons right">multiline_chart</i></a>
-        <a class="waves-effect waves-light btn-floating reta"><i class="material-icons right">arrow_forward</i></a>
-        <a class="waves-effect waves-light btn-floating angular"><i class="material-icons right">call_made</i></a>
-        <a class="waves-effect waves-light btn-floating perso"><i class="material-icons right">show_chart</i></a>
+        <a class="waves-effect waves-light btn tooltipped btn-floating exponencial" data-position="left" data-tooltip="Gráfico exponencial"><i class="material-icons right">multiline_chart</i></a>
+        <a class="waves-effect waves-light btn tooltipped btn-floating reta" data-tooltip="Gráfico em reta"><i class="material-icons right">arrow_forward</i></a>
+        <a class="waves-effect waves-light btn tooltipped btn-floating angular" data-tooltip="Gráfico angular"><i class="material-icons right">call_made</i></a>
+        <a class="waves-effect waves-light btn tooltipped btn-floating perso" data-position="right" data-tooltip="Gráfico personalizado"><i class="material-icons right">show_chart</i></a>
     </div>
 </body>
 

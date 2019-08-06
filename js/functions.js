@@ -60,6 +60,8 @@ $(document).ready(function () {
              $('#drop').removeClass('oculto'); 
         }
     });
+    
+    $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});
 });
 var data = colunas;
 var valor = colunas;
