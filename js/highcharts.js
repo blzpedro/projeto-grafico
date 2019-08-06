@@ -83,6 +83,7 @@ var chartPerso = new Highcharts.Chart({
                         // console.log(total_html.toLocaleString('pt-BR'));
                         // console.log(totArr);  
                         // console.log(tamArr);          
+                        // console.log(chartPerso.series[0].data);
                     }
                 }
             },
@@ -166,20 +167,6 @@ var chartReta = new Highcharts.Chart({
                             '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
-                        // array calculo dos valores e total
-                        var val = chartReta.series[0].data;
-                        var arr = [];
-                        val.forEach(desconto);
-
-                        function desconto(item) {
-                            arr.push(item.y);
-                        }
-
-                        var tamArr = Object.keys(cols).length;
-                        var totArr = arr.reduce((a, b) => a + b, 0);
-                        var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
-                        $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
                         var colunasGrafico = chartReta.series[0].data;
                         var colunaAtual = this;
                         colunasGrafico.forEach(atualizaReta);
@@ -194,6 +181,20 @@ var chartReta = new Highcharts.Chart({
                             }
                             item.update(colunaAtual.y);
                         }
+                        // array calculo dos valores e total
+                        var val = chartReta.series[0].data;
+                        var arr = [];
+                        val.forEach(desconto);
+
+                        function desconto(item) {
+                            arr.push(item.y);
+                        }
+
+                        var tamArr = Object.keys(cols).length;
+                        var totArr = arr.reduce((a, b) => a + b, 0);
+                        var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
+                        $('#drop').html(
+                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
                     }
                 }
             },
@@ -247,7 +248,7 @@ Highcharts.setOptions({
 var chartAngular = new Highcharts.Chart({
     chart: {
         renderTo: 'angular',
-        animation: false,
+        animation: true,
     },
 
     title: {
@@ -281,6 +282,44 @@ var chartAngular = new Highcharts.Chart({
                             '</b> para %<b>' + Highcharts.numberFormat(e.y, 0) + '</b>');
                     },
                     drop: function () {
+                       
+
+                          
+                        var points   = chartAngular.series[0].points;
+                        
+                        //valores angular
+                        var y_min = points[0].y;
+                        var y_max = points[points.length - 1].y;
+
+                        var colunas = [];
+                        colunas.push(y_min); // primeira coluna é sempre o valor mínimo
+
+                        var num_colunas = points.length;
+                        var y_atual = y_min.y;
+                        
+                        
+                        // variação = ▲X / ▲Y
+                        var y_variacao = (y_max - y_min)/(num_colunas -1);
+                        
+                        
+                        //monta array com os valores para o grafico
+                        points.forEach(atualizaAngular);
+                        function atualizaAngular(item){
+                            item.update(y_atual); 
+                            y_atual = colunas[item.x] + y_variacao;
+                            if(y_atual > 100){
+                                y_atual = 100;
+                            }
+                            if(y_atual < 0){
+                                y_atual = 0;
+                            }
+                            colunas.push(y_atual);
+                        }
+                        
+
+                    // variação = ▲X / ▲Y
+                    var y_variacao = (y_max.y - y_min.y) / num_colunas;
+                    colunas.push(y_min.y);
                         // array calculo dos valores e total
                         var val = chartAngular.series[0].data;
                         var arr = [];
@@ -295,44 +334,6 @@ var chartAngular = new Highcharts.Chart({
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
                             'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
-                       
-
-                          
-                            var points   = chartAngular.series[0].points;
-                            
-                            //valores angular
-                            var y_min = points[0].y;
-                            var y_max = points[points.length - 1].y;
-
-                            var colunas = [];
-                            colunas.push(y_min); // primeira coluna é sempre o valor mínimo
-
-                            var num_colunas = points.length;
-                            var y_atual = y_min.y;
-                            
-                            
-                            // variação = ▲X / ▲Y
-                            var y_variacao = (y_max - y_min)/(num_colunas -1);
-                            
-                            
-                            //monta array com os valores para o grafico
-                            points.forEach(atualizaAngular);
-                            function atualizaAngular(item){
-                                item.update(y_atual); 
-                                y_atual = colunas[item.x] + y_variacao;
-                                if(y_atual > 100){
-                                    y_atual = 100;
-                                }
-                                if(y_atual < 0){
-                                    y_atual = 0;
-                                }
-                                colunas.push(y_atual);
-                            }
-                            
-
-                        // variação = ▲X / ▲Y
-                        var y_variacao = (y_max.y - y_min.y) / num_colunas;
-                        colunas.push(y_min.y);
 
 
 
