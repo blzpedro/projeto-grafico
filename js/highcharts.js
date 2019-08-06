@@ -247,7 +247,7 @@ Highcharts.setOptions({
 var chartAngular = new Highcharts.Chart({
     chart: {
         renderTo: 'angular',
-        animation: true,
+        animation: false,
     },
 
     title: {
@@ -295,55 +295,44 @@ var chartAngular = new Highcharts.Chart({
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
                             'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
-                        if (this.y > 101) {
-                            this.y = 100
-                        }
-                        if (this.y < 0) {
-                            this.y = 0
-                        }
-                        var points = chartAngular.series[0].points;
+                       
 
-                        //valores angular
-                        var y_min = points[0];
-                        var y_max = points[points.length - 1];
-                        // console.log(points.length);
-                        var num_colunas = points.length;
-                        var y_atual = y_min;
-                        var colunas = [];
-                        var cont = 0;
+                          
+                            var points   = chartAngular.series[0].points;
+                            
+                            //valores angular
+                            var y_min = points[0].y;
+                            var y_max = points[points.length - 1].y;
 
+                            var colunas = [];
+                            colunas.push(y_min); // primeira coluna é sempre o valor mínimo
+
+                            var num_colunas = points.length;
+                            var y_atual = y_min.y;
+                            
+                            
+                            // variação = ▲X / ▲Y
+                            var y_variacao = (y_max - y_min)/(num_colunas -1);
+                            
+                            
+                            //monta array com os valores para o grafico
+                            points.forEach(atualizaAngular);
+                            function atualizaAngular(item){
+                                item.update(y_atual); 
+                                y_atual = colunas[item.x] + y_variacao;
+                                if(y_atual > 100){
+                                    y_atual = 100;
+                                }
+                                if(y_atual < 0){
+                                    y_atual = 0;
+                                }
+                                colunas.push(y_atual);
+                            }
+                            
 
                         // variação = ▲X / ▲Y
                         var y_variacao = (y_max.y - y_min.y) / num_colunas;
                         colunas.push(y_min.y);
-
-
-                        //monta array com os valores para o grafico
-                        // console.log(y_max);
-
-                        points.forEach(funcaoTeste);
-
-                        function funcaoTeste(item) {
-                            // console.log(points[item.x]);
-                            console.log(cont);
-                            y_atual = colunas[(colunas.length - 1)] + y_variacao;
-                            colunas.push(y_atual);
-                            points[cont].update(colunas[cont]);
-                            cont++;
-                        }
-
-
-                        // while(num_colunas > 0){
-                        //     y_atual = colunas[(colunas.length -1)] + y_variacao;
-                        //     num_colunas--;
-                        //     colunas.push(y_atual);
-                        //     points[num_colunas].update(colunas[num_colunas]); 
-                        // console.log(num_colunas);
-                        // }
-
-
-
-                        // console.log(y_max);
 
 
 
