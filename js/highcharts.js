@@ -27,7 +27,7 @@ $('#compare').click(function(){
         chartCompare.forEach(atualizaCompara)
             function atualizaCompara(coluna){
                 // console.log(chartCompare[cont].y);
-                coluna.update(50);
+                coluna.update(null);
             }
     }
     if($('#compare:checked').length == 0){
@@ -507,11 +507,6 @@ var chartExponencial = new Highcharts.Chart({
         series: {
             point: {
                 events: {
-                    // click: function () {
-                    //   if (this.series.data.length > 1) {
-                    //     this.remove();
-                    //   }
-                    // },
                     drag: function (e) {
                         $('#drag').html(
                             'Arrastando <b>' + this.category +
@@ -565,9 +560,9 @@ var chartExponencial = new Highcharts.Chart({
     exporting: {
         buttons: {
             contextButton: {
-                menuItems: ['viewFullscreen', 'printChart', 'viewData']
+                menuItems: ['viewFullscreen', 'printChart', 'viewData'],
             }
         }
-    }
+    },
 
 });

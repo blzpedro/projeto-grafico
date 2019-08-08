@@ -16,7 +16,7 @@
     $dados_json = json_encode($dados);
 ?>
 <script>
-    var colunas = <?php echo $dados_json; ?>;
+    var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
 <body>
     <div id="exponencial"></div>
@@ -25,24 +25,9 @@
     <div id="perso" class="oculto"></div>
     <br>
     <div id="drop"></div>
-    <!-- <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
-        <a class="waves-effect waves-light btn tooltipped btn-floating exponencial" data-position="left" data-tooltip="Gráfico exponencial"><i class="material-icons right">multiline_chart</i></a>
-        <a class="waves-effect waves-light btn tooltipped btn-floating reta" data-tooltip="Gráfico em reta"><i class="material-icons right">arrow_forward</i></a>
-        <a class="waves-effect waves-light btn tooltipped btn-floating angular" data-tooltip="Gráfico angular"><i class="material-icons right">call_made</i></a>
-        <a class="waves-effect waves-light btn tooltipped btn-floating perso" data-position="right" data-tooltip="Gráfico personalizado"><i class="material-icons right">show_chart</i></a>
-        <br>
-        <div id="compare" class="switch oculto">
-        Comparar gráficos
-        <br>
-            <label>
-            Off
-            <input type="checkbox" id='compare'>
-            <span class="lever"></span>
-            On
-            </label>
-        </div>
-    </div> -->
+        <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="bottom" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
+    </div>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>

@@ -1,74 +1,16 @@
-$(document).ready(function () {
+$("#save_button").click(function() {
+      var val = chartExponencial.series[0].data;
+      var dados = [];
+      val.forEach(exporta);
 
-    if ($('.reta').click(function(){
-        $('#reta').addClass('ativo');
-        $('#exponencial').addClass('oculto');
-        $('#angular').addClass('oculto');
-        $('#perso').addClass('oculto');
-        //////////////////////////////  
-        $('#reta').removeClass('oculto');
-        $('#angular').removeClass('ativo');
-        $('#exponencial').removeClass('ativo');
-        $('#perso').removeClass('ativo');
-        $('#compare').addClass('oculto');
-        $('#compare').removeClass('ativo');
-    }));
-    
-    if ($('.angular').click(function(){        
-        $('#angular').addClass('ativo');
-        $('#exponencial').addClass('oculto');
-        $('#reta').addClass('oculto');
-        $('#perso').addClass('oculto');
-        $('#compare').addClass('oculto');
-        //////////////////////////////
-        $('#angular').removeClass('oculto');
-        $('#reta').removeClass('ativo');
-        $('#exponencial').removeClass('ativo');
-        $('#perso').removeClass('ativo');
-        $('#compare').removeClass('ativo');
-    }));
-    
-    if ($('.perso').click(function(){
-        $('#perso').addClass('ativo');
-        $('#compare').addClass('ativo');
-        $('#exponencial').addClass('oculto');
-        $('#angular').addClass('oculto');
-        $('#reta').addClass('oculto');
-        $('#drop').addClass('oculto');
-        //////////////////////////////  
-        $('#compare').removeClass('oculto');
-        $('#perso').removeClass('oculto');
-        $('#angular').removeClass('ativo');
-        $('#exponencial').removeClass('ativo');
-        $('#reta').removeClass('ativo');
-    }));
-    
-    if ($('.exponencial').click(function(){
-        $('#exponencial').addClass('ativo');
-        $('#reta').addClass('oculto');
-        $('#angular').addClass('oculto');
-        $('#perso').addClass('oculto');
-        $('#drop').addClass('oculto');
-        $('#compare').addClass('oculto');
-        //////////////////////////////  
-        $('#exponencial').removeClass('oculto');
-        $('#angular').removeClass('ativo');
-        $('#reta').removeClass('ativo');
-        $('#perso').removeClass('ativo');
-        $('#compare').removeClass('ativo');
-    }));
-
-    $('.btn-floating').click(function () {
-        if ($('#drop').not("oculto")){
-            $('#drop').addClass('oculto');     
-        } 
-
-        if ($('#drop').hasClass("oculto")) {
-             $('#drop').empty();
-             $('#drop').removeClass('oculto'); 
-        }
+      function exporta(item) {
+          dados.push(item.y.toFixed(2));
+      }
+      var json = JSON.stringify(dados);
+      alert("Dados JSON: "+json);
     });
-    
+$(document).ready(function () {
+        
     $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});
 });
 var data = colunas;
