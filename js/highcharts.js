@@ -97,7 +97,7 @@ var chartPerso = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
+                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                       }
                 }
             },
@@ -130,7 +130,7 @@ var chartPerso = new Highcharts.Chart({
         },
 
     },
-    {
+    {   
         name: 'Desconto',
         data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         draggableY: true,
@@ -224,7 +224,7 @@ var chartReta = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
+                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                     }
                 }
             },
@@ -367,7 +367,7 @@ var chartAngular = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
+                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                        
 
                           
@@ -464,10 +464,14 @@ var chartExponencial = new Highcharts.Chart({
         type: 'spline',
         renderTo: 'exponencial',
         animation: false,
+        // zoomType: 'xy',
+    },
+    mapNavigation: {
+        enableMouseWheelZoom: true
     },
 
     title: {
-        text: 'Gráfico exponencial'
+        text: 'Gráfico interativo e dinâmico'
     },
     events: {
       click: function (item) {
@@ -525,7 +529,7 @@ var chartExponencial = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
+                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                     }
                 }
             },
@@ -542,11 +546,13 @@ var chartExponencial = new Highcharts.Chart({
     tooltip: {
         valueDecimals: 0,
         valueSuffix: '%',
-        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        pointFormat: '{series.name}: <b>{point.y}</b><br/><span style="opacity:0;font-size:20px;">a<br></span>',
         shared: true
+        
     },
 
     series: [{
+        showInLegend: false,
         name: 'Desconto',
         data: [] = vals,
         draggableY: true,

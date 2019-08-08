@@ -25,7 +25,7 @@
     <div id="perso" class="oculto"></div>
     <br>
     <div id="drop"></div>
-    <h3 class="tipo">Tipos de gráficos</h3>
+    <!-- <h3 class="tipo">Tipos de gráficos</h3>
     <div class="centro">
         <a class="waves-effect waves-light btn tooltipped btn-floating exponencial" data-position="left" data-tooltip="Gráfico exponencial"><i class="material-icons right">multiline_chart</i></a>
         <a class="waves-effect waves-light btn tooltipped btn-floating reta" data-tooltip="Gráfico em reta"><i class="material-icons right">arrow_forward</i></a>
@@ -42,11 +42,12 @@
             On
             </label>
         </div>
-    </div>
+    </div> -->
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/maps/modules/map.js"></script>
 <script src="https://rawgithub.com/highcharts/draggable-points/master/draggable-points.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="js/functions.js"></script>
