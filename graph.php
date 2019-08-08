@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<!--     ?colunas%5B0%5D%5Bnome%5D=p1&colunas%5B0%5D%5Bvalor%5D=15&colunas%5B1%5D%5Bnome%5D=p2&colunas%5B1%5D%5Bvalor%5D=30&colunas%5B2%5D%5Bnome%5D=p3&colunas%5B2%5D%5Bvalor%5D=45&colunas%5B3%5D%5Bnome%5D=p4&colunas%5B3%5D%5Bvalor%5D=60&colunas%5B4%5D%5Bnome%5D=p5&colunas%5B4%5D%5Bvalor%5D=75&colunas%5B5%5D%5Bnome%5D=p6&colunas%5B5%5D%5Bvalor%5D=90&colunas%5B6%5D%5Bnome%5D=p7&colunas%5B6%5D%5Bvalor%5D=100&total_curso=30000 -->
-    <!-- http://localhost:8000/projeto-grafico?colunas%5B0%5D%5Bnome%5D=p1&colunas%5B0%5D%5Bvalor%5D=15&colunas%5B1%5D%5Bnome%5D=p2&colunas%5B1%5D%5Bvalor%5D=30&colunas%5B2%5D%5Bnome%5D=p3&colunas%5B2%5D%5Bvalor%5D=45&colunas%5B3%5D%5Bnome%5D=p4&colunas%5B3%5D%5Bvalor%5D=60&colunas%5B4%5D%5Bnome%5D=p5&colunas%5B4%5D%5Bvalor%5D=75&colunas%5B5%5D%5Bnome%5D=p6&colunas%5B5%5D%5Bvalor%5D=90&colunas%5B6%5D%5Bnome%5D=p7&colunas%5B5%5D%5Bvalor%5D=90&total_curso=30000 -->
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
