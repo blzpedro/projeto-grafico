@@ -117,7 +117,7 @@ var chartPerso = new Highcharts.Chart({
         shared: true
     },
     series: [{
-        name: 'Perso',
+        name: 'Comparação',
         type: 'spline',
         data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
         draggableY: false,
@@ -127,16 +127,18 @@ var chartPerso = new Highcharts.Chart({
         dashStyle: 'shortdot',
         tooltip: {
             valueSuffix: '%'
-        }
+        },
 
     },
     {
-        name: 'PersoCompare',
+        name: 'Desconto',
         data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         draggableY: true,
         tooltip: {
             valueSuffix: '%'
-        }
+        },        
+        dragMaxY: 100,
+        dragMinY: 0,
     }],
 
     exporting: {
