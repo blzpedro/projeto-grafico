@@ -10,6 +10,8 @@ $(document).ready(function () {
         $('#angular').removeClass('ativo');
         $('#exponencial').removeClass('ativo');
         $('#perso').removeClass('ativo');
+        $('#compare').addClass('oculto');
+        $('#compare').removeClass('ativo');
     }));
     
     if ($('.angular').click(function(){        
@@ -17,20 +19,24 @@ $(document).ready(function () {
         $('#exponencial').addClass('oculto');
         $('#reta').addClass('oculto');
         $('#perso').addClass('oculto');
+        $('#compare').addClass('oculto');
         //////////////////////////////
         $('#angular').removeClass('oculto');
         $('#reta').removeClass('ativo');
         $('#exponencial').removeClass('ativo');
         $('#perso').removeClass('ativo');
+        $('#compare').removeClass('ativo');
     }));
     
     if ($('.perso').click(function(){
         $('#perso').addClass('ativo');
+        $('#compare').addClass('ativo');
         $('#exponencial').addClass('oculto');
         $('#angular').addClass('oculto');
         $('#reta').addClass('oculto');
         $('#drop').addClass('oculto');
         //////////////////////////////  
+        $('#compare').removeClass('oculto');
         $('#perso').removeClass('oculto');
         $('#angular').removeClass('ativo');
         $('#exponencial').removeClass('ativo');
@@ -43,11 +49,13 @@ $(document).ready(function () {
         $('#angular').addClass('oculto');
         $('#perso').addClass('oculto');
         $('#drop').addClass('oculto');
+        $('#compare').addClass('oculto');
         //////////////////////////////  
         $('#exponencial').removeClass('oculto');
         $('#angular').removeClass('ativo');
         $('#reta').removeClass('ativo');
         $('#perso').removeClass('ativo');
+        $('#compare').removeClass('ativo');
     }));
 
     $('.btn-floating').click(function () {

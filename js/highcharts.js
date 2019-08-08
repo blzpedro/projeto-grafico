@@ -7,8 +7,8 @@ var totCurso = '';
 var totCurso = [];
 
 
-data['colunas'].forEach(myFunction);
-function myFunction(item) {
+data['colunas'].forEach(pegaRequest);
+function pegaRequest(item) {
     cols.push(item.nome);
     vals.push(parseInt(item.valor));
 }
@@ -20,7 +20,24 @@ function total(x) {
 }
 
 var cursoTotalPorcento = totCurso.reduce((a, b) => a + b, 0);
-
+$('#compare').click(function(){
+        console.log(vals);
+    if($('#compare:checked').length == 1){
+        var chartCompare = chartPerso.series[1].data; 
+        chartCompare.forEach(atualizaCompara)
+            function atualizaCompara(coluna){
+                // console.log(chartCompare[cont].y);
+                coluna.update(50);
+            }
+    }
+    if($('#compare:checked').length == 0){
+        var chartCompare = chartPerso.series[1].data; 
+        chartCompare.forEach(atualizaCompara)
+            function atualizaCompara(item){
+                item.update(10);
+            }
+    }
+}); 
 ///////////////////////////////////////////////////// GRÁFICO PERSONALIZADO /////////////////////////////////////////
 Highcharts.setOptions({
     lang: {
@@ -32,7 +49,7 @@ Highcharts.setOptions({
 var chartPerso = new Highcharts.Chart({
     chart: {
         renderTo: 'perso',
-        animation: false,
+        animation: true,
     },
 
     title: {
@@ -46,14 +63,15 @@ var chartPerso = new Highcharts.Chart({
         }
     },
 
-    yAxis: {
+    yAxis: [{ // Secondary yAxis
         max: 100,
         min: 0,
         endOnTick: false,
         title: {
             text: 'Desconto do curso'
         },
-    },
+
+    },],
 
 
     plotOptions: {
@@ -80,11 +98,7 @@ var chartPerso = new Highcharts.Chart({
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
                             'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
-                        // console.log(total_html.toLocaleString('pt-BR'));
-                        // console.log(totArr);  
-                        // console.log(tamArr);          
-                        // console.log(chartPerso.series[0].data);
-                    }
+                      }
                 }
             },
             stickyTracking: false
@@ -102,13 +116,27 @@ var chartPerso = new Highcharts.Chart({
         pointFormat: '{series.name}: <b>{point.y}</b><br/>',
         shared: true
     },
-    series: [{        
-        name: 'Desconto',
-        description: 'teste',
-        data: [] = vals,
+    series: [{
+        name: 'Perso',
+        type: 'spline',
+        data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 50],
+        draggableY: false,
+        marker: {
+            enabled: false
+        },
+        dashStyle: 'shortdot',
+        tooltip: {
+            valueSuffix: '%'
+        }
+
+    },
+    {
+        name: 'PersoCompare',
+        data: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10],
         draggableY: true,
-        dragMaxY: 100,
-        dragMinY: 0,
+        tooltip: {
+            valueSuffix: '%'
+        }
     }],
 
     exporting: {
@@ -249,6 +277,7 @@ var chartAngular = new Highcharts.Chart({
     chart: {
         renderTo: 'angular',
         animation: true,
+        zoomType: 'xy',
     },
 
     title: {
@@ -271,6 +300,9 @@ var chartAngular = new Highcharts.Chart({
         },
     },
 
+    userOptions: {
+        draggableY: false,
+    },
 
     plotOptions: {
         series: {
@@ -334,6 +366,43 @@ var chartAngular = new Highcharts.Chart({
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
                             'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> O curso de Medicina no <b>' + this.category + '</b> está com <b>' + Highcharts.numberFormat(this.y, 0) + '% de desconto</b>');
+                       
+
+                          
+                            var points   = chartAngular.series[0].points;
+                            
+                            //valores angular
+                            var y_min = points[0].y;
+                            var y_max = points[points.length - 1].y;
+
+                            var colunas = [];
+                            colunas.push(y_min); // primeira coluna é sempre o valor mínimo
+
+                            var num_colunas = points.length;
+                            var y_atual = y_min.y;
+                            
+                            
+                            // variação = ▲X / ▲Y
+                            var y_variacao = (y_max - y_min)/(num_colunas -1);
+                            
+                            //monta array com os valores para o grafico
+                            points.forEach(atualizaAngular);
+                            function atualizaAngular(item){
+                                item.update(y_atual); 
+                                y_atual = colunas[item.x] + y_variacao;
+                                if(y_atual > 100){
+                                    y_atual = 100;
+                                }
+                                if(y_atual < 0){
+                                    y_atual = 0;
+                                }
+                                colunas.push(y_atual);
+                            }
+                            
+
+                        // variação = ▲X / ▲Y
+                        var y_variacao = (y_max.y - y_min.y) / num_colunas;
+                        colunas.push(y_min.y);
 
 
 
@@ -354,9 +423,9 @@ var chartAngular = new Highcharts.Chart({
     },
 
     tooltip: {
-        valueDecimals: 0,
+        valueDecimals: 2,
         valueSuffix: '%',
-        pointFormat: '{series.name}: <b>{point.y}</b><br/>',
+        pointFormat: '{series.name}: <b>{point.y}</b><br/> valor da mensalidade: 2',
         shared: true
     },
 
@@ -390,12 +459,23 @@ Highcharts.setOptions({
 });
 var chartExponencial = new Highcharts.Chart({
     chart: {
+        type: 'spline',
         renderTo: 'exponencial',
         animation: false,
     },
 
     title: {
         text: 'Gráfico exponencial'
+    },
+    events: {
+      click: function (item) {
+        var x = Math.round(item.xAxis[0].value),
+          y = Math.round(item.yAxis[0].value),
+          series = this.series[0];
+
+        series.addPoint([y, x]);
+
+      }
     },
 
     xAxis: {
@@ -419,6 +499,11 @@ var chartExponencial = new Highcharts.Chart({
         series: {
             point: {
                 events: {
+                    // click: function () {
+                    //   if (this.series.data.length > 1) {
+                    //     this.remove();
+                    //   }
+                    // },
                     drag: function (e) {
                         $('#drag').html(
                             'Arrastando <b>' + this.category +

@@ -31,6 +31,17 @@
         <a class="waves-effect waves-light btn tooltipped btn-floating reta" data-tooltip="Gráfico em reta"><i class="material-icons right">arrow_forward</i></a>
         <a class="waves-effect waves-light btn tooltipped btn-floating angular" data-tooltip="Gráfico angular"><i class="material-icons right">call_made</i></a>
         <a class="waves-effect waves-light btn tooltipped btn-floating perso" data-position="right" data-tooltip="Gráfico personalizado"><i class="material-icons right">show_chart</i></a>
+        <br>
+        <div id="compare" class="switch oculto">
+        Comparar gráficos
+        <br>
+            <label>
+            Off
+            <input type="checkbox" id='compare'>
+            <span class="lever"></span>
+            On
+            </label>
+        </div>
     </div>
 </body>
 
