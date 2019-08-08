@@ -427,7 +427,7 @@ var chartAngular = new Highcharts.Chart({
     tooltip: {
         valueDecimals: 2,
         valueSuffix: '%',
-        pointFormat: '{series.name}: <b>{point.y}</b><br/> valor da mensalidade: 2',
+        pointFormat: '{series.name}: <b>{point.y}</b>',
         shared: true
     },
 
