@@ -54,7 +54,7 @@ var chartExponencial = new Highcharts.Chart({
         animation: false
     },
     mapNavigation: {
-        enableMouseWheelZoom: true
+        enableMouseWheelZoom: true,
     },
 
     title: {
