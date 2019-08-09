@@ -1,7 +1,8 @@
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
     font-size: 0.8em;
-    overflow-x: hidden;
+    overflow: hidden;
+    height: 100vh;
 }
 
 .highcharts-credits,
@@ -36,4 +37,13 @@ text[data-z-index="1"] {
     tspan:first-child{
         display: none;
     }
+}
+
+.highcharts-container, .highcharts-root{
+    height: 90vh !important;
+}
+
+.centro{
+    height: 10vh !important;
+    background-color: rgb(245,245,245);
 }

@@ -16,15 +16,15 @@
 <script>
     var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
-<body>
+<body id="fullscreen">
     <div id="exponencial"></div>
     <div id="reta" class="oculto"></div>
     <div id="angular" class="oculto"></div>
     <div id="perso" class="oculto"></div>
-    <br>
     <div id="drop"></div>
     <div class="centro">
-        <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="bottom" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
+        <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
+        <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
     </div>
 </body>
 

@@ -51,7 +51,7 @@ var chartExponencial = new Highcharts.Chart({
     chart: {
         type: 'spline',
         renderTo: 'exponencial',
-        animation: false,
+        animation: false
     },
     mapNavigation: {
         enableMouseWheelZoom: true
@@ -152,7 +152,7 @@ var chartExponencial = new Highcharts.Chart({
     exporting: {
         buttons: {
             contextButton: {
-                menuItems: ['viewFullscreen', 'printChart'],
+                menuItems: [ 'printChart'],
             }
         }
     },
