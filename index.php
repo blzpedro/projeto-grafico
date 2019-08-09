@@ -45,7 +45,7 @@
         ),  
         'total_curso' => 30000,
     );
-    echo '<br><div class="centro"><a class="link btn" href="graph.php?'.http_build_query($dados).'" size="5">Redirecionar ao gráfico</a></div>';
+    echo '<br><div class="centro" style="background-color: white;"><a class="link btn" href="graph.php?'.http_build_query($dados).'" size="5">Redirecionar ao gráfico</a></div>';
     echo "<br><br><br><span class=''>Dados: <pre></span>";
     print_r($dados);
 ?>
