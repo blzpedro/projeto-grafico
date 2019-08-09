@@ -14,9 +14,12 @@ $("#save_button").click(function() {
       var val = chartExponencial.series[0].data;
       var dados = [];
       val.forEach(exporta);
-
+      
       function exporta(item) {
-          dados.push(item.y.toFixed(2));
+        var coordenadas = [];
+        coordenadas.push('x '+item.x);
+        coordenadas.push('y '+item.y);
+        dados.push(coordenadas);
       }
       var json = JSON.stringify(dados);
       alert("Dados JSON: "+json);
