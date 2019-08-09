@@ -48,12 +48,12 @@ Highcharts.setOptions({
         resetZoom: 'Tirar zoom'
     }
 });
-var chartExponencial = new Highcharts.Chart({
+var grafico = new Highcharts.Chart({
     chart: {
         type: 'spline',
-        renderTo: 'exponencial',
-        animation: false,
-        zoomType: 'x',
+        renderTo: 'grafico',
+        animation: true,
+        zoomType: 'xy',
         panning: true,
         panKey: 'shift'
     },
@@ -102,7 +102,7 @@ var chartExponencial = new Highcharts.Chart({
                             '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
-                        var val = chartExponencial.series[0].data;
+                        var val = grafico.series[0].data;
                         var arr = [];
                         val.forEach(desconto);
 
@@ -130,7 +130,7 @@ var chartExponencial = new Highcharts.Chart({
 
     tooltip: {
         formatter: function () {
-            var val = chartExponencial.series[0].data;
+            var val = grafico.series[0].data;
             var arr = [];
             val.forEach(desconto);
 

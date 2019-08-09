@@ -11,7 +11,7 @@ $("#fullscreen_button").click(function() {
       }
 });
 $("#save_button").click(function() {
-      var val = chartExponencial.series[0].data;
+      var val = grafico.series[0].data;
       var dados = [];
       val.forEach(exporta);
 
