@@ -44,14 +44,18 @@ Highcharts.setOptions({
     lang: {
         decimalPoint: ',',
         viewFullscreen: 'Tela cheia',
-        printChart: 'Imprimir gráfico'
+        printChart: 'Imprimir gráfico',
+        resetZoom: 'Tirar zoom'
     }
 });
 var chartExponencial = new Highcharts.Chart({
     chart: {
         type: 'spline',
         renderTo: 'exponencial',
-        animation: false
+        animation: false,
+        zoomType: 'x',
+        panning: true,
+        panKey: 'shift'
     },
     mapNavigation: {
         enableMouseWheelZoom: true,
