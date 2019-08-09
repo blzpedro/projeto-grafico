@@ -28,19 +28,19 @@
             ),
             array(
                 'nome' => 'P7',
-                'valor' => 30,
+                'valor' => 80,
             ),
             array(
                 'nome' => 'P8',
-                'valor' => 25,
+                'valor' => 100,
             ),
             array(
                 'nome' => 'P9',
-                'valor' => 15,
+                'valor' => 70,
             ),
             array(
                 'nome' => 'P10',
-                'valor' => 0,
+                'valor' => 90,
             ),
         ),  
         'total_curso' => 30000,

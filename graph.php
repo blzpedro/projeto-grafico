@@ -9,10 +9,6 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="js/jquery.js"></script>
 </head>
-<?php  
-    $dados = $_REQUEST;
-    $dados_json = json_encode($dados);
-?>
 <script>
     var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
