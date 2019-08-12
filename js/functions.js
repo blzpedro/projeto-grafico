@@ -17,12 +17,21 @@ $("#save_button").click(function() {
       
       function exporta(item) {
         var coordenadas = [];
-        coordenadas.push('x '+item.x);
-        coordenadas.push('y '+item.y);
+        coordenadas.push('x'+item.x);
+        coordenadas.push('y'+item.y.toFixed(2));
         dados.push(coordenadas);
       }
+      console.log(dados);
       var json = JSON.stringify(dados);
-      alert("Dados JSON: "+json);
+
+      
+      $.ajax({
+        url: "test.php", 
+        data: "dados="+json,
+        success: function(){
+        alert("Dados salvos");
+      }});
+      // alert("Dados JSON: "+json);
     });
 $(document).ready(function () {     
     $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});
