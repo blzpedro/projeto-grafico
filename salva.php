@@ -8,11 +8,12 @@ foreach($colunas as $coluna){
     $sql = "INSERT INTO grafico 
     (graf_nome, x, y)
     VALUES ('graf1', '".$x."' ,".$y." )";
-    // $con->query($sql);
+    $con->query($sql);
 }
-echo "<pre>";
-$aa = $con;
-print_r($aa);
+// $con->query($con,"SELECT * FROM grafico");
+// echo "<pre>";
+// $aa = mysqli_query($con,"SELECT * FROM grafico");
+// print_r($aa);
 
 
 
