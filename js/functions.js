@@ -26,7 +26,7 @@ $("#save_button").click(function() {
 
       
       $.ajax({
-        url: "test.php", 
+        url: "salva.php", 
         data: "dados="+json,
         success: function(){
         alert("Dados salvos");
