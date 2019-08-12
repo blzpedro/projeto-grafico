@@ -8,12 +8,11 @@ foreach($colunas as $coluna){
     $sql = "INSERT INTO grafico 
     (graf_nome, x, y)
     VALUES ('graf1', '".$x."' ,".$y." )";
-    
-    if (!$con->query($sql)) {
-        echo "Error: " . $sql . "<br>" . $con->error;
-    }
+    // $con->query($sql);
 }
-
+echo "<pre>";
+$aa = $con;
+print_r($aa);
 
 
 
