@@ -1,6 +1,6 @@
 <?php
 
-$con=mysqli_connect("localhost","root","","grafico");
+$con=mysqli_connect("localhost","b604555a674f4d","3d655edb","grafico");
 
 // Check connection
 if (mysqli_connect_errno())
