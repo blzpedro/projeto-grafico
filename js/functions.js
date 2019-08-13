@@ -1,4 +1,14 @@
-$("#save_button").click(function() {
+
+  $(document).ready(function(){
+    $('#titulo').autocomplete({
+      data: {
+        "Apple": null,
+        "Microsoft": null,
+        "Google": 'https://placehold.it/250x250'
+      },
+    });
+  });
+  $("#save_button").click(function() {
       var titulo = $("#nome").val();
       var val = chartExponencial.series[0].data;
       var dados = [];

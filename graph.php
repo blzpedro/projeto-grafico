@@ -14,16 +14,21 @@
     var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
 <body id="fullscreen">
-    <div class="bg">
-        <div class="titulo">
-            <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo">
-        </div>
-    </div>
+            <div class="bg">
+                <div class="titulo">
+                    <div class="input-field bg">
+                        <i class="material-icons prefix">search</i>
+                        <input type="text" id="titulo" class="autocomplete">
+                    </div>
+                    <!-- <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo" required> -->
+                </div>
+             </div>
     <div id="exponencial"></div>
-    <div id="drop"></div>
-    <div class="centro">
-        <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
-        <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
+    <div class="row">
+        <div class="centro">
+            <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
+            <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
+        </div>
     </div>
 </body>
 

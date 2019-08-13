@@ -9,7 +9,6 @@ echo "<pre>";
 //busca grafico
 $select = "select * from grafico where graf_nome ='".$titulo."'";
 $retorno = $con->query($select);
-// print_r($retorno->num_rows);
 
 //verifica se grafico ja existe
 if($retorno->num_rows > 0){
