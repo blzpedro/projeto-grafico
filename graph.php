@@ -14,15 +14,14 @@
     var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
 <body id="fullscreen">
-            <div class="bg">
-                <div class="titulo">
-                    <div class="input-field bg">
-                        <i class="material-icons prefix">search</i>
-                        <input type="text" id="titulo" class="autocomplete">
-                    </div>
-                    <!-- <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo" required> -->
-                </div>
-             </div>
+    <div class="bg">
+        <div class="titulo">
+            <div class="input-field bg">
+                <i class="material-icons prefix">search</i>
+                <input type="text" id="titulo" class="autocomplete" placeholder="Nome do gráfico" required>
+            </div>
+        </div>
+    </div>
     <div id="exponencial"></div>
     <div class="row">
         <div class="centro">
