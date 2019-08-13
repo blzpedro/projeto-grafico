@@ -1,12 +1,20 @@
 
   $(document).ready(function(){
-    $('#titulo').autocomplete({
-      data: {
-        "Apple": null,
-        "Microsoft": null,
-        "Google": 'https://placehold.it/250x250'
-      },
-    });
+    $.ajax({
+      url: "busca.php", 
+      type: 'get',
+      dataType: 'JSON',
+      success: function(response){
+        var GrafArray = response;
+        var dataGrafico = {};
+        for (var i = 0; i < GrafArray.length; i++) {
+          dataGrafico[GrafArray[i]] = null;
+        }
+        $('input.autocomplete').autocomplete({
+          data: dataGrafico,
+          limit: 5,
+        });
+    }});
   });
   $("#save_button").click(function() {
       var titulo = $("#nome").val();
