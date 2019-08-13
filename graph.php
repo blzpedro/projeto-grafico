@@ -16,7 +16,7 @@
 <body id="fullscreen">
     <div class="bg">
         <div class="titulo">
-            <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo" required>
+            <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo">
         </div>
     </div>
     <div id="exponencial"></div>

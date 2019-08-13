@@ -1,5 +1,5 @@
 $("#save_button").click(function() {
-      var titulo = document.getElementById('nome').value;
+      var titulo = $("#nome").val();
       var val = chartExponencial.series[0].data;
       var dados = [];
       val.forEach(exporta);
