@@ -48,6 +48,31 @@ text[data-z-index="1"] {
     background: url(https://www.highcharts.com/samples/graphics/sand.png);
 }
 
+.bg{    
+    background: url(https://www.highcharts.com/samples/graphics/sand.png);
+}
+
+.titulo{
+    width: 30%;
+    display: block;
+    margin: 0 auto;
+    input{
+        text-align: center;
+        &:focus{
+            &::placeholder { 
+                opacity: 0;
+                text-align: center;
+            }
+        }
+        &::placeholder {
+            color: black;
+            opacity: 1; 
+            transition: .7s all;
+            text-align: center;
+        }
+    }
+}
+
 .highcharts-reset-zoom{
     tspan{
         display: block !important;

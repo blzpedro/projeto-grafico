@@ -4,19 +4,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Gráfico interativo</title>
+        <title>Gráfico dinâmico e interativo</title>
         <link rel="stylesheet" href="css/app.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="js/jquery.js"></script>
+        <link rel="shortcut icon" href="linegraph.png" type="image/x-icon">
 </head>
 <script>
     var colunas = <?php echo json_encode($_REQUEST); ?>;
 </script>
 <body id="fullscreen">
+    <div class="bg">
+        <div class="titulo">
+            <input type="text" id="nome" placeholder="Gráfico dinâmico e interativo" required>
+        </div>
+    </div>
     <div id="exponencial"></div>
-    <div id="reta" class="oculto"></div>
-    <div id="angular" class="oculto"></div>
-    <div id="perso" class="oculto"></div>
     <div id="drop"></div>
     <div class="centro">
         <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>

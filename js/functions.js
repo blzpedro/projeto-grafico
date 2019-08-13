@@ -1,20 +1,10 @@
-$("#fullscreen_button").click(function() {
-    var elem = document.body;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { /* Firefox */
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-      }
-});
 $("#save_button").click(function() {
+      var titulo = document.getElementById('nome').value;
       var val = chartExponencial.series[0].data;
       var dados = [];
       val.forEach(exporta);
       
+      dados.push(titulo);
       function exporta(item) {
         var coordenadas = [];
         coordenadas.push('x'+item.x);
@@ -31,7 +21,6 @@ $("#save_button").click(function() {
         success: function(){
         alert("Dados salvos");
       }});
-      // alert("Dados JSON: "+json);
     });
 $(document).ready(function () {     
     $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});

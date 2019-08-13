@@ -19,25 +19,6 @@ function total(x) {
     totCurso.push(parseInt(x.valor) * 0.1)
 }
 
-var cursoTotalPorcento = totCurso.reduce((a, b) => a + b, 0);
-$('#compare').click(function(){
-        console.log(vals);
-    if($('#compare:checked').length == 1){
-        var chartCompare = chartPerso.series[1].data; 
-        chartCompare.forEach(atualizaCompara)
-            function atualizaCompara(coluna){
-                coluna.update(null);
-            }
-    }
-    if($('#compare:checked').length == 0){
-        var chartCompare = chartPerso.series[1].data; 
-        chartCompare.forEach(atualizaCompara)
-            function atualizaCompara(item){
-                item.update(10);
-            }
-    }
-}); 
-
 ////////////////////////////////////////////////////////// GRÁFICO ///////////////////////////////////////////////////////////////////
 
 Highcharts.setOptions({
@@ -48,6 +29,7 @@ Highcharts.setOptions({
         resetZoom: 'Tirar zoom'
     }
 });
+
 var chartExponencial = new Highcharts.Chart({
     chart: {
         type: 'spline',
@@ -57,12 +39,8 @@ var chartExponencial = new Highcharts.Chart({
         panning: true,
         panKey: 'shift'
     },
-    mapNavigation: {
-        enableMouseWheelZoom: true,
-    },
-
     title: {
-        text: 'Gráfico interativo e dinâmico'
+        text: ''
     },
     events: {
       click: function (item) {
