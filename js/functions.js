@@ -56,17 +56,10 @@ $("#titulo").change(
       success: function(response){
         response.forEach(function(e){
           if(e.graf_nome == $("#titulo").val()){
-            chartExponencial.series[0].data[e.x].update(parseInt(e.y));
-            console.log(e);
+            val[e.x].update(parseInt(e.y));
           }
         });
     }});
-
-    
-    // val.forEach(function(e){
-    //   console.log(e);
-    //   e.update(100);
-    // })
   }
 );
 
