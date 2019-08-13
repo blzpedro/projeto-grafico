@@ -2,8 +2,7 @@
 
     require_once('config.php');
     $titulo = 'teste';
-    $query = "select distinct(graf_nome) from grafico";
-    // print_r($retorno);
+    $query = "select * from grafico";
     $graficos = array();
     
     
@@ -12,11 +11,12 @@
         // print_r($result);
         /* fetch associative array */
         while ($row = $result->fetch_assoc()) {
-            array_push($graficos, $row['graf_nome']);
+            array_push($graficos, $row);
         }
         
         /* free result set */
         // $result->close();
     }
-    echo json_encode($graficos);
+    $json = json_encode($graficos);
+    print_r($json);
 ?>

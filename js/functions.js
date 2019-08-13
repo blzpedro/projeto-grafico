@@ -5,7 +5,10 @@
       type: 'get',
       dataType: 'JSON',
       success: function(response){
-        var GrafArray = response;
+        var GrafArray = [];
+        response.forEach(function(e){
+          GrafArray.push(e['graf_nome']);
+        });
         var dataGrafico = {};
         for (var i = 0; i < GrafArray.length; i++) {
           dataGrafico[GrafArray[i]] = null;
@@ -43,6 +46,29 @@
 $(document).ready(function () {     
     $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});
 });
+$("#titulo").change(
+  function(){
+    var val = chartExponencial.series[0].data;
+    $.ajax({
+      url: "busca.php",  
+      type: 'get',
+      dataType: 'JSON',
+      success: function(response){
+        response.forEach(function(e){
+          if(e.graf_nome == $("#titulo").val()){
+            chartExponencial.series[0].data[e.x].update(parseInt(e.y));
+            console.log(e);
+          }
+        });
+    }});
+
+    
+    // val.forEach(function(e){
+    //   console.log(e);
+    //   e.update(100);
+    // })
+  }
+);
 
 var data = colunas;
 var valor = colunas;

@@ -8,7 +8,6 @@ echo "<pre>";
 
 //busca grafico
 $select = "select * from grafico where graf_nome ='".$titulo."'";
-// $retorno = $con->query($select);
 
 //verifica se grafico ja existe
 $colunasBanco = $mysqli->query($select);
@@ -29,11 +28,11 @@ if ($colunasBanco->num_rows == 0) {
     }
 }else{
     //grafico ja existe
-    
+    // print_r($colunas);
     //atualiza grafico existente
-    while ($coluna = $colunasBanco->fetch_assoc()) {
-        $x = str_replace("x","",$coluna['x']);
-        $y = str_replace("y","",$coluna['y']);
+    foreach($colunas as $coluna){
+        $x = str_replace("x","",$coluna[0]);
+        $y = str_replace("y","",$coluna[1]);
         $sql = "UPDATE grafico
                 SET y = ".$y."
                 where 
@@ -42,8 +41,5 @@ if ($colunasBanco->num_rows == 0) {
                 $mysqli->query($sql);
                 // echo $sql;
     }
-            // print_r($colunas);
-    
-    
 }
  ?>
