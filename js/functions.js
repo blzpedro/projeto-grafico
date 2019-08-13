@@ -17,7 +17,7 @@
     }});
   });
   $("#save_button").click(function() {
-      var titulo = $("#nome").val();
+      var titulo = $("#titulo").val();
       var val = chartExponencial.series[0].data;
       var dados = [];
       val.forEach(exporta);
