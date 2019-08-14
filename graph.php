@@ -31,10 +31,7 @@
     </div>
     <footer>
     <?php
-    $conf['site_footer'] = '<p>©2010 All Rights Reserved<br /><em>';
-    $conf['site_footer'] .= shell_exec("git log -1 --pretty=format:'%h - %s (%ci)' --abbrev-commit `git merge-base local-dev dev`");
-    $conf['site_footer'] .= '</em></p>';
-    print_r($conf['site_footer']); 
+        echo "v0.".shell_exec("git rev-list --all --count");
     ?>
     </footer>
 </body>
