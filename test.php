@@ -1,3 +1,3 @@
 <?php
-   echo "v0.".shell_exec("help");
+   echo "v1.".shell_exec("help");
 ?>
