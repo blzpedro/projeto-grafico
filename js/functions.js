@@ -20,9 +20,12 @@
     }});
   });
   $("#save_button").click(function() {
-      var titulo = $("#titulo").val();
-      var val = chartExponencial.series[0].data;
-      var dados = [];
+    var titulo = $("#titulo").val();
+    var val = chartExponencial.series[0].data;
+    var dados = [];
+    if(titulo == ''){
+      alert('Digite um nome para o grafico');
+    }else{
       val.forEach(exporta);
       
       dados.push(titulo);
@@ -42,6 +45,8 @@
         success: function(){
         alert("Dados salvos");
       }});
+
+    }
     });
 $(document).ready(function () {     
     $('.tooltipped').tooltip({outDuration: 0, delay: 0, inDuration: 700});

@@ -29,6 +29,13 @@
             <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
         </div>
     </div>
+    <footer>
+    <?php
+        $conf['site_footer'] = '<p>©2010 All Rights Reserved<br /><em>';
+        $conf['site_footer'] .= shell_exec("git log -1 --pretty=format:'%h - %s (%ci)' --abbrev-commit `git merge-base local-dev dev`");
+        $conf['site_footer'] .= '</em></p>'; 
+    ?>
+    </footer>
 </body>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
