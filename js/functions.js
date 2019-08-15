@@ -1,5 +1,10 @@
-
   $(document).ready(function(){
+    $('.modal').modal();
+    $('select').formSelect();
+
+    $("#save_filter").click(function() {
+    });
+
     $.ajax({
       url: "busca.php", 
       type: 'get',
@@ -133,4 +138,3 @@ function openFullscreen() {
      }  
    }  
 }
-

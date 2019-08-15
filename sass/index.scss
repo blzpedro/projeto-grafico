@@ -5,7 +5,9 @@ body {
     height: 100vh;
 }
 
-.highcharts-credits,
+.highcharts-credits{
+    display: none;
+}
 
 .tipo{
   text-align: center;
@@ -18,7 +20,7 @@ body {
 }
 
 .oculto{
-    // display: none;
+    display: none;
 }
 
 .ativo{
@@ -49,25 +51,9 @@ text[data-z-index="1"] {
     background: url(https://www.highcharts.com/samples/graphics/sand.png);
 }
 
-.titulo{
-    width: 30%;
-    display: block;
-    margin: 0 auto;
-    input{
-        text-align: center;
-        &:focus{
-            &::placeholder { 
-                opacity: 0;
-                text-align: center;
-            }
-        }
-        &::placeholder {
-            color: black;
-            opacity: 1; 
-            transition: .7s all;
-            text-align: center;
-        }
-    }
+.filtro{
+    float: right;
+    margin: 30px 10px -70px 0;
 }
 
 .highcharts-reset-zoom{
@@ -78,5 +64,33 @@ text[data-z-index="1"] {
 
 .input-field{
     margin: 0 !important;
+}
+
+.modal{
+    position: absolute !important;
+    height: 100%;
+    overflow: hidden !important;
+    h4{
+        text-align: center;
+    }
+    .vertical-center{
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        -ms-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+        .row{
+            margin: 20px 0;
+        }
+    }
+    button{
+        float: right;
+        margin-right: 10px;
+    }
+    .noUi-horizontal .noUi-handle{
+        width: 18px !important;
+        background-color: #2bbbad;
+    }
 }
 

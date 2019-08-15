@@ -5,11 +5,14 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass --watch sass/app.scss:css/app.css --style compressed"
-  },  
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC",  
+  "license": "ISC",
   "devDependencies": {
     "sass": "^1.20.1"
+  },
+  "dependencies": {
+    "nouislider": "^14.0.2"
   }
 }
