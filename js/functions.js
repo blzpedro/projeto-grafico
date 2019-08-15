@@ -70,17 +70,39 @@ $("#titulo").change(
 
 $("#add_button").click(function() {
   var vals = [];
-  chartExponencial.series[chartExponencial.series.length -1].data.forEach(function(item){
+  var qtdLinhas = chartExponencial.series.length
+  chartExponencial.series[qtdLinhas -1].data.forEach(function(item){
     vals.push(item.y);
   });
-  if (chartExponencial.series.length < 9){
+  if (qtdLinhas < 9){
+    //com desconto
     chartExponencial.addSeries({
       data:[] = vals,
       draggableY: true,
       dragMaxY: 100,
       dragMinY: 0,
+      name: 'Antecipado '+((qtdLinhas / 3) +1),
     });
-    console.log(chartExponencial.series.length);
+
+    //sem desconto
+    chartExponencial.addSeries({
+      data:[] = vals,
+      draggableY: true,
+      dragMaxY: 100,
+      dragMinY: 0,
+      name: 'Em dia '+((qtdLinhas / 3) +1),
+    });
+
+    //com multa
+    chartExponencial.addSeries({
+      data:[] = vals,
+      draggableY: true,
+      dragMaxY: 100,
+      dragMinY: 0,
+      name: 'Após vcto '+((qtdLinhas / 3) +1),
+    });
+
+    console.log(parseInt(qtdLinhas) + 1);
   }
   else{
     alert('numero maximo de linhas excedido');

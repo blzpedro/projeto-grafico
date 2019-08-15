@@ -40,7 +40,9 @@ var chartExponencial = new Highcharts.Chart({
         panKey: 'shift'
     },
     legend: {
-        enabled: true
+        layout: 'vertical',
+        enabled: true,
+        borderWidth: 2,
     },
     title: {
         text: ''
@@ -127,12 +129,29 @@ var chartExponencial = new Highcharts.Chart({
 
     series: [{
         showInLegend: true,
-        name: 'Desconto',
+        name: 'Antecipado',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
-    }],
+    },
+    {
+        showInLegend: true,
+        name: 'Em dia',
+        data: [] = vals,
+        draggableY: true,
+        dragMaxY: 100,
+        dragMinY: 0,
+    },
+    {
+        showInLegend: true,
+        name: 'Após vcto',
+        data: [] = vals,
+        draggableY: true,
+        dragMaxY: 100,
+        dragMinY: 0,
+    },
+],
 
     exporting: {
         buttons: {
