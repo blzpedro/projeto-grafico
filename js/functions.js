@@ -68,6 +68,25 @@ $("#titulo").change(
   }
 );
 
+$("#add_button").click(function() {
+  var vals = [];
+  chartExponencial.series[chartExponencial.series.length -1].data.forEach(function(item){
+    vals.push(item.y);
+  });
+  if (chartExponencial.series.length < 9){
+    chartExponencial.addSeries({
+      data:[] = vals,
+      draggableY: true,
+      dragMaxY: 100,
+      dragMinY: 0,
+    });
+    console.log(chartExponencial.series.length);
+  }
+  else{
+    alert('numero maximo de linhas excedido');
+  }
+});
+
 var data = colunas;
 var valor = colunas;
 

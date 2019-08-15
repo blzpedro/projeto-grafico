@@ -39,6 +39,9 @@ var chartExponencial = new Highcharts.Chart({
         panning: true,
         panKey: 'shift'
     },
+    legend: {
+        enabled: true
+    },
     title: {
         text: ''
     },
@@ -123,7 +126,7 @@ var chartExponencial = new Highcharts.Chart({
     },
 
     series: [{
-        showInLegend: false,
+        showInLegend: true,
         name: 'Desconto',
         data: [] = vals,
         draggableY: true,
