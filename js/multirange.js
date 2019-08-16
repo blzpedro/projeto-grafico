@@ -5,7 +5,7 @@ $(document).ready(function() {
 	$('.noUi-handle').on('click', function() {
 	  $(this).width(50);
 	});
-	var rangeSlider = document.getElementById('slider-range');
+	var rangeSlider = document.getElementById('valor');
 	var moneyFormat = wNumb({
 	  decimals: 0,
 	  thousand: ',',
@@ -24,11 +24,11 @@ $(document).ready(function() {
 	
 	// Set visual min and max values and also update value hidden form inputs
 	rangeSlider.noUiSlider.on('update', function(values, handle) {
-	  document.getElementById('slider-range-value1').innerHTML = values[0];
-	  document.getElementById('slider-range-value2').innerHTML = values[1];
-	  document.getElementsByName('min-value').value = moneyFormat.from(
+	  document.getElementById('valor_inicial').innerHTML = values[0];
+	  document.getElementById('valor_final').innerHTML = values[1];	  
+	  document.getElementById('field_inicial').value = moneyFormat.from(
 		values[0]);
-	  document.getElementsByName('max-value').value = moneyFormat.from(
+	  document.getElementById('field_final').value = moneyFormat.from(
 		values[1]);
 	});
   });
@@ -38,7 +38,7 @@ $(document).ready(function() {
 	$('.noUi-handle').on('click', function() {
 	  $(this).width(50);
 	});
-	var rangeSlider = document.getElementById('slider-range-2');
+	var rangeSlider = document.getElementById('desconto');
 	var moneyFormat = wNumb({
 	  decimals: 0,
 	  thousand: ',',
@@ -57,11 +57,11 @@ $(document).ready(function() {
 	
 	// Set visual min and max values and also update value hidden form inputs
 	rangeSlider.noUiSlider.on('update', function(values, handle) {
-	  document.getElementById('slider-range-2-value1').innerHTML = values[0];
-	  document.getElementById('slider-range-2-value2').innerHTML = values[1];
-	  document.getElementsByName('min-value').value = moneyFormat.from(
+	  document.getElementById('desc_min').innerHTML = values[0];
+	  document.getElementById('desc_max').innerHTML = values[1];
+	  document.getElementById('field_descMin').value = moneyFormat.from(
 		values[0]);
-	  document.getElementsByName('max-value').value = moneyFormat.from(
+	  document.getElementById('field_descMax').value = moneyFormat.from(
 		values[1]);
 	});
   });
