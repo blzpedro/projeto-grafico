@@ -56,10 +56,8 @@
                         <div class="row slider-labels">
                             <div class="col s6 center-align"><strong>Desconto mínimo:</strong> <span id="slider-range-2-value1"></span></div>
                             <div class="col s6 center-align"><strong>Desconto máximo:</strong> <span id="slider-range-2-value2"></span></div>
-                            <form>
                                 <input type="hidden" name="min-value2" value="">
-                                <input type="hidden" name="max-value2" value="">
-                            </form>     
+                                <input type="hidden" name="max-value2" value=""> 
                         </div>
                     </div> 
                 </div>   
@@ -105,7 +103,7 @@
     <div class="row">
         <div class="centro">
             <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
-            <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
+            <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="bottom" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
             <a class="waves-effect add waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Adicionar gráfico" id="add_button"><i class="material-icons">add</i></a>
         </div>
     </div>
