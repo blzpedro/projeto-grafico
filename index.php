@@ -4,43 +4,43 @@
         'colunas' => array(
             array(
                 'nome' => 'P1',
-                'valor' => 95,
+                'valor' => 30,
             ),
             array(
                 'nome' => 'P2',
-                'valor' => 85,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P3',
-                'valor' => 70,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P4',
-                'valor' => 60,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P5',
-                'valor' => 55,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P6',
-                'valor' => 40,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P7',
-                'valor' => 80,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P8',
-                'valor' => 100,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P9',
-                'valor' => 70,
+                'valor' => 0,
             ),
             array(
                 'nome' => 'P10',
-                'valor' => 90,
+                'valor' => 0,
             ),
         ),  
         'total_curso' => 30000,
