@@ -1,8 +1,0 @@
-heroku:
- stage: deploy
- only:
- - master
- script:
- - git remote add heroku https://heroku:1ac10558-dacb-4864-a3bd-1bcf51216b10@git.heroku.com/projetografico.git
- - git push -f heroku master
- 
