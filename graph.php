@@ -26,13 +26,13 @@
                 <input type="text" id="titulo" class="autocomplete" placeholder="Nome do gráfico" required>
             </div>
         </div> -->
-    <div class="inputDesc">
+    <!-- <div class="inputDesc">
         <form action="" method="post">
             <label for="primeiroDesc">Desconto do primeiro período</label>
             <input id="primeiroDesc" type="text" placeholder="Desconto inicial">
             <button type="submit" class="btn">Atualizar</button>
         </form>
-    </div>
+    </div> -->
     <div class="filtro">
         <div class="input-field bg">
             <a class="waves-effect waves-light btn tooltipped modal-trigger" data-position="left" data-tooltip="Filtros" id="filter_list" href="#filtro"><i class="material-icons">filter_list</i></a>
@@ -108,7 +108,7 @@
     <div id="drop"></div>
     <div class="row">
         <div class="centro">
-            <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
+            <!-- <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a> -->
             <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="bottom" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
             <!-- <a class="waves-effect add waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Adicionar gráfico" id="add_button"><i class="material-icons">add</i></a> -->
         </div>

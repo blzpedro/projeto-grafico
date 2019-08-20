@@ -43,7 +43,7 @@ function proxValor(){
 
 vals = proxValor();
 vals.forEach(function atrasadoAdiantado(item){
-    if((item-juros) < 0){
+    if((item-juros) < 0){ 
         valsAtrasado.push(0);
     }else{
         valsAtrasado.push(item - juros);
