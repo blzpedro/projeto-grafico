@@ -33,6 +33,7 @@
             <button type="submit" class="btn">Atualizar</button>
         </form>
     </div> -->
+        
     <div class="filtro">
         <div class="input-field bg">
             <a class="waves-effect waves-light btn tooltipped modal-trigger" data-position="left" data-tooltip="Filtros" id="filter_list" href="#filtro"><i class="material-icons">filter_list</i></a>
@@ -105,7 +106,18 @@
     </div>
     </div>
     <div id="exponencial"></div>
+    <form action="#" class="vertical-range">
+            <p class="range-field">
+                <input type="range" id="test5" min="0" max="100"/>
+            </p>
+        </form>
+    <div class="box-input">
     <div id="drop"></div>
+        <form action="">
+            <label for="">Novo valor</label>
+            <input type="text" value="" id="ajuste-valor">
+        </form>
+    </div>
     <div class="row">
         <div class="centro">
             <!-- <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a> -->

@@ -98,8 +98,7 @@ text[data-z-index="1"] {
 }
 
 #exponencial{
-    margin-top: 50px;
-    width: 100%;
+    width: 95%;
 }
 
 .inputDesc{
@@ -109,5 +108,65 @@ text[data-z-index="1"] {
     margin-bottom: -50px;
     input{
         width: 50% !important;
+    }
+}
+
+.vertical-range{
+    position: absolute;
+    top: 30%;
+    left: 92%;
+    transform: rotate(270deg);
+    .range-field{
+        width: 150px;
+    }
+ }
+
+ input[type=range]+.thumb.active {
+    border-radius: 50% 50% 0% 50% !important;
+}
+
+.thumb.active{
+    transform: rotate(45deg) !important;
+}
+
+.thumb{
+    left: 60px !important;
+}
+
+g.highcharts-legend{
+    transform: translate(630, 320) !important;
+}
+
+.box-input{
+    width: 50%;
+    margin: 0 auto 0 auto;
+    display: block;
+    #ajuste-valor{
+        width: 25%;
+        display: block;
+        margin: 1rem auto 15px auto;
+        text-align: center;
+        height: 2rem;
+        &::-webkit-input-placeholder {
+            text-align: center;
+         }
+         
+         &:-moz-placeholder { /* Firefox 18- */
+            text-align: center;  
+         }
+         
+         &::-moz-placeholder {  /* Firefox 19+ */
+            text-align: center;  
+         }
+         
+         &:-ms-input-placeholder {  
+            text-align: center; 
+         }
+    }
+    label{
+        text-align: center;
+        margin: 25%;
+        display: block;
+        margin:15px auto -15px auto;
     }
 }

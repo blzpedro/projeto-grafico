@@ -6,6 +6,7 @@ var vals = [];
 var valsAtrasado = [];
 var valsAdiantado = [];
 var totCurso = [];
+var ajusteValor = "";
 
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
@@ -77,7 +78,7 @@ var chartExponencial = new Highcharts.Chart({
         type: 'spline',
         renderTo: 'exponencial',
         animation: true,
-        zoomType: 'x',
+        // zoomType: 'x',
         panning: true,
         panKey: 'shift'
     },
@@ -187,7 +188,9 @@ var chartExponencial = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var calcInicial = Math.round(arr[0]/tamArr);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
-                        $('#drop').html('Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        console.log(total_html);
+                        $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('#drop').html('Valor total do curso: <b>R$' + Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                         
 
                         //atualiza juros e desconto
@@ -239,9 +242,10 @@ var chartExponencial = new Highcharts.Chart({
         showInLegend: true,
         name: 'Antecipado',
         data: [] = valsAdiantado,
-        draggableY: true,
+        draggableY: false,
         dragMaxY: 100,
         dragMinY: 0,
+        zIndex: 1
     },
     {
         showInLegend: true,
@@ -250,14 +254,16 @@ var chartExponencial = new Highcharts.Chart({
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
+        zIndex: 2
     },
     {
         showInLegend: true,
         name: 'Após vcto',
         data: [] = valsAtrasado,
-        draggableY: true,
+        draggableY: false,
         dragMaxY: 100,
         dragMinY: 0,
+        zIndex: 0
     },
 ],
 
