@@ -1,37 +1,52 @@
 var dados = colunas;
-var cols = '';
-var vals = '';
 var cols = [];
+var juros = 35;
 var vals = [];
-var totCurso = '';
+var valsAtrasado = [];
+var valsAdiantado = [];
 var totCurso = [];
+
+
+var limit = parseInt(dados['colunas'][0]['quantidade']);
+
+while(limit > 0){
+    cols.push('P'+limit);
+    limit--;
+}
+ cols.reverse();
 // console.log(vals);
+
+// dados.forEach(function montaColunas(item){
+    
+// })
 
 data['colunas'].forEach(pegaRequest);
 function pegaRequest(item) {
-    cols.push(item.nome);
     vals.push(parseInt(item.valor));
 }
 
 function proxValor(){
     var primeiroDesc = vals[0];
-    vals = [];
+    vals = []; 
     vals.push(primeiroDesc);
-
-    var tamArr = Object.keys(cols).length;
+    
+    var tamArr = parseInt(dados['colunas'][0]['quantidade']);
     var desc = primeiroDesc/(tamArr-1);
     var proxDesc = primeiroDesc
-
-    for (i=1;i<=tamArr;i++){      
-        proxDesc -= Math.round(desc);
-        vals.push(proxDesc);
+    
+    for (i=1;i<tamArr;i++){  
+        proxDesc -= desc;
+        if(proxDesc <1){
+            vals.push(0);
+        }else{
+            vals.push(proxDesc);
+        }
     }
     return vals;
 }
 
 vals = proxValor();
 
-console.log(vals);
 
 valor['colunas'].forEach(total);
 
@@ -164,7 +179,6 @@ var chartExponencial = new Highcharts.Chart({
                         var tamArr = Object.keys(cols).length;
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var calcInicial = Math.round(arr[0]/tamArr);
-                        console.log(calcInicial)
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
                         $('#drop').html(
                             'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');

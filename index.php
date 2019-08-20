@@ -1,47 +1,13 @@
 <?php
 
     $dados = array(
+        'nome_graf' => 'teste',
         'colunas' => array(
             array(
-                'nome' => 'P1',
-                'valor' => 30,
-            ),
-            array(
-                'nome' => 'P2',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P3',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P4',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P5',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P6',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P7',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P8',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P9',
-                'valor' => 0,
-            ),
-            array(
-                'nome' => 'P10',
-                'valor' => 0,
-            ),
+                'nome' => '',
+                'valor' => 70,
+                'quantidade' =>15,
+            )
         ),  
         'total_curso' => 30000,
     );

@@ -92,10 +92,52 @@ function(){
 
 $("#add_button").click(function() {
 var vals = [];
+var valsAdiantado = [];
+var valsAtrasado = [];
 var qtdLinhas = chartExponencial.series.length
 chartExponencial.series[qtdLinhas -1].data.forEach(function(item){
-  vals.push(item.y);
+  // vals.push(item.y);
 });
+
+data['colunas'].forEach(pegaRequest);
+function pegaRequest(item) {
+    cols.push(item.nome);
+    if(item.valor > 100 || item.valor < 0){
+        if(item.valor > 100){
+            vals.push(100);
+        }
+        if(item.valor < 0){
+            vals.push(0);
+        }
+
+    }else{
+        vals.push(parseInt(item.valor));
+    }
+    
+    if(parseInt(item.valor - juros) > 100 || parseInt(item.valor - juros) < 0){
+        if(parseInt(item.valor - juros) > 100){
+            valsAtrasado.push(100);
+        }
+        if(parseInt(item.valor - juros) < 0){
+            valsAtrasado.push(0);
+        }
+
+    }else{
+        valsAtrasado.push(parseInt(item.valor - juros));
+    }
+    
+    if(parseInt(item.valor) + juros > 100 || parseInt(item.valor) + juros < 0){
+        if(parseInt(item.valor) + juros > 100){
+            valsAdiantado.push(100);
+        }
+        if(parseInt(item.valor) + juros < 0){
+            valsAdiantado.push(0);
+        }
+
+    }else{
+        valsAdiantado.push(parseInt(item.valor) + juros);
+    }
+  }
 if (qtdLinhas < 9){
   //com desconto
   chartExponencial.addSeries({
@@ -108,7 +150,7 @@ if (qtdLinhas < 9){
 
   //sem desconto
   chartExponencial.addSeries({
-    data:[] = vals,
+    data:[] = valsAdiantado,
     draggableY: true,
     dragMaxY: 100,
     dragMinY: 0,
@@ -117,14 +159,14 @@ if (qtdLinhas < 9){
 
   //com multa
   chartExponencial.addSeries({
-    data:[] = vals,
+    data:[] = valsAtrasado,
     draggableY: true,
     dragMaxY: 100,
     dragMinY: 0,
     name: 'Após vcto '+((qtdLinhas / 3) +1),
   });
 
-  console.log(parseInt(qtdLinhas) + 1);
+  // console.log(parseInt(qtdLinhas) + 1);
 }
 else{
   alert('numero maximo de linhas excedido');
