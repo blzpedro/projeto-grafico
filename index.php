@@ -5,8 +5,10 @@
         'colunas' => array(
             array(
                 'nome' => '',
-                'valor' => 70,
-                'quantidade' =>15,
+                'valor' => 100,
+                'quantidade' => 11,
+                'taxa_desconto' => 30,
+                'taxa_juros' => 30,
             )
         ),  
         'total_curso' => 30000,

@@ -1,7 +1,7 @@
 $(document).ready(function(){
   $('.modal').modal();
   $('select').formSelect();
-
+  $('#primeiroDesc').val(primeiroDesc)
   $("#save_filter").click(function() {
     var valor_inicial = $("#field_inicial").val();
     var valor_final = $("#field_final").val();

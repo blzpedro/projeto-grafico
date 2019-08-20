@@ -26,6 +26,13 @@
                 <input type="text" id="titulo" class="autocomplete" placeholder="Nome do gráfico" required>
             </div>
         </div> -->
+    <div class="inputDesc">
+        <form action="" method="post">
+            <label for="primeiroDesc">Desconto do primeiro período</label>
+            <input id="primeiroDesc" type="text" placeholder="Desconto inicial">
+            <button type="submit" class="btn">Atualizar</button>
+        </form>
+    </div>
     <div class="filtro">
         <div class="input-field bg">
             <a class="waves-effect waves-light btn tooltipped modal-trigger" data-position="left" data-tooltip="Filtros" id="filter_list" href="#filtro"><i class="material-icons">filter_list</i></a>

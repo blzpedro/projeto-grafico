@@ -1,11 +1,11 @@
 var dados = colunas;
 var cols = [];
-var juros = 35;
+var juros = parseInt(dados['colunas'][0]['taxa_juros']);
+var taxaDesconto = parseInt(dados['colunas'][0]['taxa_desconto']);
 var vals = [];
 var valsAtrasado = [];
 var valsAdiantado = [];
 var totCurso = [];
-
 
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
@@ -13,12 +13,8 @@ while(limit > 0){
     cols.push('P'+limit);
     limit--;
 }
- cols.reverse();
-// console.log(vals);
+cols.reverse();
 
-// dados.forEach(function montaColunas(item){
-    
-// })
 
 data['colunas'].forEach(pegaRequest);
 function pegaRequest(item) {
@@ -46,7 +42,18 @@ function proxValor(){
 }
 
 vals = proxValor();
-
+vals.forEach(function atrasadoAdiantado(item){
+    if((item-juros) < 0){
+        valsAtrasado.push(0);
+    }else{
+        valsAtrasado.push(item - juros);
+    }
+    if((item+taxaDesconto) > 100){
+        valsAdiantado.push(100);
+    }else{
+        valsAdiantado.push(item + taxaDesconto);
+    }
+});
 
 valor['colunas'].forEach(total);
 
@@ -180,8 +187,23 @@ var chartExponencial = new Highcharts.Chart({
                         var totArr = arr.reduce((a, b) => a + b, 0);
                         var calcInicial = Math.round(arr[0]/tamArr);
                         var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
-                        $('#drop').html(
-                            'Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        $('#drop').html('Valor total do curso: <b>R$' + total_html.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        
+
+                        //atualiza juros e desconto
+                        var pontoAtual = this;
+                        if((pontoAtual.y + taxaDesconto) > 100){
+                            chartExponencial.series[0].data[pontoAtual.x].update(100);
+                        }else{
+                            chartExponencial.series[0].data[pontoAtual.x].update(pontoAtual.y + taxaDesconto);
+                        }
+
+                        if((pontoAtual.y - juros) < 0){
+                            chartExponencial.series[2].data[pontoAtual.x].update(0);
+                        }else{
+                            chartExponencial.series[2].data[pontoAtual.x].update(pontoAtual.y - juros);
+                        }
+
                     }
                 }
             },
@@ -216,7 +238,7 @@ var chartExponencial = new Highcharts.Chart({
     series: [{
         showInLegend: true,
         name: 'Antecipado',
-        data: [] = vals,
+        data: [] = valsAdiantado,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
@@ -232,7 +254,7 @@ var chartExponencial = new Highcharts.Chart({
     {
         showInLegend: true,
         name: 'Após vcto',
-        data: [] = vals,
+        data: [] = valsAtrasado,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
