@@ -25,15 +25,7 @@
                 <i class="material-icons prefix">search</i>
                 <input type="text" id="titulo" class="autocomplete" placeholder="Nome do gráfico" required>
             </div>
-        </div> -->
-    <!-- <div class="inputDesc">
-        <form action="" method="post">
-            <label for="primeiroDesc">Desconto do primeiro período</label>
-            <input id="primeiroDesc" type="text" placeholder="Desconto inicial">
-            <button type="submit" class="btn">Atualizar</button>
-        </form>
-    </div> -->
-        
+        </div> -->        
     <div class="filtro">
         <div class="input-field bg">
             <a class="waves-effect waves-light btn tooltipped modal-trigger" data-position="left" data-tooltip="Filtros" id="filter_list" href="#filtro"><i class="material-icons">filter_list</i></a>
@@ -107,10 +99,12 @@
     </div>
     <div id="exponencial"></div>
     <form action="#" class="vertical-range">
-            <p class="range-field">
-                <input type="range" id="test5" min="0" max="100"/>
-            </p>
-        </form>
+        <p class="range-field">
+            <h5 id="down"><i class="medium material-icons">chevron_left</i></h5>
+            <input type="range" id="range" min="0" max="100"/>
+            <h5 id="up"><i class="medium material-icons">chevron_right</i></h5>
+        </p>
+    </form>
     <div class="box-input">
     <div id="drop"></div>
         <form action="">

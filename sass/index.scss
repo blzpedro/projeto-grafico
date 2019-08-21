@@ -121,16 +121,24 @@ text[data-z-index="1"] {
     }
  }
 
- input[type=range]+.thumb.active {
-    border-radius: 50% 50% 0% 50% !important;
-}
-
 .thumb.active{
     transform: rotate(45deg) !important;
 }
 
 .thumb{
-    left: 60px !important;
+    left: 65px !important;    
+    height: 30px !important;
+    width: 30px !important;
+    top: -15px !important;
+    margin-left: -7px !important;
+    transform: rotate(45deg) !important;
+    border-radius: 50% 50% 0% 50% !important;
+    .value{
+        color: white !important;
+        font-size: 10px !important;
+        margin-top: 8px !important;
+        margin-left: -1px !important;
+    }
 }
 
 g.highcharts-legend{
@@ -169,4 +177,22 @@ g.highcharts-legend{
         display: block;
         margin:15px auto -15px auto;
     }
+}
+
+#up{
+    position: absolute;
+    bottom: -15px;
+    left: 130px;
+    cursor: pointer;
+    color: #26a69a;
+    font-weight: bold;
+}
+
+#down{
+    position: absolute;
+    bottom: -15px;
+    left: -45px;
+    cursor: pointer;
+    color: #26a69a;
+    font-weight: bold;
 }
