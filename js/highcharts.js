@@ -166,31 +166,49 @@ var chartExponencial = new Highcharts.Chart({
                         // variação = ▲X / ▲Y
                         var y_variacao = calcInicial;
                         colunas.push(y_min.y);
-                        // array calculo dos valores e total
-                        var val = chartExponencial.series[0].data;
-                        var arr = [];
-                        val.forEach(desconto);
+                        // array calculo dos valores e total antecipado
+                        var val_antecipado = chartExponencial.series[0].data;
+                        var arr_antecipado = [];
+                        val_antecipado.forEach(desconto_antecipado);
 
-                        function desconto(item) {
-                            arr.push(item.y);
+                        function desconto_antecipado(item) {
+                            arr_antecipado.push(item.y);
                         }
 
-                        var val = chartExponencial.series[0].data;
-                        var arr = [];
-                        val.forEach(desconto);
+                        // array calculo dos valores e total em dia
+                        var val_emDia = chartExponencial.series[1].data;
+                        var arr_emDia = [];
+                        val_emDia.forEach(desconto_emDia);
 
-                        function desconto(item) {
-                            arr.push(item.y);
+                        function desconto_emDia(item) {
+                            arr_emDia.push(item.y);
                         }
-                        
+
+                        // array calculo dos valores e total apos vencimento
+                        var val_vencimento = chartExponencial.series[2].data;
+                        var arr_vencimento = [];
+                        val_vencimento.forEach(desconto_vencimento);
+
+                        function desconto_vencimento(item) {
+                            arr_vencimento.push(item.y);
+                        }
 
                         var tamArr = Object.keys(cols).length;
-                        var totArr = arr.reduce((a, b) => a + b, 0);
-                        var calcInicial = Math.round(arr[0]/tamArr);
-                        var total_html = (parseInt(data['total_curso']) - ((totArr / tamArr) * parseInt(data['total_curso']/100)));
-                        console.log(total_html);
-                        $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('#drop').html('Valor total do curso: <b>R$' + Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+
+                        var totArr_antecipado = arr_antecipado.reduce((a, b) => a + b, 0);
+                        var totArr_emDia = arr_emDia.reduce((a, b) => a + b, 0);
+                        var totArr_vencimento = arr_vencimento.reduce((a, b) => a + b, 0);
+
+                        var calcInicial = Math.round(arr_antecipado[0]/tamArr);
+
+                        var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100))));
+                        var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
+                        var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
+                        // $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('#drop').html('Total antecipado: <b>R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b>R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total atrasado: <b>R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        console.log(total_antecipado);
+                        console.log(total_emDia);
+                        console.log(total_vencimento);
                         
 
                         //atualiza juros e desconto

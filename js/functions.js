@@ -253,7 +253,6 @@ function openFullscreen() {
 }
 
 $('#periodos').on('input', function () {
-
   var value = $(this).val();
 
   if ((value !== '') && (value.indexOf('.') === -1)) {
