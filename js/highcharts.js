@@ -11,7 +11,7 @@ var valDia30 = $('.valor-dia30').text();
 var valDia5;
 var valorVcto;
 
-
+var a = 'a';
 
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
@@ -133,9 +133,8 @@ var chartExponencial = new Highcharts.Chart({
                             '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
-                        
-                        
-  console.log(valDia30)
+                                                                        
+                        console.log('TESTE'+$('.valor-dia30').text());
                           
                         var points   = chartExponencial.series[0].points;
                         
@@ -196,12 +195,14 @@ var chartExponencial = new Highcharts.Chart({
                         var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100))));
                         var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
                         var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
-                        // $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('#drop').html('Total antecipado: <b class="valor-dia30">R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b class="valor-dia5">R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total após vencimento: <b class="valor-vcto">R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        // // $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        // $('#drop').html('Total antecipado: <b class="valor-dia30">R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b class="valor-dia5">R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total após vencimento: <b class="valor-vcto">R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                         console.log(total_antecipado);
                         console.log(total_emDia);
                         console.log(total_vencimento);
-                        
+                        $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 
                         //atualiza juros e desconto
 
@@ -238,7 +239,7 @@ var chartExponencial = new Highcharts.Chart({
 
     series: [{
         showInLegend: true,
-        name: 'Dia 30',
+        name: 'Dia 30<span class="dia30">:</span>',
         data: [] = valsAdiantado,
         draggableY: true,
         dragMaxY: 100,
@@ -247,7 +248,7 @@ var chartExponencial = new Highcharts.Chart({
     },
     {
         showInLegend: true,
-        name: '5º dia',
+        name: '5º dia<span class="dia5">:</span>',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
@@ -256,7 +257,7 @@ var chartExponencial = new Highcharts.Chart({
     },
     {
         showInLegend: true,
-        name: 'Após vcto',
+        name: 'Após vcto<span class="vcto">:</span>',
         data: [] = valsAtrasado,
         draggableY: true,
         dragMaxY: 100,
