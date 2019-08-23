@@ -20,17 +20,17 @@
 </script>
 <body id="fullscreen">
     <div class="bg">
-        <!-- <div class="titulo">
+        <div class="titulo">
             <div class="input-field bg">
                 <i class="material-icons prefix">search</i>
                 <input type="text" id="titulo" class="autocomplete" placeholder="Nome do gráfico" required>
             </div>
-        </div> -->        
-    <div class="filtro">
+        </div>        
+    <!-- <div class="filtro">
         <div class="input-field bg">
             <a class="waves-effect waves-light btn tooltipped modal-trigger" data-position="left" data-tooltip="Filtros" id="filter_list" href="#filtro"><i class="material-icons">filter_list</i></a>
         </div>        
-    </div>    
+    </div>     -->
     <div id="filtro" class="modal">
         <h4>Filtros</h4>
         <br>
@@ -100,22 +100,22 @@
     <div id="exponencial"></div>
     <form action="#" class="vertical-range">
         <p class="range-field">
+            <!-- <input type="range" id="range" min="0" max="100"/> -->
             <h5 id="down"><i class="medium material-icons">chevron_left</i></h5>
-            <input type="range" id="range" min="0" max="100"/>
             <h5 id="up"><i class="medium material-icons">chevron_right</i></h5>
         </p>
     </form>
-    <div class="box-input">
     <div id="drop"></div>
+    <!-- <div class="box-input">
         <form action="">
             <label for="">Novo valor</label>
             <input type="text" value="" id="ajuste-valor">
         </form>
-    </div>
+    </div> -->
     <div class="row">
         <div class="centro">
-            <!-- <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a> -->
             <a onclick="openFullscreen();" class="waves-effect fullscreen waves-light btn tooltipped btn-floating" data-position="bottom" data-tooltip="Tela cheia" id="fullscreen"><i class="material-icons">fullscreen</i></a>
+            <a class="waves-effect waves-light btn tooltipped btn-floating" data-position="left" data-tooltip="Salvar gráfico" id="save_button"><i class="material-icons">save</i></a>
             <!-- <a class="waves-effect add waves-light btn tooltipped btn-floating" data-position="right" data-tooltip="Adicionar gráfico" id="add_button"><i class="material-icons">add</i></a> -->
         </div>
     </div>

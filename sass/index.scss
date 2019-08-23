@@ -63,7 +63,9 @@ text[data-z-index="1"] {
 }
 
 .input-field{
-    margin: 0 !important;
+    margin: 0 auto;
+    display: block;
+    width:50%;
 }
 
 .modal{
@@ -114,7 +116,7 @@ text[data-z-index="1"] {
 .vertical-range{
     position: absolute;
     top: 30%;
-    left: 92%;
+    left: 95%;
     transform: rotate(270deg);
     .range-field{
         width: 150px;
@@ -181,7 +183,7 @@ g.highcharts-legend{
 
 #up{
     position: absolute;
-    bottom: -15px;
+    bottom: -5px;
     left: 130px;
     cursor: pointer;
     color: #26a69a;
@@ -190,7 +192,7 @@ g.highcharts-legend{
 
 #down{
     position: absolute;
-    bottom: -15px;
+    bottom: -5px;
     left: -45px;
     cursor: pointer;
     color: #26a69a;
@@ -200,5 +202,12 @@ g.highcharts-legend{
 #drop{
     font-size: 14px;
     position: relative;
-    margin-top: -30px;
+    margin-top: -50px;
+    margin-bottom: 10px;
+}
+
+.titulo{
+    width: 50%;
+    display: block;
+    margin: 0 auto;
 }

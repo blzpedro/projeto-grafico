@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  
   if ($( "#up" ).click(function() {    
     var val = parseInt($('span.value').text());
     $('span.value').text(val+1)
@@ -95,22 +94,35 @@ $(document).ready(function () {
 
 $("#save_button").click(function () {
   var titulo = $("#titulo").val();
-  var val = chartExponencial.series[0].data;
+  var linhas = chartExponencial.series;
   var dados = [];
   if (titulo == '') {
     alert('Digite um nome para o grafico');
   } else {
-    val.forEach(exporta);
+    var tipoLinha = 0;
+    //0 - dia 30
+    //1 - dia 5
+    //2 - apos vencimento
 
+
+    linhas.forEach(function (linha){
+      linha.data.forEach(exporta);
+      tipoLinha++;
+    });
+    
     dados.push(titulo);
+    
 
     function exporta(item) {
       var coordenadas = [];
+
+
+      coordenadas.push(tipoLinha);
       coordenadas.push('x' + item.x);
       coordenadas.push('y' + item.y.toFixed(2));
       dados.push(coordenadas);
+
     }
-    console.log(dados);
     var json = JSON.stringify(dados);
 
 
@@ -127,15 +139,25 @@ $("#save_button").click(function () {
 
 $("#titulo").change(
   function () {
-    var val = chartExponencial.series[0].data;
+    var val = chartExponencial.series;
     $.ajax({
       url: "busca.php",
       type: 'get',
       dataType: 'JSON',
       success: function (response) {
         response.forEach(function (e) {
+          console.log('aa');
           if (e.graf_nome == $("#titulo").val()) {
-            val[e.x].update(parseInt(e.y));
+            if(e.tipo_linha == 0){
+              console.log(e);
+              val[0].data[e.x].update(parseInt(e.y));
+            }
+            if(e.tipo_linha == 1){
+              val[1].data[e.x].update(parseInt(e.y));
+            }
+            if(e.tipo_linha == 2){
+              val[2].data[e.x].update(parseInt(e.y));
+            }
           }
         });
       }

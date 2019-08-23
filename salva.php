@@ -17,12 +17,13 @@ if ($colunasBanco->num_rows == 0) {
     
     //salva novo grafico
     foreach($colunas as $coluna){
-        $x = str_replace("x","",$coluna[0]);
-        $y = str_replace("y","",$coluna[1]);
+        $tipoLinha = $coluna[0];
+        $x = str_replace("x","",$coluna[1]);
+        $y = str_replace("y","",$coluna[2]);
         $sql = "INSERT INTO grafico 
-                (graf_nome, x, y)
+                (graf_nome, tipo_linha, x, y)
                 VALUES 
-                ('".$titulo."', '".$x."' ,".$y." )";
+                ('".$titulo."',".$tipoLinha.", '".$x."' ,".$y." );";
         $con->query($sql);
         // echo $sql;
     }
@@ -31,12 +32,14 @@ if ($colunasBanco->num_rows == 0) {
     // print_r($colunas);
     //atualiza grafico existente
     foreach($colunas as $coluna){
-        $x = str_replace("x","",$coluna[0]);
-        $y = str_replace("y","",$coluna[1]);
+        $tipoLinha = $coluna[0];
+        $x = str_replace("x","",$coluna[1]);
+        $y = str_replace("y","",$coluna[2]);
         $sql = "UPDATE grafico
                 SET y = ".$y."
                 where 
                 graf_nome = '".$titulo."'
+                and tipo_linha = '".$tipoLinha."'
                 and x = '".$x."';";
                 $mysqli->query($sql);
                 // echo $sql;

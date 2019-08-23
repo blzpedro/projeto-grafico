@@ -7,6 +7,11 @@ var valsAtrasado = [];
 var valsAdiantado = [];
 var totCurso = [];
 var ajusteValor = "";
+var valDia30 = $('.valor-dia30').text();
+var valDia5;
+var valorVcto;
+
+
 
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
@@ -130,6 +135,7 @@ var chartExponencial = new Highcharts.Chart({
                     drop: function () {
                         
                         
+  console.log(valDia30)
                           
                         var points   = chartExponencial.series[0].points;
                         
@@ -148,23 +154,9 @@ var chartExponencial = new Highcharts.Chart({
                         var y_variacao = (y_max - y_min)/(num_colunas -1);
                         
                         
-                        //monta array com os valores para o grafico
-                        // points.forEach(atualizaAngular);
-                        function atualizaAngular(item){
-                            item.update(y_atual); 
-                            y_atual = colunas[item.x] + y_variacao;
-                            if(y_atual > 100){
-                                y_atual = 100;
-                            }
-                            if(y_atual < 0){
-                                y_atual = 0;
-                            }
-                            colunas.push(y_atual);
-                        }
-                        
-
                         // variação = ▲X / ▲Y
                         var y_variacao = calcInicial;
+                        
                         colunas.push(y_min.y);
                         // array calculo dos valores e total antecipado
                         var val_antecipado = chartExponencial.series[0].data;
@@ -205,25 +197,13 @@ var chartExponencial = new Highcharts.Chart({
                         var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
                         var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
                         // $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('#drop').html('Total antecipado: <b>R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b>R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total atrasado: <b>R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
+                        $('#drop').html('Total antecipado: <b class="valor-dia30">R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b class="valor-dia5">R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total após vencimento: <b class="valor-vcto">R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
                         console.log(total_antecipado);
                         console.log(total_emDia);
                         console.log(total_vencimento);
                         
 
                         //atualiza juros e desconto
-                        var pontoAtual = this;
-                        if((pontoAtual.y + taxaDesconto) > 100){
-                            chartExponencial.series[0].data[pontoAtual.x].update(100);
-                        }else{
-                            chartExponencial.series[0].data[pontoAtual.x].update(pontoAtual.y + taxaDesconto);
-                        }
-
-                        if((pontoAtual.y - juros) < 0){
-                            chartExponencial.series[2].data[pontoAtual.x].update(0);
-                        }else{
-                            chartExponencial.series[2].data[pontoAtual.x].update(pontoAtual.y - juros);
-                        }
 
                     }
                 }
@@ -258,16 +238,16 @@ var chartExponencial = new Highcharts.Chart({
 
     series: [{
         showInLegend: true,
-        name: 'Antecipado',
+        name: 'Dia 30',
         data: [] = valsAdiantado,
-        draggableY: false,
+        draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
         zIndex: 1
     },
     {
         showInLegend: true,
-        name: 'Em dia',
+        name: '5º dia',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
@@ -278,7 +258,7 @@ var chartExponencial = new Highcharts.Chart({
         showInLegend: true,
         name: 'Após vcto',
         data: [] = valsAtrasado,
-        draggableY: false,
+        draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
         zIndex: 0
