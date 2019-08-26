@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $( "#up" ).click(function() {    
-    var porcentagem = 10;
+    var porcentagem = 0.1;
     var linhas = chartExponencial.series;
 
     linhas.forEach(function (linha){
@@ -17,7 +17,7 @@ $(document).ready(function () {
   });
 
   $( "#down" ).click(function() {  
-    var porcentagem = 10;
+    var porcentagem = 0.1;
     var linhas = chartExponencial.series;
     
     linhas.forEach(function (linha){

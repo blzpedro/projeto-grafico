@@ -11,7 +11,7 @@
                 'taxa_juros' => 30,
             )
         ),  
-        'total_curso' => 30000,
+        'mensalidade' => 1500,
     );
     // echo '<br><div class="centro" style="background:none;"><a class="link btn" href="graph.php?'.http_build_query($dados).'" size="5">Redirecionar ao gráfico</a></div>';
     // echo "<br><br><br><span class=''>Dados: <pre></span>";
