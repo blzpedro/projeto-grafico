@@ -228,32 +228,45 @@ var chartExponencial = new Highcharts.Chart({
         }
     },
 
-    series: [{
+    series: [ 
+        {
+        color: '#27ae60',
         showInLegend: true,
         name: 'Dia 30<span class="dia30">:</span>',
         data: [] = valsAdiantado,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
-        zIndex: 1
+        zIndex: 1,
+        marker: {
+            symbol: 'circle'
+        }
     },
     {
+        color: '#7f8c8d',
         showInLegend: true,
         name: '5º dia<span class="dia5">:</span>',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
-        zIndex: 2
+        zIndex: 2,
+        marker: {
+            symbol: 'circle'
+        }
     },
     {
+        color: '#e74c3c',
         showInLegend: true,
         name: 'Após vcto<span class="vcto">:</span>',
         data: [] = valsAtrasado,
         draggableY: true,
         dragMaxY: 100,
         dragMinY: 0,
-        zIndex: 0
+        zIndex: 0,
+        marker: {
+            symbol: 'circle'
+        }
     },
 ],
 
