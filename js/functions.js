@@ -1,10 +1,14 @@
 $(document).ready(function () {
-  $( "#up" ).click(function() {    
-    var porcentagem = 0.1;
-    var linhas = chartExponencial.series;
+  $( "#up" ).click(function() {   
+    var porcentagem = 0.5;
+    var linhas = chartExponencial.series;    
+
+    var valorVctoUp = [];    
+    var valorAntecipadoUp = [];    
+    var valorEmDiaUp = [];    
+    var tamArr = Object.keys(cols).length;
 
     linhas.forEach(function (linha){
-
       colunas  = linha.data;
       colunas.forEach(function (coluna){
         if(coluna.y + ((coluna.y/100)* porcentagem) > 100){
@@ -14,12 +18,40 @@ $(document).ready(function () {
         }
       })
     });
+    
+    for(i=0;i<colunas.length;i++){
+      valorVctoUp.push(chartExponencial.series[2].data[i].y)
+      valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
+      valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
+    }
+
+    var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
+    var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
+
+    
+    var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
+    var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
+
+    
+    var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
+    var total_emDia = Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
+
+
+    $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
   });
 
   $( "#down" ).click(function() {  
-    var porcentagem = 0.1;
+    var porcentagem = 0.5;
     var linhas = chartExponencial.series;
     
+    var valorVctoUp = [];    
+    var valorAntecipadoUp = [];    
+    var valorEmDiaUp = [];    
+    var tamArr = Object.keys(cols).length;
+
+
     linhas.forEach(function (linha){
       colunas = linha.data;
       colunas.forEach(function (coluna){
@@ -30,7 +62,30 @@ $(document).ready(function () {
           coluna.update(coluna.y - ((coluna.y/100)* porcentagem));
         }
       })
-    })
+    });
+
+
+    for(i=0;i<colunas.length;i++){
+      valorVctoUp.push(chartExponencial.series[2].data[i].y)
+      valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
+      valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
+    }
+
+    var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
+    var total_vencimento = Math.round((parseInt(data['total_curso']) + ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
+
+    
+    var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
+    var total_antecipado = Math.round((parseInt(data['total_curso']) + ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
+
+    
+    var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
+    var total_emDia = Math.round((parseInt(data['total_curso']) + ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
+
+
+    $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 
   });
   

@@ -2,7 +2,6 @@ var dados = colunas;
 var quantidadePeriodos = parseInt(dados['colunas'][0]['quantidade']);
 var mensalidade = parseInt(dados['mensalidade']);
 dados['total_curso'] = quantidadePeriodos * mensalidade;
-console.log(dados['total_curso']);
 var cols = [];
 var juros = parseInt(dados['colunas'][0]['taxa_juros']);
 var taxaDesconto = parseInt(dados['colunas'][0]['taxa_desconto']);
