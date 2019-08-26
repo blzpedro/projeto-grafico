@@ -11,8 +11,6 @@ var valDia30 = $('.valor-dia30').text();
 var valDia5;
 var valorVcto;
 
-var a = 'a';
-
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
 while(limit > 0){
@@ -67,6 +65,7 @@ function total(x) {
     totCurso.push(parseInt(x.valor) * 0.1)
 }
 
+
 ////////////////////////////////////////////////////////// GRÁFICO ///////////////////////////////////////////////////////////////////
 
 Highcharts.setOptions({
@@ -102,8 +101,9 @@ var chartExponencial = new Highcharts.Chart({
           series = this.series[0];
 
         series.addPoint([y, x]);
-
+        
       }
+      
     },
 
     xAxis: {
@@ -133,9 +133,7 @@ var chartExponencial = new Highcharts.Chart({
                             '</b> para %<b>' + Highcharts.numberFormat(e.y, 2) + '</b>');
                     },
                     drop: function () {
-                                                                        
-                        console.log('TESTE'+$('.valor-dia30').text());
-                          
+                                                                                              
                         var points   = chartExponencial.series[0].points;
                         
                         //valores angular
@@ -195,16 +193,9 @@ var chartExponencial = new Highcharts.Chart({
                         var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100))));
                         var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
                         var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
-                        // // $("#ajuste-valor").attr("placeholder", "R$"+Math.round(total_html).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        // $('#drop').html('Total antecipado: <b class="valor-dia30">R$' + total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br> Total em dia: <b class="valor-dia5">R$' + total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b> <br>Total após vencimento: <b class="valor-vcto">R$' + total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }) + '</b>');
-                        console.log(total_antecipado);
-                        console.log(total_emDia);
-                        console.log(total_vencimento);
                         $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-
-                        //atualiza juros e desconto
 
                     }
                 }

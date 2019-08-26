@@ -1,33 +1,39 @@
 $(document).ready(function () {
-  if ($( "#up" ).click(function() {    
-    var val = parseInt($('span.value').text());
-    $('span.value').text(val+1)
-    if (val == 100){      
-      $('span.value').text(100)
-    }
-  }));
-  
-  if ($( "#down" ).click(function() {    
-    var val = parseInt($('span.value').text());
-    $('span.value').text(val-1)
-    if (val == 0){      
-      $('span.value').text(0)
-    }
-  }));
-  
+  $( "#up" ).click(function() {    
+    var porcentagem = 10;
+    var linhas = chartExponencial.series;
 
-  var range = document.getElementById('range');
-    aumentar = document.getElementById('up');
-    diminuir = document.getElementById('down');
-    
-    aumentar.addEventListener('click', function () {
-      range.stepUp(1);
-    }, false);
-    
-    diminuir.addEventListener('click', function () {
-      range.stepDown(1);
-    }, false);
+    linhas.forEach(function (linha){
 
+      colunas  = linha.data;
+      colunas.forEach(function (coluna){
+        if(coluna.y + ((coluna.y/100)* porcentagem) > 100){
+          coluna.update(100);
+        }else{
+          coluna.update(coluna.y+((coluna.y/100)* porcentagem));
+        }
+      })
+    });
+  });
+
+  $( "#down" ).click(function() {  
+    var porcentagem = 10;
+    var linhas = chartExponencial.series;
+    
+    linhas.forEach(function (linha){
+      colunas = linha.data;
+      colunas.forEach(function (coluna){
+        
+        if(coluna.y - ((coluna.y/100)* porcentagem) > 100){
+          coluna.update(100);
+        }else{
+          coluna.update(coluna.y - ((coluna.y/100)* porcentagem));
+        }
+      })
+    })
+
+  });
+  
   $('.tooltipped').tooltip({
     outDuration: 0,
     delay: 0,
@@ -66,7 +72,7 @@ $(document).ready(function () {
       url: "",
       data: filtro_json,
       success: function () {
-        console.log(filtro_json)
+        // console.log(filtro_json)
       }
     });
   });
@@ -146,10 +152,10 @@ $("#titulo").change(
       dataType: 'JSON',
       success: function (response) {
         response.forEach(function (e) {
-          console.log('aa');
+          // console.log('aa');
           if (e.graf_nome == $("#titulo").val()) {
             if(e.tipo_linha == 0){
-              console.log(e);
+              // console.log(e);
               val[0].data[e.x].update(parseInt(e.y));
             }
             if(e.tipo_linha == 1){
@@ -242,7 +248,7 @@ $("#add_button").click(function () {
       name: 'Após vcto ' + ((qtdLinhas / 3) + 1),
     });
 
-    // console.log(parseInt(qtdLinhas) + 1);
+    // // console.log(parseInt(qtdLinhas) + 1);
   } else {
     alert('numero maximo de linhas excedido');
   }
