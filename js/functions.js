@@ -72,15 +72,15 @@ $(document).ready(function () {
     }
 
     var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
-    var total_vencimento = Math.round((parseInt(data['total_curso']) + ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
+    var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
 
     
     var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
-    var total_antecipado = Math.round((parseInt(data['total_curso']) + ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
+    var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
 
     
     var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
-    var total_emDia = Math.round((parseInt(data['total_curso']) + ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
+    var total_emDia = Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
 
 
     $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
