@@ -1,6 +1,6 @@
 var dados = colunas;
 var quantidadePeriodos = parseInt(dados['colunas'][0]['quantidade']);
-var mensalidade = parseInt(dados['mensalidade']*6);
+var mensalidade = parseInt(dados['mensalidade']);
 dados['total_curso'] = quantidadePeriodos * mensalidade;
 var cols = [];
 var juros = parseInt(dados['colunas'][0]['taxa_juros']);
@@ -193,9 +193,9 @@ var chartExponencial = new Highcharts.Chart({
 
                         var calcInicial = Math.round(arr_antecipado[0]/tamArr);
 
-                        var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100))));
-                        var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
-                        var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
+                        var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100)))));
+                        var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100)))));
+                        var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100)))));
                         $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
