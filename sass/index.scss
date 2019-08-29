@@ -23,6 +23,7 @@ body {
 .highcharts-container, .highcharts-root{
     height: 100vh !important;
     background: none !important;
+    width: 103% !important;
 }
 
 .filtro{
@@ -79,6 +80,7 @@ body {
 
 #exponencial{
     height: 100%;
+    width: 95%;
 }
 
 .inputDesc{
@@ -144,41 +146,25 @@ body {
 }
 
 .box-dia30{
-    display: inline;
-    position: fixed;
-    bottom: 80px;
-    right: 35%;
-    .chevron{
-        color: #26a69a;
-        cursor: pointer;
-        user-select: none;
-        margin: 0 5px;
+    margin-top: -135px;
+    margin-left: auto;
+    width: 40%;
+    @media screen and(max-width:1150px){
+        width: 35%;
+    }
+    @media screen and(max-width:768px){
+        width: 25%;
     }
 }
 
-.box-dia5{
-    display: inline;
-    position: fixed;
-    bottom: 40px;
-    right: 35%;
-    .chevron{
-        color: #26a69a;
-        cursor: pointer;
-        user-select: none;
-        margin: 0 5px;
+.box-dia5, .box-vcto{
+    margin-left: auto;
+    width: 40%;
+    @media screen and(max-width:1150px){
+        width: 35%;
     }
-}
-
-.box-vcto{
-    display: inline;
-    position: fixed;
-    bottom: 0px;
-    right: 35%;
-    .chevron{
-        color: #26a69a;
-        cursor: pointer;
-        user-select: none;
-        margin: 0 5px;
+    @media screen and(max-width:768px){
+        width: 25%;
     }
 }
 
@@ -190,10 +176,9 @@ body {
 .btn-salvar{
     width: 5%;    
     display: block;
-    margin-left: auto;    
-    position: absolute;
-    top: 20px;
-    right: -20px;
+    margin-left: auto;   
+    margin-bottom: -35px;
+    overflow: hidden;
 }
 
 .btn-enviar{
