@@ -224,7 +224,7 @@ var chartExponencial = new Highcharts.Chart({
             }
             
             
-            var valor_periodo = this.y.toFixed(0);
+            var valor_periodo = this.y;
             var tamArr = Object.keys(cols).length;
             var total_periodo =  (parseInt(data['total_curso']/tamArr) - (valor_periodo/tamArr) * parseInt(data['total_curso']/100));
             return '</b> Desconto: <b>' + Math.round(this.y) + '%</b>'+'</b><br>Valor do período: <b>R$' +total_periodo.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })+ '</b>';
