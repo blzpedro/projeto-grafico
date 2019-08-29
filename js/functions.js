@@ -44,8 +44,7 @@ window.addEventListener("load", function () {
 }, false);
 
 function atualizaTela() {
-  aumentaValores(1)
-  reduzValores(1)
+  aumentaValores(1,0)
 }
 
 
@@ -111,9 +110,8 @@ function  buscaBanco(dados){
       aumentaValores(2);
     });
   
-    function aumentaValores(num_linha){
+    function aumentaValores(num_linha, porcentagem = 0.5){
         
-      var porcentagem = 0.5;
       var linha = chartExponencial.series[num_linha];    
   
       var valorVctoUp = [];    
@@ -155,9 +153,8 @@ function  buscaBanco(dados){
   
   
   
-    function reduzValores(num_linha){
+    function reduzValores(num_linha, porcentagem = 0.5){
         
-      var porcentagem = 0.5;
       var linha = chartExponencial.series[num_linha];    
   
       var valorVctoUp = [];    
