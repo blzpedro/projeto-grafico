@@ -19,36 +19,10 @@ body {
     text-align: center;
 }
 
-.oculto{
-    display: none;
-}
-
-.ativo{
-    display: block;
-}
-
-.link{
-    font-size: 20px;
-    text-align: center;
-}
-
-text[data-z-index="1"] {
-    tspan:first-child{
-        display: none;
-    }
-}
 
 .highcharts-container, .highcharts-root{
-    height: 75vh !important;
-}
-
-.centro{
-    height: 10vh !important;
-    background: url(https://www.highcharts.com/samples/graphics/sand.png);
-}
-
-.bg, body{    
-    background: url(https://www.highcharts.com/samples/graphics/sand.png);
+    height: 100vh !important;
+    background: none !important;
 }
 
 .filtro{
@@ -56,16 +30,20 @@ text[data-z-index="1"] {
     margin: 0 10px 0 0;
 }
 
-.highcharts-reset-zoom{
-    tspan{
-        display: block !important;
-    }
-}
-
 .input-field{
     margin: 0 auto;
     display: block;
     width:50%;
+    .btn{
+        left: 105%;
+        bottom: 45px;
+        width: 35px;
+        height: 35px;
+    }
+    .save{            
+        font-size: 1.4rem !important;
+        line-height: 35px !important;
+    }
 }
 
 .modal{
@@ -100,7 +78,7 @@ text[data-z-index="1"] {
 }
 
 #exponencial{
-    width: 95%;
+    height: 100%;
 }
 
 .inputDesc{
@@ -112,16 +90,6 @@ text[data-z-index="1"] {
         width: 50% !important;
     }
 }
-
-.vertical-range{
-    position: absolute;
-    top: 30%;
-    left: 95%;
-    transform: rotate(270deg);
-    .range-field{
-        width: 150px;
-    }
- }
 
 .thumb.active{
     transform: rotate(45deg) !important;
@@ -143,17 +111,11 @@ text[data-z-index="1"] {
     }
 }
 
-g.highcharts-legend{
-    transform: translate(630, 320) !important;
-}
-
 .box-input{
     width: 50%;
     margin: 0 auto 0 auto;
     display: block;
     #ajuste-valor{
-        width: 25%;
-        display: block;
         margin: 1rem auto 15px auto;
         text-align: center;
         height: 2rem;
@@ -181,33 +143,64 @@ g.highcharts-legend{
     }
 }
 
-#up{
-    position: absolute;
-    bottom: -5px;
-    left: 130px;
-    cursor: pointer;
-    color: #26a69a;
-    font-weight: bold;
+.box-dia30{
+    display: inline;
+    position: fixed;
+    bottom: 80px;
+    right: 35%;
+    .chevron{
+        color: #26a69a;
+        cursor: pointer;
+        user-select: none;
+        margin: 0 5px;
+    }
 }
 
-#down{
-    position: absolute;
-    bottom: -5px;
-    left: -45px;
-    cursor: pointer;
-    color: #26a69a;
-    font-weight: bold;
+.box-dia5{
+    display: inline;
+    position: fixed;
+    bottom: 40px;
+    right: 35%;
+    .chevron{
+        color: #26a69a;
+        cursor: pointer;
+        user-select: none;
+        margin: 0 5px;
+    }
+}
+
+.box-vcto{
+    display: inline;
+    position: fixed;
+    bottom: 0px;
+    right: 35%;
+    .chevron{
+        color: #26a69a;
+        cursor: pointer;
+        user-select: none;
+        margin: 0 5px;
+    }
 }
 
 #drop{
     font-size: 14px;
     position: relative;
-    // margin-top: -50px;
-    margin-bottom: 10px;
 }
 
-.titulo{
-    width: 50%;
+.btn-salvar{
+    width: 5%;    
     display: block;
-    margin: 0 auto;
+    margin-left: auto;    
+    position: absolute;
+    top: 20px;
+    right: -20px;
+}
+
+.btn-enviar{
+    left: 100%;
+    bottom: 50px;
+}
+
+.material-icons{
+    font-size: 30px;
 }

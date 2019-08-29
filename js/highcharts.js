@@ -85,7 +85,6 @@ var chartExponencial = new Highcharts.Chart({
         type: 'spline',
         renderTo: 'exponencial',
         animation: true,
-        // zoomType: 'x',
         panning: true,
         panKey: 'shift'
     },
@@ -93,6 +92,8 @@ var chartExponencial = new Highcharts.Chart({
         layout: 'vertical',
         enabled: true,
         borderWidth: 2,
+        itemMarginTop: 10,
+        itemMarginBottom: 10,
     },
     title: {
         text: ''
@@ -105,8 +106,7 @@ var chartExponencial = new Highcharts.Chart({
 
         series.addPoint([y, x]);
         
-      }
-      
+      },
     },
 
     xAxis: {
@@ -193,9 +193,9 @@ var chartExponencial = new Highcharts.Chart({
 
                         var calcInicial = Math.round(arr_antecipado[0]/tamArr);
 
-                        var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100))));
-                        var total_emDia = Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100))));
-                        var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100))));
+                        var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100)))));
+                        var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100)))));
+                        var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100)))));
                         $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
                         $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
@@ -227,7 +227,7 @@ var chartExponencial = new Highcharts.Chart({
             var valor_periodo = this.y.toFixed(0);
             var tamArr = Object.keys(cols).length;
             var total_periodo =  (parseInt(data['total_curso']/tamArr) - (valor_periodo/tamArr) * parseInt(data['total_curso']/100));
-            return + this.x + '</b> Desconto: <b>' + Math.round(this.y) + '%</b>'+'</b><br>Valor do período: <b>R$' +total_periodo.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })+ '</b>';
+            return '</b> Desconto: <b>' + Math.round(this.y) + '%</b>'+'</b><br>Valor do período: <b>R$' +total_periodo.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })+ '</b>';
         }
     },
 
@@ -241,10 +241,10 @@ var chartExponencial = new Highcharts.Chart({
         dragMaxY: 100,
         dragMinY: 0,
         zIndex: 1,
-        marker: {
-            symbol: 'circle'
-        }
-    },
+            marker: {
+                symbol: 'circle'
+            }
+        },
     {
         color: '#7f8c8d',
         showInLegend: true,
@@ -274,11 +274,7 @@ var chartExponencial = new Highcharts.Chart({
 ],
 
     exporting: {
-        buttons: {
-            contextButton: {
-                menuItems: [ 'printChart'],
-            }
-        }
+        enabled: false
     },
 
 });

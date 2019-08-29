@@ -1,10 +1,10 @@
 <?php 
 
     require_once('config.php');
-    $titulo = 'teste';
-    $query = "select * from grafico";
+    $dados = $_REQUEST;
+    $titulo = $dados['nome_graf'];
+    $query = "select * from graficos where graf_nome ='".$titulo."';";
     $graficos = array();
-    
     
     if ($result = $mysqli->query($query)) {
         
@@ -15,5 +15,5 @@
         
     }
     $json = json_encode($graficos);
-    print_r($json);
+    echo $json;
 ?>

@@ -4,11 +4,10 @@
         'nome_graf' => 'teste',
         'colunas' => array(
             array(
-                'nome' => '',
-                'valor' => 100,
+                'valor' => 70,
                 'quantidade' => 10,
-                'taxa_desconto' => 30,
-                'taxa_juros' => 30,
+                'taxa_desconto' => 20,
+                'taxa_juros' => 20,
             )
         ),  
         'mensalidade' => 1500,

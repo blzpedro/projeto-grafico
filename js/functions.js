@@ -1,136 +1,21 @@
+
+
 $(document).ready(function () {
-  $( "#up" ).click(function() {   
-    var porcentagem = 0.5;
-    var linhas = chartExponencial.series;    
-
-    var valorVctoUp = [];    
-    var valorAntecipadoUp = [];    
-    var valorEmDiaUp = [];    
-    var tamArr = Object.keys(cols).length;
-
-    linhas.forEach(function (linha){
-      colunas  = linha.data;
-      colunas.forEach(function (coluna){
-        if(coluna.y + ((coluna.y/100)* porcentagem) > 100){
-          coluna.update(100);
-        }else{
-          coluna.update(coluna.y+((coluna.y/100)* porcentagem));
-        }
-      })
-    });
-    
-    for(i=0;i<colunas.length;i++){
-      valorVctoUp.push(chartExponencial.series[2].data[i].y)
-      valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
-      valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
-    }
-
-    var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
-    var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
-
-    
-    var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
-    var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
-
-    
-    var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
-    var total_emDia = Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
-
-
-    $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-    $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-    $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-  });
-
-  $( "#down" ).click(function() {  
-    var porcentagem = 0.5;
-    var linhas = chartExponencial.series;
-    
-    var valorVctoUp = [];    
-    var valorAntecipadoUp = [];    
-    var valorEmDiaUp = [];    
-    var tamArr = Object.keys(cols).length;
-
-
-    linhas.forEach(function (linha){
-      colunas = linha.data;
-      colunas.forEach(function (coluna){
-        
-        if(coluna.y - ((coluna.y/100)* porcentagem) > 100){
-          coluna.update(100);
-        }else{
-          coluna.update(coluna.y - ((coluna.y/100)* porcentagem));
-        }
-      })
-    });
-
-
-    for(i=0;i<colunas.length;i++){
-      valorVctoUp.push(chartExponencial.series[2].data[i].y)
-      valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
-      valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
-    }
-
-    var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
-    var total_vencimento = Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100))));
-
-    
-    var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
-    var total_antecipado = Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100))));
-
-    
-    var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
-    var total_emDia = Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100))));
-
-
-    $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-    $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-    $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-
-  });
+  buscaBanco(dados);
+  // console.log(dados)
   
+  
+
   $('.tooltipped').tooltip({
     outDuration: 0,
     delay: 0,
     inDuration: 700
   });
 
-  $('#up').mousedown(function(e){ e.preventDefault(); });
-  $('#down').mousedown(function(e){ e.preventDefault(); });
-  $('h5').mousedown(function(e){ e.preventDefault(); });
-    
-
 
   $('.value').text('50');
   $('.modal').modal();
   $('select').formSelect();
-
-  $("#save_filter").click(function () {
-    var valor_inicial = $("#field_inicial").val();
-    var valor_final = $("#field_final").val();
-    var desc_min = $("#field_descMin").val();
-    var desc_max = $("#field_descMax").val();
-    var periodos = $("#periodos").val();
-    var regiao = $("#regioes").val();
-    var polo = $("#polos").val();
-    var filtro_json = {
-      "valor_inicial": [parseInt(valor_inicial)],
-      "valor_final": [parseInt(valor_final)],
-      "desc_min": [parseInt(desc_min)],
-      "desc_max": [parseInt(desc_max)],
-      "periodos": [parseInt(periodos)],
-      "regiao": [regiao],
-      "polo": [polo]
-    };
-
-    $.ajax({
-      url: "",
-      data: filtro_json,
-      success: function () {
-        // console.log(filtro_json)
-      }
-    });
-  });
 
   $.ajax({
     url: "busca.php",
@@ -153,78 +38,222 @@ $(document).ready(function () {
   });
 });
 
-$("#save_button").click(function () {
-  var titulo = $("#titulo").val();
-  var linhas = chartExponencial.series;
-  var dados = [];
-  if (titulo == '') {
-    alert('Digite um nome para o grafico');
-  } else {
-    var tipoLinha = 0;
-    //0 - dia 30
-    //1 - dia 5
-    //2 - apos vencimento
+
+window.addEventListener("load", function () {
+  setTimeout(atualizaTela, 500, false);
+}, false);
+
+function atualizaTela() {
+  aumentaValores(1)
+  reduzValores(1)
+}
 
 
-    linhas.forEach(function (linha){
-      linha.data.forEach(exporta);
-      tipoLinha++;
-    });
-    
-    dados.push(titulo);
-    
-
-    function exporta(item) {
-      var coordenadas = [];
-
-
-      coordenadas.push(tipoLinha);
-      coordenadas.push('x' + item.x);
-      coordenadas.push('y' + item.y.toFixed(2));
-      dados.push(coordenadas);
-
-    }
-    var json = JSON.stringify(dados);
-
-
-    $.ajax({
-      url: "salva.php",
-      data: "dados=" + json,
-      success: function () {
-        alert("Dados salvos");
-      }
-    });
-
-  }
-});
-
-$("#titulo").change(
-  function () {
-    var val = chartExponencial.series;
-    $.ajax({
-      url: "busca.php",
-      type: 'get',
-      dataType: 'JSON',
-      success: function (response) {
-        response.forEach(function (e) {
-          // console.log('aa');
-          if (e.graf_nome == $("#titulo").val()) {
+function  buscaBanco(dados){
+  var val = chartExponencial.series;
+  $.ajax({
+    url: "busca.php",
+    type: 'POST',
+    data:dados,   
+    dataType: 'JSON',
+    success: function (response) {
+      response.forEach(function (e) {
+        e.y = $.map( e.valores_y.split(','), Number );
+        
+          
+          
+            chartExponencial.series.forEach(function (){
+            })
+            
+            $('#mensalidade').val(parseFloat(e.mensalidade));
             if(e.tipo_linha == 0){
-              // console.log(e);
-              val[0].data[e.x].update(parseInt(e.y));
+              val[0].setData(e.y);
+              chartExponencial.redraw(true);
+              // val[0].data[e.x].update(parseInt(e.y));
             }
             if(e.tipo_linha == 1){
-              val[1].data[e.x].update(parseInt(e.y));
+              val[1].setData(e.y);
+              chartExponencial.redraw(true);
+              // val[1].data[e.x].update(parseInt(e.y));
             }
             if(e.tipo_linha == 2){
-              val[2].data[e.x].update(parseInt(e.y));
+              val[2].setData(e.y);
+              chartExponencial.redraw(true);
+              // val[2].data[e.x].update(parseInt(e.y));
             }
-          }
         });
       }
     });
+}
+  
+  
+    $( "#aumenta_dia30" ).click(function() {       
+      reduzValores(0);
+    });
+  
+    $( "#reduz_dia30" ).click(function() {       
+      aumentaValores(0);
+    });
+  
+    $( "#aumenta_dia5" ).click(function() {       
+      reduzValores(1);
+    });
+  
+    $( "#reduz_dia5" ).click(function() {       
+      aumentaValores(1);
+    });
+  
+    $( "#aumenta_vcto" ).click(function() {       
+      reduzValores(2);
+    });
+  
+    $( "#reduz_vcto" ).click(function() {       
+      aumentaValores(2);
+    });
+  
+    function aumentaValores(num_linha){
+        
+      var porcentagem = 0.5;
+      var linha = chartExponencial.series[num_linha];    
+  
+      var valorVctoUp = [];    
+      var valorAntecipadoUp = [];    
+      var valorEmDiaUp = [];    
+      var tamArr = Object.keys(cols).length;
+  
+        colunas  = linha.data;
+        colunas.forEach(function (coluna){
+          if(coluna.y + ((coluna.y/100)* porcentagem) > 100){
+            coluna.update(100);
+          }else{
+            coluna.update(coluna.y+((coluna.y/100)* porcentagem));
+          }
+        });
+      
+      for(i=0;i<colunas.length;i++){
+        valorVctoUp.push(chartExponencial.series[2].data[i].y)
+        valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
+        valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
+      }
+  
+      var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
+      var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100)))));
+  
+      
+      var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
+      var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100)))));
+  
+      
+      var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
+      var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
+  
+  
+      $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    }
+  
+  
+  
+    function reduzValores(num_linha){
+        
+      var porcentagem = 0.5;
+      var linha = chartExponencial.series[num_linha];    
+  
+      var valorVctoUp = [];    
+      var valorAntecipadoUp = [];    
+      var valorEmDiaUp = [];    
+      var tamArr = Object.keys(cols).length;
+  
+        colunas  = linha.data;
+        colunas.forEach(function (coluna){
+          if(coluna.y - ((coluna.y/100)* porcentagem) > 100){
+            coluna.update(100);
+          }else{
+            coluna.update(coluna.y-((coluna.y/100)* porcentagem));
+          }
+        });
+      
+      for(i=0;i<colunas.length;i++){
+        valorVctoUp.push(chartExponencial.series[2].data[i].y)
+        valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
+        valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
+      }
+  
+      var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
+      var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100)))));
+  
+      
+      var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
+      var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100)))));
+  
+      
+      var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
+      var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
+  
+  
+      $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    }
+
+$("#save_button").click(function () {
+  var url = new URL(window.location.href);
+  var titulo = url.searchParams.get("nome_graf");
+  var mensalidade = url.searchParams.get("mensalidade");
+
+  var chart = chartExponencial.series;
+  var dados = [];
+  var tipoLinha = 0;
+  //0 - dia 30
+  //1 - dia 5
+  //2 - apos vencimento
+    while(tipoLinha <= 2){
+      var valsConcat = concatena(chart[tipoLinha].data);
+      var linha ={
+        titulo: titulo,
+        tipoLinha: tipoLinha,
+        mensalidade: mensalidade,
+        qtdColunas: chart[tipoLinha].data.length,
+        valoresY: valsConcat.join(),
+  
+      };
+      
+      dados.push(linha);
+      tipoLinha++
+    }
+  
+  
+    function concatena(valores){
+      var vals = [];
+      valores.forEach(function (valorAtual){
+        vals.push(Math.round(valorAtual.y));
+      })
+      return vals;
+    }
+    
+    var json = JSON.stringify(dados);
+  
+    $.ajax({
+      url: "salva.php",
+      data: "dados=" + json,
+      success: function (response) {
+        retorno = JSON.parse(response)
+        if(retorno.erro == 'none'){
+          alert('Dados salvos');
+        }else{
+          alert('Erro ao registar no banco de dados');
+        }
+
+      }
+    });
+  });
+
+  $("#titulo").change(
+    function () {
+    buscaBanco(dados);
   }
-);
+  );
 
 $("#add_button").click(function () {
   var vals = [];
