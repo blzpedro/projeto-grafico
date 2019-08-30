@@ -3,6 +3,8 @@ body {
     font-size: 0.8em;
     overflow: hidden;
     height: 100vh;
+    user-select: none;
+    margin: 10px !important;
 }
 
 .highcharts-credits{
@@ -147,25 +149,49 @@ body {
 
 .box-dia30{
     margin-top: -135px;
-    margin-left: auto;
-    width: 40%;
+    margin-left: 60%;
+    margin-right: 35%;
+    width: 5%;
+    position: sticky;
+    @media screen and(max-width:1350px){
+        margin-left: 65%;
+        margin-right: 15%;
+        width: 20%;
+    }
     @media screen and(max-width:1150px){
-        width: 35%;
+        margin-left: 65%;
+        margin-right: 15%;
+        width: 20%;
     }
     @media screen and(max-width:768px){
-        width: 25%;
+        margin-left: 70%;
+        margin-right: 15%;
+        width: 10%;
     }
+    cursor: pointer;
 }
 
-.box-dia5, .box-vcto{
-    margin-left: auto;
-    width: 40%;
+.box-dia5, .box-vcto{    
+    margin-left: 60%;
+    margin-right: 35%;
+    width: 5%;
+    position: sticky;
+    @media screen and(max-width:1350px){
+        margin-left: 65%;
+        margin-right: 15%;
+        width: 20%;
+    }
     @media screen and(max-width:1150px){
-        width: 35%;
+        margin-left: 65%;
+        margin-right: 15%;
+        width: 20%;
     }
     @media screen and(max-width:768px){
-        width: 25%;
+        margin-left: 70%;
+        margin-right: 15%;
+        width: 10%;
     }
+    cursor: pointer;
 }
 
 #drop{
@@ -178,7 +204,7 @@ body {
     display: block;
     margin-left: auto;   
     margin-bottom: -35px;
-    overflow: hidden;
+    
 }
 
 .btn-enviar{
