@@ -40,7 +40,7 @@ $(document).ready(function () {
 
 window.setInterval(function(){
   atualizaTela();
-}, 300);
+}, 16);
 
 window.addEventListener("load", function () {
   setTimeout(atualizaTela, 500, false);
@@ -87,32 +87,84 @@ function  buscaBanco(dados){
       }
     });
 }
+   
+  $( "#aumenta_dia30" ).mousedown(function(){
+    timeout = setInterval(function(){   
+        reduzValores(0, 0.1);
+    }, 30)
+
+    return false;
+  });
   
+  $("#aumenta_dia30").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  });
+
+  $( "#reduz_dia30" ).mousedown(function(){
+    timeout = setInterval(function(){   
+      aumentaValores(0, 0.1);
+    }, 10)
+
+    return false;
+  });
   
-    $( "#aumenta_dia30" ).click(function() {       
-      reduzValores(0);
-    });
+  $("#reduz_dia30").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  });
+
+  $( "#aumenta_dia5" ).mousedown(function(){
+    timeout = setInterval(function(){   
+        reduzValores(1, 0.1);
+    }, 10)
+
+    return false;
+  });
   
-    $( "#reduz_dia30" ).click(function() {       
-      aumentaValores(0);
-    });
+  $("#aumenta_dia5").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  });
+
+  $( "#reduz_dia5" ).mousedown(function(){
+    timeout = setInterval(function(){   
+      aumentaValores(1, 0.3);
+    }, 10)
+
+    return false;
+  });
   
-    $( "#aumenta_dia5" ).click(function() {       
-      reduzValores(1);
-    });
+  $("#reduz_dia5").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  }); 
+  $( "#aumenta_vcto" ).mousedown(function(){
+    timeout = setInterval(function(){   
+        reduzValores(2, 0.3);
+    }, 10)
+
+    return false;
+  });
   
-    $( "#reduz_dia5" ).click(function() {       
-      aumentaValores(1);
-    });
+  $("#aumenta_vcto").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  });
+
+  $( "#reduz_vcto" ).mousedown(function(){
+    timeout = setInterval(function(){   
+      aumentaValores(2, 0.1);
+    }, 10)
+
+    return false;
+  });
   
-    $( "#aumenta_vcto" ).click(function() {       
-      reduzValores(2);
-    });
-  
-    $( "#reduz_vcto" ).click(function() {       
-      aumentaValores(2);
-    });
-  
+  $("#reduz_vcto").mouseup(function(){
+      clearInterval(timeout);
+      return false;
+  });
+
     function aumentaValores(num_linha, porcentagem = 0.5){
         
       var linha = chartExponencial.series[num_linha];    
