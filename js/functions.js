@@ -38,6 +38,9 @@ $(document).ready(function () {
   });
 });
 
+window.setInterval(function(){
+  atualizaTela();
+}, 300);
 
 window.addEventListener("load", function () {
   setTimeout(atualizaTela, 500, false);
@@ -224,7 +227,8 @@ $("#save_button").click(function () {
     function concatena(valores){
       var vals = [];
       valores.forEach(function (valorAtual){
-        vals.push(Math.round(valorAtual.y));
+        // vals.push(Math.round(valorAtual.y));
+        vals.push(valorAtual.y.toFixed(2));
       })
       return vals;
     }

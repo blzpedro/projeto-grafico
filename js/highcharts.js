@@ -117,6 +117,7 @@ var chartExponencial = new Highcharts.Chart({
     },
 
     yAxis: {
+        allowDecimals: false,
         title: {
             text: 'Desconto do curso'
         },
