@@ -2,45 +2,22 @@
 
 $(document).ready(function () {
   buscaBanco(dados);
-  // console.log(dados)
   
-  
-
   $('.tooltipped').tooltip({
     outDuration: 0,
     delay: 0,
     inDuration: 700
   });
-
-
+  
   $('.value').text('50');
   $('.modal').modal();
   $('select').formSelect();
 
-  $.ajax({
-    url: "busca.php",
-    type: 'get',
-    dataType: 'JSON',
-    success: function (response) {
-      var GrafArray = [];
-      response.forEach(function (e) {
-        GrafArray.push(e['graf_nome']);
-      });
-      var dataGrafico = {};
-      for (var i = 0; i < GrafArray.length; i++) {
-        dataGrafico[GrafArray[i]] = null;
-      }
-      $('input.autocomplete').autocomplete({
-        data: dataGrafico,
-        limit: 5,
-      });
-    }
-  });
 });
 
 window.setInterval(function(){
   atualizaTela();
-}, 16);
+}, 41.7);
 
 window.addEventListener("load", function () {
   setTimeout(atualizaTela, 500, false);
@@ -87,7 +64,7 @@ function  buscaBanco(dados){
       }
     });
 }
-   
+var timeout;
   $( "#aumenta_dia30" ).mousedown(function(){
     timeout = setInterval(function(){   
         reduzValores(0, 0.1);
@@ -101,68 +78,79 @@ function  buscaBanco(dados){
       return false;
   });
 
+  $("#aumenta_dia30").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
+  });
   $( "#reduz_dia30" ).mousedown(function(){
     timeout = setInterval(function(){   
       aumentaValores(0, 0.1);
     }, 10)
-
     return false;
   });
-  
+  $("#reduz_dia30").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
+  });
   $("#reduz_dia30").mouseup(function(){
       clearInterval(timeout);
       return false;
   });
-
   $( "#aumenta_dia5" ).mousedown(function(){
     timeout = setInterval(function(){   
         reduzValores(1, 0.1);
     }, 10)
-
     return false;
   });
-  
   $("#aumenta_dia5").mouseup(function(){
       clearInterval(timeout);
       return false;
   });
-
+  $("#aumenta_dia5").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
+  });
   $( "#reduz_dia5" ).mousedown(function(){
     timeout = setInterval(function(){   
       aumentaValores(1, 0.3);
     }, 10)
-
     return false;
   });
-  
   $("#reduz_dia5").mouseup(function(){
       clearInterval(timeout);
       return false;
   }); 
+  $("#reduz_dia5").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
+  });
   $( "#aumenta_vcto" ).mousedown(function(){
     timeout = setInterval(function(){   
         reduzValores(2, 0.3);
     }, 10)
-
     return false;
   });
-  
   $("#aumenta_vcto").mouseup(function(){
       clearInterval(timeout);
       return false;
   });
-
+  $("#aumenta_vcto").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
+  });
   $( "#reduz_vcto" ).mousedown(function(){
     timeout = setInterval(function(){   
       aumentaValores(2, 0.1);
     }, 10)
-
     return false;
   });
-  
   $("#reduz_vcto").mouseup(function(){
       clearInterval(timeout);
       return false;
+  });
+  $("#reduz_vcto").mouseleave(function(){
+    clearInterval(timeout);
+    return false;
   });
 
     function aumentaValores(num_linha, porcentagem = 0.5){
@@ -201,9 +189,9 @@ function  buscaBanco(dados){
       var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
   
   
-      $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     }
   
   
@@ -244,9 +232,9 @@ function  buscaBanco(dados){
       var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
   
   
-      $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+      $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     }
 
 $("#save_button").click(function () {

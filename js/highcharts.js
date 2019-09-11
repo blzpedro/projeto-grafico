@@ -197,9 +197,9 @@ var chartExponencial = new Highcharts.Chart({
                         var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100)))));
                         var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100)))));
                         var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100)))));
-                        $('.dia30').html(": R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('.dia5').html(": R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('.vcto').html(": R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+                        $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 
                     }
                 }
@@ -236,7 +236,7 @@ var chartExponencial = new Highcharts.Chart({
         {
         color: '#27ae60',
         showInLegend: true,
-        name: 'Dia 30<span class="dia30">:</span>',
+        name: 'Dia 30',
         data: [] = valsAdiantado,
         draggableY: true,
         dragMaxY: 100,
@@ -249,7 +249,7 @@ var chartExponencial = new Highcharts.Chart({
     {
         color: '#7f8c8d',
         showInLegend: true,
-        name: '5º dia<span class="dia5">:</span>',
+        name: '5º dia',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
@@ -262,7 +262,7 @@ var chartExponencial = new Highcharts.Chart({
     {
         color: '#e74c3c',
         showInLegend: true,
-        name: 'Após vcto<span class="vcto">:</span>',
+        name: 'Após vcto',
         data: [] = valsAtrasado,
         draggableY: true,
         dragMaxY: 100,
