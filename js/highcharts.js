@@ -117,7 +117,7 @@ var chartExponencial = new Highcharts.Chart({
     },
 
     yAxis: {
-        allowDecimals: false,
+        // allowDecimals: true,
         title: {
             text: 'Desconto do curso'
         },
@@ -139,6 +139,7 @@ var chartExponencial = new Highcharts.Chart({
                     drop: function () {
                                                                                               
                         var points   = chartExponencial.series[0].points;
+                        var valorComDesconto   = 0;
                         
                         //valores angular
                         var y_min = points[0].y;
@@ -187,20 +188,17 @@ var chartExponencial = new Highcharts.Chart({
                         }
 
                         var tamArr = Object.keys(cols).length;
-
-                        var totArr_antecipado = arr_antecipado.reduce((a, b) => a + b, 0);
-                        var totArr_emDia = arr_emDia.reduce((a, b) => a + b, 0);
-                        var totArr_vencimento = arr_vencimento.reduce((a, b) => a + b, 0);
-
                         var calcInicial = Math.round(arr_antecipado[0]/tamArr);
-
-                        var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_antecipado / tamArr) * parseInt(data['total_curso']/100)))));
-                        var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_emDia / tamArr) * parseInt(data['total_curso']/100)))));
-                        var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totArr_vencimento / tamArr) * parseInt(data['total_curso']/100)))));
-                        $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-                        $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-
+                        num_linha = this.series.index;
+                        
+                        valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+                        if(num_linha == 0){
+                            $('.dia30').attr("placeholder", "R$"+valorComDesconto);
+                          }else if(num_linha == 1){  
+                            $('.dia5').attr("placeholder", "R$"+valorComDesconto);
+                          }else if(num_linha == 2){          
+                            $('.vcto').attr("placeholder", "R$"+valorComDesconto);
+                          }
                     }
                 }
             },
@@ -228,7 +226,7 @@ var chartExponencial = new Highcharts.Chart({
             var valor_periodo = this.y;
             var tamArr = Object.keys(cols).length;
             var total_periodo =  (parseInt(data['total_curso']/tamArr) - (valor_periodo/tamArr) * parseInt(data['total_curso']/100));
-            return '</b> Desconto: <b>' + Math.round(this.y) + '%</b>'+'</b><br>Valor do período: <b>R$' +total_periodo.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })+ '</b>';
+            return '</b> Desconto: <b>' + this.y.toFixed(2) + '%</b>'+'</b><br>Valor do período: <b>R$' +total_periodo.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 })+ '</b>';
         }
     },
 
@@ -236,7 +234,7 @@ var chartExponencial = new Highcharts.Chart({
         {
         color: '#27ae60',
         showInLegend: true,
-        name: 'Dia 30',
+        name: 'Dia 30<span class="dia30">:</span>',
         data: [] = valsAdiantado,
         draggableY: true,
         dragMaxY: 100,
@@ -249,7 +247,7 @@ var chartExponencial = new Highcharts.Chart({
     {
         color: '#7f8c8d',
         showInLegend: true,
-        name: '5º dia',
+        name: '5º dia<span class="dia5">:</span>',
         data: [] = vals,
         draggableY: true,
         dragMaxY: 100,
@@ -262,7 +260,7 @@ var chartExponencial = new Highcharts.Chart({
     {
         color: '#e74c3c',
         showInLegend: true,
-        name: 'Após vcto',
+        name: 'Após vcto<span class="vcto">:</span>',
         data: [] = valsAtrasado,
         draggableY: true,
         dragMaxY: 100,

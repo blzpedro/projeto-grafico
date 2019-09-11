@@ -2,29 +2,54 @@
 
 $(document).ready(function () {
   buscaBanco(dados);
+  // console.log(dados)
   
+  
+
   $('.tooltipped').tooltip({
     outDuration: 0,
     delay: 0,
     inDuration: 700
   });
-  
+
+
   $('.value').text('50');
   $('.modal').modal();
   $('select').formSelect();
 
+  $.ajax({
+    url: "busca.php",
+    type: 'get',
+    dataType: 'JSON',
+    success: function (response) {
+      var GrafArray = [];
+      response.forEach(function (e) {
+        GrafArray.push(e['graf_nome']);
+      });
+      var dataGrafico = {};
+      for (var i = 0; i < GrafArray.length; i++) {
+        dataGrafico[GrafArray[i]] = null;
+      }
+      $('input.autocomplete').autocomplete({
+        data: dataGrafico,
+        limit: 5,
+      });
+    }
+  });
 });
-
+var timeout =0;
 window.setInterval(function(){
   atualizaTela();
-}, 41.7);
+}, 1000);
 
 window.addEventListener("load", function () {
   setTimeout(atualizaTela, 500, false);
 }, false);
 
 function atualizaTela() {
-  aumentaValores(1,0)
+  aumentaValores(0,0);
+  aumentaValores(1,0);
+  aumentaValores(2,0);
 }
 
 
@@ -64,103 +89,101 @@ function  buscaBanco(dados){
       }
     });
 }
+   
 var timeout;
-  $( "#aumenta_dia30" ).mousedown(function(){
-    timeout = setInterval(function(){   
-        reduzValores(0, 0.1);
-    }, 30)
+$( "#aumenta_dia30" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(0, 0.1);
+  }, 30)
 
-    return false;
-  });
-  
-  $("#aumenta_dia30").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  });
+  return false;
+});
 
-  $("#aumenta_dia30").mouseleave(function(){
+$("#aumenta_dia30").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
-  $( "#reduz_dia30" ).mousedown(function(){
-    timeout = setInterval(function(){   
-      aumentaValores(0, 0.1);
-    }, 10)
-    return false;
-  });
-  $("#reduz_dia30").mouseleave(function(){
+});
+
+$("#aumenta_dia30").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#reduz_dia30" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(0, 0.1);
+  }, 10)
+  return false;
+});
+$("#reduz_dia30").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$("#reduz_dia30").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
-  $("#reduz_dia30").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  });
-  $( "#aumenta_dia5" ).mousedown(function(){
-    timeout = setInterval(function(){   
-        reduzValores(1, 0.1);
-    }, 10)
-    return false;
-  });
-  $("#aumenta_dia5").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  });
-  $("#aumenta_dia5").mouseleave(function(){
+});
+$( "#aumenta_dia5" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(1, 0.1);
+  }, 10)
+  return false;
+});
+$("#aumenta_dia5").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
-  $( "#reduz_dia5" ).mousedown(function(){
-    timeout = setInterval(function(){   
-      aumentaValores(1, 0.3);
-    }, 10)
-    return false;
-  });
-  $("#reduz_dia5").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  }); 
-  $("#reduz_dia5").mouseleave(function(){
+});
+$("#aumenta_dia5").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#reduz_dia5" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(1, 0.3);
+  }, 10)
+  return false;
+});
+$("#reduz_dia5").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
-  $( "#aumenta_vcto" ).mousedown(function(){
-    timeout = setInterval(function(){   
-        reduzValores(2, 0.3);
-    }, 10)
-    return false;
-  });
-  $("#aumenta_vcto").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  });
-  $("#aumenta_vcto").mouseleave(function(){
+}); 
+$("#reduz_dia5").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#aumenta_vcto" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(2, 0.3);
+  }, 10)
+  return false;
+});
+$("#aumenta_vcto").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
-  $( "#reduz_vcto" ).mousedown(function(){
-    timeout = setInterval(function(){   
-      aumentaValores(2, 0.1);
-    }, 10)
-    return false;
-  });
-  $("#reduz_vcto").mouseup(function(){
-      clearInterval(timeout);
-      return false;
-  });
-  $("#reduz_vcto").mouseleave(function(){
+});
+$("#aumenta_vcto").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#reduz_vcto" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(2, 0.1);
+  }, 10)
+  return false;
+});
+$("#reduz_vcto").mouseup(function(){
     clearInterval(timeout);
     return false;
-  });
+});
+$("#reduz_vcto").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
 
     function aumentaValores(num_linha, porcentagem = 0.5){
         
       var linha = chartExponencial.series[num_linha];    
+      var valorComDesconto = 0;    
   
-      var valorVctoUp = [];    
-      var valorAntecipadoUp = [];    
-      var valorEmDiaUp = [];    
-      var tamArr = Object.keys(cols).length;
   
         colunas  = linha.data;
         colunas.forEach(function (coluna){
@@ -170,40 +193,24 @@ var timeout;
             coluna.update(coluna.y+((coluna.y/100)* porcentagem));
           }
         });
+        
+        valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
       
-      for(i=0;i<colunas.length;i++){
-        valorVctoUp.push(chartExponencial.series[2].data[i].y)
-        valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
-        valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
+      if(num_linha == 0){
+        $('.dia30').attr("placeholder", "R$"+valorComDesconto)
+      }else if(num_linha == 1){
+          $('.dia5').attr("placeholder", "R$"+valorComDesconto);
+      }else if(num_linha == 2){        
+        $('.vcto').attr("placeholder", "R$"+valorComDesconto);
       }
-  
-      var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
-      var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100)))));
-  
-      
-      var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
-      var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100)))));
-  
-      
-      var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
-      var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
-  
-  
-      $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     }
   
   
   
     function reduzValores(num_linha, porcentagem = 0.5){
         
-      var linha = chartExponencial.series[num_linha];    
-  
-      var valorVctoUp = [];    
-      var valorAntecipadoUp = [];    
-      var valorEmDiaUp = [];    
-      var tamArr = Object.keys(cols).length;
+      var linha = chartExponencial.series[num_linha];  
+      var valorComDesconto = 0;    
   
         colunas  = linha.data;
         colunas.forEach(function (coluna){
@@ -213,28 +220,15 @@ var timeout;
             coluna.update(coluna.y-((coluna.y/100)* porcentagem));
           }
         });
-      
-      for(i=0;i<colunas.length;i++){
-        valorVctoUp.push(chartExponencial.series[2].data[i].y)
-        valorAntecipadoUp.push(chartExponencial.series[0].data[i].y)
-        valorEmDiaUp.push(chartExponencial.series[1].data[i].y)
-      }
-  
-      var totalContaVcto = valorVctoUp.reduce((a, b) => a + b, 0);
-      var total_vencimento = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaVcto / tamArr) * parseInt(data['total_curso']/100)))));
-  
-      
-      var totalContaAntecipado = valorAntecipadoUp.reduce((a, b) => a + b, 0);
-      var total_antecipado = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaAntecipado / tamArr) * parseInt(data['total_curso']/100)))));
-  
-      
-      var totalContaEmDia = valorEmDiaUp.reduce((a, b) => a + b, 0);
-      var total_emDia = 6*(Math.round((parseInt(data['total_curso']) - ((totalContaEmDia / tamArr) * parseInt(data['total_curso']/100)))));
-  
-  
-      $('.dia30').attr("placeholder", "R$"+total_antecipado.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.dia5').attr("placeholder", "R$"+total_emDia.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-      $('.vcto').attr("placeholder", "R$"+total_vencimento.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+        valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    
+        if(num_linha == 0){
+          $('.dia30').attr("placeholder", "R$"+valorComDesconto);
+        }else if(num_linha == 1){  
+          $('.dia5').attr("placeholder", "R$"+valorComDesconto);
+        }else if(num_linha == 2){          
+          $('.vcto').attr("placeholder", "R$"+valorComDesconto);
+        }
     }
 
 $("#save_button").click(function () {
@@ -414,4 +408,17 @@ $('#periodos').on('input', function () {
   }
 });
 
-
+function calculaTotal(colunas, valCheio = data['total_curso']){
+  var mensalidade = valCheio/(colunas.length) 
+  var total = 0; 
+  
+  colunas.forEach(function(coluna) {
+      //porcentagem
+      var desconto = (mensalidade / 100) * coluna.y;
+      totalPeriodo = (mensalidade - desconto)*6;
+      
+      total = total + totalPeriodo;
+  })
+  
+  return(total);
+}
