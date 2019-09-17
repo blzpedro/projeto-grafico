@@ -128,7 +128,7 @@ $("#reduz_dia30").mouseup(function(){
 });
 $( "#aumenta_dia5" ).mousedown(function(){
   timeout = setInterval(function(){   
-      reduzValores(1, 0.1);
+      reduzValores(1, 0.01);
   }, 10)
   return false;
 });
@@ -142,7 +142,7 @@ $("#aumenta_dia5").mouseleave(function(){
 });
 $( "#reduz_dia5" ).mousedown(function(){
   timeout = setInterval(function(){   
-    aumentaValores(1, 0.3);
+    aumentaValores(1, 0.1);
   }, 10)
   return false;
 });
@@ -156,7 +156,7 @@ $("#reduz_dia5").mouseleave(function(){
 });
 $( "#aumenta_vcto" ).mousedown(function(){
   timeout = setInterval(function(){   
-      reduzValores(2, 0.3);
+      reduzValores(2, 0.1);
   }, 10)
   return false;
 });
