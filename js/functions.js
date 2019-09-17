@@ -467,6 +467,7 @@ function montaTable(inicial, busca){
   var html = "<tr> <th>Período</th> <th><font color='green'>Dia 30</font></th> <th>5º dia</th> <th><font color='red'>Vcto</font></th> </tr>";
   var linhas = busca;
   var valores = [];
+  var descontos = [];
   
   linhas.forEach(function(linha) {
     var colunasInt = [];
@@ -480,10 +481,19 @@ function montaTable(inicial, busca){
       
       colunasInt.push(total_periodo.toFixed(2));
     })
+    descontos.push(colunas)
     valores.push(colunasInt);
   });
+
   for (i = 0; i < valores[0].length; i++) {
-    html += "<tr><td><b>"+anoInicial+"."+semestre+"</b></td><td>"+parseFloat(valores[0][i])+"</td><td>"+parseFloat(valores[1][i])+"</td><td>"+parseFloat(valores[2][i])+"</td></tr>";
+    console.log(descontos)
+    var descDia30 = descontos[0][i]+'%';
+    var descDia5 = descontos[1][i]+'%';
+    var descVcto = descontos[2][i]+'%';
+    var valPeriodo_dia30 = 'R$'+(parseFloat(valores[0][i])).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    var valPeriodo_dia5 = 'R$'+(parseFloat(valores[1][i])).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    var valPeriodo_vcto = 'R$'+(parseFloat(valores[2][i])).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+    html += "<tr><td><b>"+anoInicial+"."+semestre+"</b></td><td>"+valPeriodo_dia30+'<br>'+descDia30+"</td><td>"+valPeriodo_dia5+'<br>'+descDia5+"</td><td>"+valPeriodo_vcto+'<br>'+descVcto+"</td></tr>";
     if(semestre == 1){
       semestre = 2
     }else{

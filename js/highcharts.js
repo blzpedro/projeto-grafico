@@ -19,7 +19,7 @@ var limit = parseInt(dados['colunas'][0]['quantidade']);
 var semestre = parseInt(dados['p_nome'].substr(dados['p_nome'].length - 1));
 var anoInicial = parseInt(dados['p_nome']);
 while(limit > 0){
-    console.log(anoInicial+'.'+semestre)
+    // console.log(anoInicial+'.'+semestre)
     cols.push(anoInicial+'.'+semestre);
     if(semestre == 2){
         semestre = 1

@@ -83,8 +83,8 @@ body {
 #exponencial{
     height: 100%;
     width: 80%;
-    @media screen and(max-width: 850px){
-        width: 77%;
+    @media screen and(max-width:1175px){        
+       width: 70%;
     }
 }
 
@@ -222,7 +222,12 @@ body {
     display: block;
     margin-left: auto;   
     margin-bottom: -35px;
-    
+    @media screen and(max-width:1175px){
+        width: 30%;
+    }
+    @media screen and(max-width:950px){    
+        width: 25%;
+    }
 }
 
 .btn-enviar{
@@ -237,9 +242,13 @@ body {
 .tabela-grafico{
     width: 20%;
     margin-top: 50px;
-    position: absolute;
-    top: 0;
-    right: 0;
+    position: absolute;    
+    top: 15px;
+    right: 15px;
+    font-size: 10px;    
+    @media screen and(max-width:1175px){    
+        width: 30%;
+    }
 }
 
 .box-inputs{
@@ -247,6 +256,6 @@ body {
 }
 
 td, th{
-    padding: 7px !important;
+    padding: 5px !important;
 }
 

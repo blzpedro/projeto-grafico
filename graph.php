@@ -20,7 +20,7 @@
 </head>
 <script>
     var colunas = <?php echo json_encode($_REQUEST); ?>;
-</script>
+</script> 
 
 <body id="fullscreen">
     <br>
