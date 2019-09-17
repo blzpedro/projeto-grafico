@@ -155,6 +155,8 @@ body {
     margin-right: 55%;
     width: 15%;
     display: flex;
+    position: sticky;
+    bottom: 75px;
     @media screen and(max-width:1350px){
         width: 20%;
         margin-right: 35%;
@@ -180,13 +182,20 @@ body {
     }
 }
 
+.box-dia5{
+    bottom: 35px;
+}
+
+.box-vcto{
+    bottom: 0px;
+}
 
 .box-dia5, .box-vcto{    
     margin-left: 45%;
     margin-right: 55%;
-    width: 15%;
-    position: sticky;
+    width: 15%;    
     display: flex;
+    position: sticky;
     @media screen and(max-width:1350px){
         width: 20%;
         margin-right: 35%;
@@ -248,7 +257,9 @@ body {
 }
 
 .box-inputs{
-    margin-top: -135px;
+    position: relative;
+    bottom: 135px;
+
 }
 
 td, th{

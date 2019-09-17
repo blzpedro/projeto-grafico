@@ -34,7 +34,6 @@
        
     
     </table>
-    <div class="box-inputs">
         <div class="box-dia30">
             <input type="text" class="input-dia30 dia30" disabled>
             <i class="small remove diminuir-dia30 chevron material-icons" style="color: red" id="reduz_dia30">remove</i>
@@ -50,7 +49,6 @@
             <i class="small remove diminuir-vcto chevron material-icons" style="color: red" id="reduz_vcto">remove</i>
             <i class="small add aumentar-vcto chevron material-icons" style="color: green" id="aumenta_vcto">add</i>
         </div>
-    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
