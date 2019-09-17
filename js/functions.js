@@ -1,8 +1,40 @@
 
+function  buscaBanco(dados){
+  var val = chartExponencial.series;
+  $.ajax({
+    url: "busca.php",
+    type: 'POST',
+    data:dados,   
+    dataType: 'JSON',
+    success: function (response) {
+      montaTable(dados['p_nome'], response)
+      response.forEach(function (e) {
+        e.y = $.map( e.valores_y.split(','), Number );
+        
+          
+          
+            chartExponencial.series.forEach(function (){
+            })
+            
+            $('#mensalidade').val(parseFloat(e.mensalidade));
+            if(e.tipo_linha == 0){
+              val[0].setData(e.y);
+              chartExponencial.redraw(true);
+            }
+            if(e.tipo_linha == 1){
+              val[1].setData(e.y);
+              chartExponencial.redraw(true);
+            }
+            if(e.tipo_linha == 2){
+              val[2].setData(e.y);
+              chartExponencial.redraw(true);
+            }
+        });
+      }
+    });
+}$(document).ready(function () {
 
-$(document).ready(function () {
   buscaBanco(dados);
-  // console.log(dados)
   
   
 
@@ -17,26 +49,33 @@ $(document).ready(function () {
   $('.modal').modal();
   $('select').formSelect();
 
-  $.ajax({
-    url: "busca.php",
-    type: 'get',
-    dataType: 'JSON',
-    success: function (response) {
-      var GrafArray = [];
-      response.forEach(function (e) {
-        GrafArray.push(e['graf_nome']);
-      });
-      var dataGrafico = {};
-      for (var i = 0; i < GrafArray.length; i++) {
-        dataGrafico[GrafArray[i]] = null;
-      }
-      $('input.autocomplete').autocomplete({
-        data: dataGrafico,
-        limit: 5,
-      });
-    }
-  });
+
+  // $.ajax({
+  //   url: "busca.php",
+  //   type: 'get',
+  //   dataType: 'JSON',
+  //   success: function (response) {
+  //     montaTable(dados['p_nome'], response)
+  //     var GrafArray = [];
+  //     response.forEach(function (e) {
+  //       GrafArray.push(e['graf_nome']);
+  //     });
+  //     var dataGrafico = {};
+  //     for (var i = 0; i < GrafArray.length; i++) {
+  //       dataGrafico[GrafArray[i]] = null;
+  //     }
+  //     $('input.autocomplete').autocomplete({
+  //       data: dataGrafico,
+  //       limit: 5,
+  //     });
+  //   }
+  // });
+
 });
+
+
+
+
 var timeout =0;
 window.setInterval(function(){
   atualizaTela();
@@ -53,42 +92,7 @@ function atualizaTela() {
 }
 
 
-function  buscaBanco(dados){
-  var val = chartExponencial.series;
-  $.ajax({
-    url: "busca.php",
-    type: 'POST',
-    data:dados,   
-    dataType: 'JSON',
-    success: function (response) {
-      response.forEach(function (e) {
-        e.y = $.map( e.valores_y.split(','), Number );
-        
-          
-          
-            chartExponencial.series.forEach(function (){
-            })
-            
-            $('#mensalidade').val(parseFloat(e.mensalidade));
-            if(e.tipo_linha == 0){
-              val[0].setData(e.y);
-              chartExponencial.redraw(true);
-              // val[0].data[e.x].update(parseInt(e.y));
-            }
-            if(e.tipo_linha == 1){
-              val[1].setData(e.y);
-              chartExponencial.redraw(true);
-              // val[1].data[e.x].update(parseInt(e.y));
-            }
-            if(e.tipo_linha == 2){
-              val[2].setData(e.y);
-              chartExponencial.redraw(true);
-              // val[2].data[e.x].update(parseInt(e.y));
-            }
-        });
-      }
-    });
-}
+
    
 var timeout;
 $( "#aumenta_dia30" ).mousedown(function(){
@@ -179,7 +183,7 @@ $("#reduz_vcto").mouseleave(function(){
   return false;
 });
 
-    function aumentaValores(num_linha, porcentagem = 0.5){
+function aumentaValores(num_linha, porcentagem = 0.5){
         
       var linha = chartExponencial.series[num_linha];    
       var valorComDesconto = 0;    
@@ -206,9 +210,7 @@ $("#reduz_vcto").mouseleave(function(){
     }
   
   
-  
     function reduzValores(num_linha, porcentagem = 0.5){
-        
       var linha = chartExponencial.series[num_linha];  
       var valorComDesconto = 0;    
   
@@ -221,7 +223,6 @@ $("#reduz_vcto").mouseleave(function(){
           }
         });
         valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
-    
         if(num_linha == 0){
           $('.dia30').attr("placeholder", "R$"+valorComDesconto);
         }else if(num_linha == 1){  
@@ -367,7 +368,6 @@ $("#add_button").click(function () {
       name: 'Após vcto ' + ((qtdLinhas / 3) + 1),
     });
 
-    // // console.log(parseInt(qtdLinhas) + 1);
   } else {
     alert('numero maximo de linhas excedido');
   }
@@ -419,6 +419,77 @@ function calculaTotal(colunas, valCheio = data['total_curso']){
       
       total = total + totalPeriodo;
   })
-  
   return(total);
+}
+
+$('#input-dia5').keypress(function(event){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){calculaTotal
+    var novoValor = parseFloat($('#input-dia5').val());
+    var valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+    var cont =0;
+    if(novoValor <valorAtual){
+      while(novoValor <valorAtual){
+        novoValor = parseFloat($('#input-dia5').val());
+        valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+        dados = chartExponencial.series[1].data;
+        dados.forEach(function (dado){
+          if(dado.y>99.9){
+            dado.update(100);
+          }else{
+            dado.update(dado.y + 0.5);
+          }
+        });
+      } 
+    }
+    if(novoValor > valorAtual){
+      while(novoValor <valorAtual){
+        novoValor = parseFloat($('#input-dia5').val());
+        valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+        dados = chartExponencial.series[1].data;
+        dados.forEach(function (dado){
+          if(dado.y<0.1){
+            dado.update(0);
+          }else{
+            dado.update(dado.y - 0.5);
+          }
+        });
+      } 
+      
+    }
+	}
+});
+
+
+function montaTable(inicial, busca){
+  var anoInicial = parseInt(inicial); 
+  var semestre = inicial.substr(inicial.length - 1);;
+  var html = "<tr> <th>Período</th> <th><font color='green'>Dia 30</font></th> <th>5º dia</th> <th><font color='red'>Vcto</font></th> </tr>";
+  var linhas = busca;
+  var valores = [];
+  
+  linhas.forEach(function(linha) {
+    var colunasInt = [];
+    var colunas = linha.valores_y.split(',')
+    colunas.forEach(function(coluna){
+      
+      var valor_periodo = parseFloat(coluna);
+      var tamArr = colunas.length;
+      var total_periodo =  (parseInt(data['total_curso']/tamArr) - (valor_periodo/tamArr) * parseInt(data['total_curso']/100));
+      
+      
+      colunasInt.push(total_periodo.toFixed(2));
+    })
+    valores.push(colunasInt);
+  });
+  for (i = 0; i < valores[0].length; i++) {
+    html += "<tr><td><b>"+anoInicial+"."+semestre+"</b></td><td>"+parseFloat(valores[0][i])+"</td><td>"+parseFloat(valores[1][i])+"</td><td>"+parseFloat(valores[2][i])+"</td></tr>";
+    if(semestre == 1){
+      semestre = 2
+    }else{
+      anoInicial++;
+      semestre = 1
+    }
+  }
+  $("#tabela-grafico").html(html);
 }

@@ -16,11 +16,21 @@ var valorVcto;
 
 var limit = parseInt(dados['colunas'][0]['quantidade']);
 
+var semestre = parseInt(dados['p_nome'].substr(dados['p_nome'].length - 1));
+var anoInicial = parseInt(dados['p_nome']);
 while(limit > 0){
-    cols.push('P'+limit);
+    console.log(anoInicial+'.'+semestre)
+    cols.push(anoInicial+'.'+semestre);
+    if(semestre == 2){
+        semestre = 1
+        anoInicial++
+    }else{
+        semestre = 2
+    }
+    // console.log(anoInicial)
+    
     limit--;
 }
-cols.reverse();
 
 
 data['colunas'].forEach(pegaRequest);

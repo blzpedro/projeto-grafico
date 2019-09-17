@@ -1,8 +1,8 @@
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
     font-size: 0.8em;
-    overflow: hidden;
     height: 100vh;
+    overflow: hidden;
     user-select: none;
 }
 
@@ -82,7 +82,10 @@ body {
 
 #exponencial{
     height: 100%;
-    width: 100%;
+    width: 80%;
+    @media screen and(max-width: 850px){
+        width: 77%;
+    }
 }
 
 .inputDesc{
@@ -148,25 +151,19 @@ body {
 }
 
 .box-dia30{
-    margin-top: -135px;
-    margin-left: 54%;
-    margin-right: 35%;
+    margin-left: 45%;
+    margin-right: 55%;
     width: 15%;
-    position: sticky;
     display: flex;
     @media screen and(max-width:1350px){
-        margin-left: 55%;
-        margin-right: 15%;
         width: 20%;
+        margin-right: 35%;
     }
-    @media screen and(max-width:1150px){
-        margin-left: 55%;
-        margin-right: 15%;
-        width: 20%;
+    @media screen and(max-width:1175px){        
+        margin-left: 45%;
+        margin-right: 35%;
     }
     @media screen and(max-width:768px){
-        margin-left: 60%;
-        margin-right: 15%;
         width: 25%;
     }
     cursor: pointer;
@@ -185,24 +182,20 @@ body {
 
 
 .box-dia5, .box-vcto{    
-    margin-left: 54%;
-    margin-right: 35%;
+    margin-left: 45%;
+    margin-right: 55%;
     width: 15%;
     position: sticky;
     display: flex;
     @media screen and(max-width:1350px){
-        margin-left: 55%;
-        margin-right: 15%;
         width: 20%;
+        margin-right: 35%;
     }
-    @media screen and(max-width:1150px){
-        margin-left: 55%;
-        margin-right: 15%;
-        width: 20%;
+    @media screen and(max-width:1175px){        
+        margin-left: 45%;
+        margin-right: 35%;
     }
     @media screen and(max-width:768px){
-        margin-left: 60%;
-        margin-right: 15%;
         width: 25%;
     }
     cursor: pointer;
@@ -225,7 +218,7 @@ body {
 }
 
 .btn-salvar{
-    width: 10%;    
+    width: 20%;    
     display: block;
     margin-left: auto;   
     margin-bottom: -35px;
@@ -240,3 +233,20 @@ body {
 .material-icons{
     font-size: 30px;
 }
+
+.tabela-grafico{
+    width: 20%;
+    margin-top: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.box-inputs{
+    margin-top: -135px;
+}
+
+td, th{
+    padding: 7px !important;
+}
+

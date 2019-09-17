@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/functions.js"></script>
     <!-- <script src="js/multirange.js"></script> -->
     <link rel="shortcut icon" href="linegraph.png" type="image/x-icon">
 </head>
@@ -29,20 +30,26 @@
         </div>
     </div>
     <div id="exponencial"></div>
-    <div class="box-dia30">
-        <input type="text" class="input-dia30 dia30" disabled>
-        <i class="small remove diminuir-dia30 chevron material-icons" style="color: red" id="reduz_dia30">remove</i>
-        <i class="small add aumentar-dia30 chevron material-icons" style="color: green" id="aumenta_dia30">add</i>
-    </div>
-    <div class="box-dia5">
-        <input type="text" class="input-dia5 dia5" disabled>
-        <i class="small remove diminuir-dia5 chevron material-icons" style="color: red" id="reduz_dia5">remove</i>
-        <i class="small add aumentar-dia5 chevron material-icons" style="color: green" id="aumenta_dia5">add</i>
-    </div>
-    <div class="box-vcto">
-        <input type="text" class="input-vcto vcto" disabled>
-        <i class="small remove diminuir-vcto chevron material-icons" style="color: red" id="reduz_vcto">remove</i>
-        <i class="small add aumentar-vcto chevron material-icons" style="color: green" id="aumenta_vcto">add</i>
+    <table class="tabela-grafico" id='tabela-grafico'>
+       
+    
+    </table>
+    <div class="box-inputs">
+        <div class="box-dia30">
+            <input type="text" class="input-dia30 dia30" disabled>
+            <i class="small remove diminuir-dia30 chevron material-icons" style="color: red" id="reduz_dia30">remove</i>
+            <i class="small add aumentar-dia30 chevron material-icons" style="color: green" id="aumenta_dia30">add</i>
+        </div>
+        <div class="box-dia5">
+            <input type="text" class="input-dia5 dia5" disabled>
+            <i class="small remove diminuir-dia5 chevron material-icons" style="color: red" id="reduz_dia5">remove</i>
+            <i class="small add aumentar-dia5 chevron material-icons" style="color: green" id="aumenta_dia5">add</i>
+        </div>
+        <div class="box-vcto">
+            <input type="text" class="input-vcto vcto" disabled>
+            <i class="small remove diminuir-vcto chevron material-icons" style="color: red" id="reduz_vcto">remove</i>
+            <i class="small add aumentar-vcto chevron material-icons" style="color: green" id="aumenta_vcto">add</i>
+        </div>
     </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>

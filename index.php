@@ -1,7 +1,7 @@
 <?php
 
     $dados = array(
-        'nome_graf' => 'teste',
+        'nome_graf' => '004d9dfab672e16ef838074dcf349a74',
         'colunas' => array(
             array(
                 'valor' => 70,
@@ -10,7 +10,8 @@
                 'taxa_juros' => 20,
             )
         ),  
-        'mensalidade' => 1500,
+        'p_nome' => '1016.2',
+        'mensalidade' => 912,
     );
     // echo '<br><div class="centro" style="background:none;"><a class="link btn" href="graph.php?'.http_build_query($dados).'" size="5">Redirecionar ao gráfico</a></div>';
     // echo "<br><br><br><span class=''>Dados: <pre></span>";
