@@ -1,3 +1,29 @@
+.loading{
+    z-index:9;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0,0.6);
+    margin: auto;
+    padding: 20% 47%;
+}
+.loader{
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    width: 100px;
+    height: 100px;
+    z-index:10;
+    border-radius: 50%;
+    border-top: 10px solid rgba(40, 166, 153,1);
+    border-left: 10px solid  rgba(40, 166, 153, 0.75);
+    border-bottom: 10px solid  rgba(40, 166, 153, 0.5);
+    border-right: 10px solid  rgba(40, 166, 153, 0.22);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
 body {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
     font-size: 0.8em;
