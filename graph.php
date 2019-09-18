@@ -35,17 +35,17 @@
     
     </table>
         <div class="box-dia30">
-            <input type="text" class="input-dia30 dia30" disabled>
+            <input type="text" class="input-dia30 dia30" id="input-dia30">
             <i class="small remove diminuir-dia30 chevron material-icons" style="color: red" id="reduz_dia30">remove</i>
             <i class="small add aumentar-dia30 chevron material-icons" style="color: green" id="aumenta_dia30">add</i>
         </div>
         <div class="box-dia5">
-            <input type="text" class="input-dia5 dia5" disabled>
+            <input type="text" class="input-dia5 dia5" id="input-dia5">
             <i class="small remove diminuir-dia5 chevron material-icons" style="color: red" id="reduz_dia5">remove</i>
             <i class="small add aumentar-dia5 chevron material-icons" style="color: green" id="aumenta_dia5">add</i>
         </div>
         <div class="box-vcto">
-            <input type="text" class="input-vcto vcto" disabled>
+            <input type="text" class="input-vcto vcto" id="input-vcto">
             <i class="small remove diminuir-vcto chevron material-icons" style="color: red" id="reduz_vcto">remove</i>
             <i class="small add aumentar-vcto chevron material-icons" style="color: green" id="aumenta_vcto">add</i>
         </div>

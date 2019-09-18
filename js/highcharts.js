@@ -94,7 +94,7 @@ var chartExponencial = new Highcharts.Chart({
     chart: {
         type: 'spline',
         renderTo: 'exponencial',
-        animation: false,
+        animation: true,
         panning: true,
         panKey: 'shift'
     },

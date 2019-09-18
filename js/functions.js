@@ -486,7 +486,6 @@ function montaTable(inicial, busca){
   });
 
   for (i = 0; i < valores[0].length; i++) {
-    console.log(descontos)
     var descDia30 = descontos[0][i]+'%';
     var descDia5 = descontos[1][i]+'%';
     var descVcto = descontos[2][i]+'%';
@@ -502,4 +501,60 @@ function montaTable(inicial, busca){
     }
   }
   $("#tabela-grafico").html(html);
+}
+
+
+
+
+$('#input-dia30').keypress(function(event){attValByInput(event, '#'+this.id, 0)});
+$('#input-dia5').keypress(function(event){attValByInput(event, '#'+this.id, 1)});
+$('#input-vcto').keypress(function(event){attValByInput(event, '#'+this.id, 2)});
+
+
+
+function attValByInput(event, inputId, linha){
+  var keycode = (event.keyCode ? event.keyCode : event.which);
+	if(keycode == '13'){
+    calculaTotal
+    var novoValor = parseFloat($(inputId).val());
+    var valorAtual = parseFloat(calculaTotal(chartExponencial.series[linha].data).toFixed(2))
+    if(novoValor < valorAtual){
+      while(novoValor <= valorAtual){
+        novoValor = parseFloat($(inputId).val());
+        valorAtual = calculaTotal(chartExponencial.series[linha].data).toFixed(2)
+        dados = chartExponencial.series[linha].data;
+        dados.forEach(function (dado){
+          if(dado.y>99.9){
+            dado.update(100);
+          }else{
+            dado.update(dado.y + 0.5);
+          } 
+          if(dado.y<0.1){
+            dado.update(0);
+          }
+        });
+      } 
+    }
+    if(novoValor > valorAtual){
+      while(novoValor > valorAtual){
+        novoValor = parseFloat($(inputId).val());
+        valorAtual = calculaTotal(chartExponencial.series[linha].data).toFixed(2)
+        dados = chartExponencial.series[linha].data;
+        dados.forEach(function (dado){
+          if(dado.y<0.1){
+            dado.update(0);
+          }else{
+            dado.update(dado.y - 0.5);
+          }
+          if(dado.y>99.9){
+            dado.update(100);
+          }
+        });
+      } 
+    }
+    valorAtual = parseFloat(valorAtual.toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 }))
+    $(inputId).attr("placeholder", valorAtual);
+    $(inputId).val('');
+  }
+  
 }
