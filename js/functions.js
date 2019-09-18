@@ -36,7 +36,6 @@ function  buscaBanco(dados){
 
   buscaBanco(dados);
   
-  
 
   $('.tooltipped').tooltip({
     outDuration: 0,
@@ -48,28 +47,6 @@ function  buscaBanco(dados){
   $('.value').text('50');
   $('.modal').modal();
   $('select').formSelect();
-
-
-  // $.ajax({
-  //   url: "busca.php",
-  //   type: 'get',
-  //   dataType: 'JSON',
-  //   success: function (response) {
-  //     montaTable(dados['p_nome'], response)
-  //     var GrafArray = [];
-  //     response.forEach(function (e) {
-  //       GrafArray.push(e['graf_nome']);
-  //     });
-  //     var dataGrafico = {};
-  //     for (var i = 0; i < GrafArray.length; i++) {
-  //       dataGrafico[GrafArray[i]] = null;
-  //     }
-  //     $('input.autocomplete').autocomplete({
-  //       data: dataGrafico,
-  //       limit: 5,
-  //     });
-  //   }
-  // });
 
 });
 
@@ -91,11 +68,9 @@ function atualizaTela() {
   aumentaValores(2,0);
 }
 
-
-
    
 var timeout;
-$( "#aumenta_dia30" ).mousedown(function(){
+$( "#aumenta_dia30, #reduz_dia30" ).mousedown(function(){
   timeout = setInterval(function(){   
       reduzValores(0, 0.1);
   }, 30)
@@ -103,82 +78,43 @@ $( "#aumenta_dia30" ).mousedown(function(){
   return false;
 });
 
-$("#aumenta_dia30").mouseup(function(){
+$("#aumenta_dia30, #reduz_dia30").mouseup(function(){
     clearInterval(timeout);
     return false;
 });
 
-$("#aumenta_dia30").mouseleave(function(){
+$("#aumenta_dia30, #reduz_dia30").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
-$( "#reduz_dia30" ).mousedown(function(){
-  timeout = setInterval(function(){   
-    aumentaValores(0, 0.1);
-  }, 10)
-  return false;
-});
-$("#reduz_dia30").mouseleave(function(){
-  clearInterval(timeout);
-  return false;
-});
-$("#reduz_dia30").mouseup(function(){
-    clearInterval(timeout);
-    return false;
-});
-$( "#aumenta_dia5" ).mousedown(function(){
+
+
+$( "#aumenta_dia5, #reduz_dia5" ).mousedown(function(){
   timeout = setInterval(function(){   
       reduzValores(1, 0.01);
   }, 10)
   return false;
 });
-$("#aumenta_dia5").mouseup(function(){
+$("#aumenta_dia5, #reduz_dia5").mouseup(function(){
     clearInterval(timeout);
     return false;
 });
-$("#aumenta_dia5").mouseleave(function(){
+$("#aumenta_dia5, #reduz_dia5").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
-$( "#reduz_dia5" ).mousedown(function(){
-  timeout = setInterval(function(){   
-    aumentaValores(1, 0.1);
-  }, 10)
-  return false;
-});
-$("#reduz_dia5").mouseup(function(){
-    clearInterval(timeout);
-    return false;
-}); 
-$("#reduz_dia5").mouseleave(function(){
-  clearInterval(timeout);
-  return false;
-});
-$( "#aumenta_vcto" ).mousedown(function(){
+
+$( "#aumenta_vcto, #reduz_vcto" ).mousedown(function(){
   timeout = setInterval(function(){   
       reduzValores(2, 0.1);
   }, 10)
   return false;
 });
-$("#aumenta_vcto").mouseup(function(){
+$("#aumenta_vcto, #reduz_vcto").mouseup(function(){
     clearInterval(timeout);
     return false;
 });
-$("#aumenta_vcto").mouseleave(function(){
-  clearInterval(timeout);
-  return false;
-});
-$( "#reduz_vcto" ).mousedown(function(){
-  timeout = setInterval(function(){   
-    aumentaValores(2, 0.1);
-  }, 10)
-  return false;
-});
-$("#reduz_vcto").mouseup(function(){
-    clearInterval(timeout);
-    return false;
-});
-$("#reduz_vcto").mouseleave(function(){
+$("#aumenta_vcto, #reduz_vcto").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
@@ -376,29 +312,6 @@ $("#add_button").click(function () {
 var data = colunas;
 var valor = colunas;
 
-var elem = document.getElementById("fullscreen");
-
-function openFullscreen() {
-  if ((document.fullScreenElement && document.fullScreenElement !== null) ||
-    (!document.mozFullScreen && !document.webkitIsFullScreen)) {
-    if (document.documentElement.requestFullScreen) {
-      document.documentElement.requestFullScreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-      document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullScreen) {
-      document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-    }
-  } else {
-    if (document.cancelFullScreen) {
-      document.cancelFullScreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.webkitCancelFullScreen) {
-      document.webkitCancelFullScreen();
-    }
-  }
-}
-
 $('#periodos').on('input', function () {
   var value = $(this).val();
 
@@ -407,6 +320,7 @@ $('#periodos').on('input', function () {
     $(this).val(Math.max(Math.min(value, 12), 0));
   }
 });
+
 
 function calculaTotal(colunas, valCheio = data['total_curso']){
   var mensalidade = valCheio/(colunas.length) 
@@ -418,7 +332,7 @@ function calculaTotal(colunas, valCheio = data['total_curso']){
       totalPeriodo = (mensalidade - desconto)*6;
       
       total = total + totalPeriodo;
-  })
+    })
   return(total);
 }
 
@@ -506,15 +420,32 @@ function montaTable(inicial, busca){
 
 
 
-$('#input-dia30').keypress(function(event){attValByInput(event, '#'+this.id, 0)});
-$('#input-dia5').keypress(function(event){attValByInput(event, '#'+this.id, 1)});
-$('#input-vcto').keypress(function(event){attValByInput(event, '#'+this.id, 2)});
+$('#input-dia30').keypress(function(event){
+  $('#input-dia30').mask('R$999999');  
+  attValByInput(event, '#'+this.id, 0)
+});
 
+$('#input-dia5').keypress(function(event){
+  $('#input-dia5').mask('R$999999');
+  attValByInput(event, '#'+this.id, 1)
+});
 
+$('#input-vcto').keypress(function(event){
+  $('#input-vcto').mask('R$999999');
+  attValByInput(event, '#'+this.id, 2)
+});
 
 function attValByInput(event, inputId, linha){
   var keycode = (event.keyCode ? event.keyCode : event.which);
+  var maxInput = parseInt(data['total_curso']) * 6;
 	if(keycode == '13'){
+    console.log(maxInput)
+    $('#input-dia30, #input-dia5, #input-vcto').unmask();
+    if ($('#input-vcto, #input-dia5, #input-dia30').val() > maxInput){
+      alert('Erro.\nValor inserido é maior do que o total do curso!')
+      $('#input-vcto, #input-dia5, #input-dia30').val('');
+      $('#input-vcto, #input-dia5, #input-dia30').mask('R$999999');
+    } else {
     calculaTotal
     var novoValor = parseFloat($(inputId).val());
     var valorAtual = parseFloat(calculaTotal(chartExponencial.series[linha].data).toFixed(2))
@@ -556,5 +487,6 @@ function attValByInput(event, inputId, linha){
     $(inputId).attr("placeholder", valorAtual);
     $(inputId).val('');
   }
+}
   
 }
