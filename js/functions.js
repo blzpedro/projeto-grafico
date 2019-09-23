@@ -52,9 +52,6 @@ $(document).ready(function () {
 });
 setTimeout(function(){ $('#load-screen').hide(); }, 2500)
 
-
-
-var timeout = 0;
 window.setInterval(function () {
   atualizaTela();
 }, 1000);
@@ -63,59 +60,98 @@ window.addEventListener("load", function () {
   setTimeout(atualizaTela, 500, false);
 }, false);
 
+
 function atualizaTela() {
   aumentaValores(0, 0);
   aumentaValores(1, 0);
   aumentaValores(2, 0);
 }
 
-
 var timeout;
-$("#aumenta_dia30, #reduz_dia30").mousedown(function () {
-  timeout = setInterval(function () {
-    reduzValores(0, 0.1);
+$( "#aumenta_dia30" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(0, 0.1);
   }, 30)
 
   return false;
 });
 
-$("#aumenta_dia30, #reduz_dia30").mouseup(function () {
+$("#aumenta_dia30").mouseup(function(){
+    clearInterval(timeout);
+    return false;
+});
+
+$("#aumenta_dia30").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
-
-$("#aumenta_dia30, #reduz_dia30").mouseleave(function () {
-  clearInterval(timeout);
-  return false;
-});
-
-
-$("#aumenta_dia5, #reduz_dia5").mousedown(function () {
-  timeout = setInterval(function () {
-    reduzValores(1, 0.01);
+$( "#reduz_dia30" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(0, 0.1);
   }, 10)
   return false;
 });
-$("#aumenta_dia5, #reduz_dia5").mouseup(function () {
+$("#reduz_dia30").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
-$("#aumenta_dia5, #reduz_dia5").mouseleave(function () {
-  clearInterval(timeout);
-  return false;
+$("#reduz_dia30").mouseup(function(){
+    clearInterval(timeout);
+    return false;
 });
-
-$("#aumenta_vcto, #reduz_vcto").mousedown(function () {
-  timeout = setInterval(function () {
-    reduzValores(2, 0.1);
+$( "#aumenta_dia5" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(1, 0.1);
   }, 10)
   return false;
 });
-$("#aumenta_vcto, #reduz_vcto").mouseup(function () {
+$("#aumenta_dia5").mouseup(function(){
+    clearInterval(timeout);
+    return false;
+});
+$("#aumenta_dia5").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
-$("#aumenta_vcto, #reduz_vcto").mouseleave(function () {
+$( "#reduz_dia5" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(1, 0.3);
+  }, 10)
+  return false;
+});
+$("#reduz_dia5").mouseup(function(){
+    clearInterval(timeout);
+    return false;
+}); 
+$("#reduz_dia5").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#aumenta_vcto" ).mousedown(function(){
+  timeout = setInterval(function(){   
+      reduzValores(2, 0.3);
+  }, 10)
+  return false;
+});
+$("#aumenta_vcto").mouseup(function(){
+    clearInterval(timeout);
+    return false;
+});
+$("#aumenta_vcto").mouseleave(function(){
+  clearInterval(timeout);
+  return false;
+});
+$( "#reduz_vcto" ).mousedown(function(){
+  timeout = setInterval(function(){   
+    aumentaValores(2, 0.1);
+  }, 10)
+  return false;
+});
+$("#reduz_vcto").mouseup(function(){
+    clearInterval(timeout);
+    return false;
+});
+$("#reduz_vcto").mouseleave(function(){
   clearInterval(timeout);
   return false;
 });
@@ -138,11 +174,11 @@ function aumentaValores(num_linha, porcentagem = 0.5) {
   valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 
   if (num_linha == 0) {
-    $('.dia30').attr("placeholder", "R$" + valorComDesconto)
+    $('.dia30').attr("placeholder", valorComDesconto)
   } else if (num_linha == 1) {
-    $('.dia5').attr("placeholder", "R$" + valorComDesconto);
+    $('.dia5').attr("placeholder", valorComDesconto);
   } else if (num_linha == 2) {
-    $('.vcto').attr("placeholder", "R$" + valorComDesconto);
+    $('.vcto').attr("placeholder", valorComDesconto);
   }
   
 }
@@ -162,11 +198,11 @@ function reduzValores(num_linha, porcentagem = 0.5) {
   });
   valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
   if (num_linha == 0) {
-    $('.dia30').attr("placeholder", "R$" + valorComDesconto);
+    $('.dia30').attr("placeholder", valorComDesconto);
   } else if (num_linha == 1) {
-    $('.dia5').attr("placeholder", "R$" + valorComDesconto);
+    $('.dia5').attr("placeholder", valorComDesconto);
   } else if (num_linha == 2) {
-    $('.vcto').attr("placeholder", "R$" + valorComDesconto);
+    $('.vcto').attr("placeholder", valorComDesconto);
   }
   
 }
@@ -339,44 +375,65 @@ function calculaTotal(colunas, valCheio = data['total_curso']) {
   return (total);
 }
 
-$('#input-dia5').keypress(function (event) {
-  var keycode = (event.keyCode ? event.keyCode : event.which);
-  if (keycode == '13') {
-    calculaTotal
-    var novoValor = parseFloat($('#input-dia5').val());
-    var valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
-    var cont = 0;
-    if (novoValor < valorAtual) {
-      while (novoValor < valorAtual) {
-        novoValor = parseFloat($('#input-dia5').val());
-        valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
-        dados = chartExponencial.series[1].data;
-        dados.forEach(function (dado) {
-          if (dado.y > 99.9) {
-            dado.update(100);
-          } else {
-            dado.update(dado.y + 0.5);
-          }
-        });
-      }
-    }
-    if (novoValor > valorAtual) {
-      while (novoValor < valorAtual) {
-        novoValor = parseFloat($('#input-dia5').val());
-        valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
-        dados = chartExponencial.series[1].data;
-        dados.forEach(function (dado) {
-          if (dado.y < 0.1) {
-            dado.update(0);
-          } else {
-            dado.update(dado.y - 0.5);
-          }
-        });
-      }
+$('#input-dia30, #input-dia5, #input-vcto').focusout(function(){
+  $(this).val('');
+  atualizaTela();
+})
+$('#input-dia30').focus(function(){
+  $(this).val(inputPlaceholder(this));
+})
+$('#input-dia5').focus(function(){
+  $(this).val(inputPlaceholder(this));
+})
+$('#input-vcto').focus(function(){
+  $(this).val(inputPlaceholder(this));
+})
 
-    }
-  }
-});
+function inputPlaceholder(inputID){
+  var placeholder = $(inputID).attr('placeholder');
+  var convert = placeholder.replace('.','').replace(',','.');
+  
+  return convert
+}
+
+// $('#input-dia5').keypress(function (event) {
+//   var keycode = (event.keyCode ? event.keyCode : event.which);
+//   if (keycode == '13') {
+//     calculaTotal
+//     var novoValor = parseFloat($('#input-dia5').val());
+//     var valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+//     var cont = 0;
+//     if (novoValor < valorAtual) {
+//       while (novoValor < valorAtual) {
+//         novoValor = parseFloat($('#input-dia5').val());
+//         valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+//         dados = chartExponencial.series[1].data;
+//         dados.forEach(function (dado) {
+//           if (dado.y > 99.9) {
+//             dado.update(100);
+//           } else {
+//             dado.update(dado.y + 0.5);
+//           }
+//         });
+//       }
+//     }
+//     if (novoValor > valorAtual) {
+//       while (novoValor < valorAtual) {
+//         novoValor = parseFloat($('#input-dia5').val());
+//         valorAtual = calculaTotal(chartExponencial.series[1].data).toFixed(2)
+//         dados = chartExponencial.series[1].data;
+//         dados.forEach(function (dado) {
+//           if (dado.y < 0.1) {
+//             dado.update(0);
+//           } else {
+//             dado.update(dado.y - 0.5);
+//           }
+//         });
+//       }
+
+//     }
+//   }
+// });
 
 
 function montaTable(inicial, busca) {
@@ -424,7 +481,6 @@ function montaTable(inicial, busca) {
 $('#input-dia30').keypress(function (event) {
   var keyCode = (event.keyCode ? event.keyCode : event.which);
   var inputId = '#' + this.id;
-  $('#input-dia30').mask('R$999999');
     
   if (keyCode == '13') {
     $('#load-screen').show();
@@ -439,7 +495,6 @@ $('#input-dia30').keypress(function (event) {
 $('#input-dia5').keypress(function (event) {
   var keyCode = (event.keyCode ? event.keyCode : event.which);
   var inputId = '#' + this.id;
-  $('#input-dia5').mask('R$999999');
     
   if (keyCode == '13') {
     $('#load-screen').show();
@@ -454,69 +509,37 @@ $('#input-dia5').keypress(function (event) {
 $('#input-vcto').keypress(function (event) {
   var keyCode = (event.keyCode ? event.keyCode : event.which);
   var inputId = '#' + this.id;
-  $('#input-vcto').mask('R$999999');
     
   if (keyCode == '13') {
     $('#load-screen').show();
     setTimeout(function () {
       attValByInput(keyCode, inputId, 2)
       $('#load-screen').hide();
-    }, 1000);
+    }, 2000);
   }
 });
 
 function attValByInput(keycode, inputId, linha) {
   var maxInput = parseInt(data['total_curso']) * 6;
+  console.log(maxInput)
   if (keycode == '13') {
-    $('#input-dia30, #input-dia5, #input-vcto').unmask();
-    if ($('#input-vcto, #input-dia5, #input-dia30').val() > maxInput) {
+    if ($('#input-vcto').val() > maxInput || $('#input-dia30').val() > maxInput || $('#input-dia5').val() > maxInput) {
       alert('Erro.\nValor inserido é maior do que o total do curso!')
-      $('#input-vcto, #input-dia5, #input-dia30').val('');
-      $('#input-vcto, #input-dia5, #input-dia30').mask('R$999999');
     } else {
-      calculaTotal
-      var novoValor = parseFloat($(inputId).val());
-      var valorAtual = parseFloat(calculaTotal(chartExponencial.series[linha].data).toFixed(2))
-      if (novoValor < valorAtual) {
-        while (novoValor <= valorAtual) {
-          novoValor = parseFloat($(inputId).val());
-          valorAtual = calculaTotal(chartExponencial.series[linha].data).toFixed(2)
-          dados = chartExponencial.series[linha].data;
-          dados.forEach(function (dado) {
-            if (dado.y > 99.9) {
-              dado.update(100);
-            } else {
-              dado.update(dado.y + 0.5);
-            }
-            if (dado.y < 0.5) {
-              dado.update(0);
-            }
-          });
-        }
-      }
-      if (novoValor > valorAtual) {
-        while (novoValor > valorAtual) {
-          novoValor = parseFloat($(inputId).val());
-          valorAtual = calculaTotal(chartExponencial.series[linha].data).toFixed(2)
-          dados = chartExponencial.series[linha].data;
-          dados.forEach(function (dado) {
-            if (dado.y < 0.1) {
-              dado.update(0);
-            } else {
-              dado.update(dado.y - 0.5);
-            }
-            if (dado.y > 99.9) {
-              dado.update(100);
-            }
-          });
-        }
-      }
-      valorAtual = parseFloat(valorAtual.toLocaleString('pt-BR', {
-        maximumFractionDigits: 2,
-        minimumFractionDigits: 2
-      }))
-      $(inputId).attr("placeholder", valorAtual);
-      $(inputId).val('');
+      //calculaTotal
+      
+        var pontos = chartExponencial.series[linha].data;
+        var totalAtual = dados['total_curso'] * 6;
+        var valorAtual = calculaTotal(pontos);
+        var valorInput = parseInt($(inputId).val());
+
+        var porcentagemAtual = ( valorAtual * 100 ) / totalAtual;
+        var porcentagemInput = ( valorInput * 100 ) / totalAtual;
+        var porcentUpdate = porcentagemInput - porcentagemAtual;
+
+        pontos.forEach(function(ponto){
+          ponto.update(ponto.y - porcentUpdate);
+        })
     }
   }
 }

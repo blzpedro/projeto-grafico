@@ -183,6 +183,10 @@ body {
     display: flex;
     position: sticky;
     bottom: 75px;
+    label{        
+        margin-top: -5px;
+        margin-right: 3px;
+    }
     @media screen and(max-width:1350px){
         width: 20%;
         margin-right: 35%;
@@ -222,6 +226,10 @@ body {
     width: 15%;    
     display: flex;
     position: sticky;
+    label{        
+        margin-top: -5px;
+        margin-right: 3px;
+    }
     @media screen and(max-width:1350px){
         width: 20%;
         margin-right: 35%;

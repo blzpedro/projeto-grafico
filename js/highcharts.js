@@ -203,11 +203,11 @@ var chartExponencial = new Highcharts.Chart({
                         
                         valorComDesconto = parseFloat(calculaTotal(chartExponencial.series[num_linha].data)).toLocaleString('pt-BR', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
                         if(num_linha == 0){
-                            $('.dia30').attr("placeholder", "R$"+valorComDesconto);
+                            $('.dia30').attr("value", "R$"+valorComDesconto);
                           }else if(num_linha == 1){  
-                            $('.dia5').attr("placeholder", "R$"+valorComDesconto);
+                            $('.dia5').attr("value", "R$"+valorComDesconto);
                           }else if(num_linha == 2){          
-                            $('.vcto').attr("placeholder", "R$"+valorComDesconto);
+                            $('.vcto').attr("value", "R$"+valorComDesconto);
                           }
                     }
                 }
